@@ -1,5 +1,6 @@
 ﻿using Instagram_Clone.DTO;
 using Instagram_Clone.Interface;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Instagram_Clone.Controllers
@@ -45,6 +46,12 @@ namespace Instagram_Clone.Controllers
 
            await  _accountService.LogOutUser();
             return RedirectToAction("LogInPage", "Account");
+        }
+
+        public IActionResult FacebookLogin()
+        {
+            // Redirect the user to Facebook for authentication
+            return Challenge(new AuthenticationProperties { RedirectUri = "/signin-facebook" }, "Facebook");
         }
     }
 }
