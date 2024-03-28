@@ -2,6 +2,7 @@
 using Instagram_Clone.Interface;
 using Instagram_Clone.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Instagram_Clone.Service
 {
@@ -9,11 +10,30 @@ namespace Instagram_Clone.Service
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountService(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public AccountService(UserManager<User> userManager, SignInManager<User> signInManager, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _httpContextAccessor = httpContextAccessor;
         }
+        public async Task<User> GetLoggedInUserAsync()
+        {
+            // Get the username of the currently authenticated user
+            string userName = _httpContextAccessor.HttpContext.User.Identity.Name!;
+
+            // Find the user by username
+            var user = await _userManager.FindByNameAsync(userName);
+
+            return user;
+        }
+        public async Task<List<User>> GetUsers()
+        {
+            var users = await _userManager.Users.ToListAsync();  
+
+            return users;   
+        }
+
         public async Task LogInUser(LogInUserDTO logInUserDTO)
         {
             await _signInManager.PasswordSignInAsync(logInUserDTO.UserName, logInUserDTO.Password, isPersistent: false, lockoutOnFailure: false);

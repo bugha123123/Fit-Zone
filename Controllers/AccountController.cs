@@ -24,6 +24,12 @@ namespace Instagram_Clone.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ProfilePage()
+        {
+            var user = await _accountService.GetLoggedInUserAsync();
+            return View(user);
+        }
+
         [HttpPost("registeruser")]
 
         public async Task<IActionResult> RegisterUser(CreateUserDTO createUserDTO)

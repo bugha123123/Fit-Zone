@@ -11,66 +11,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" asp-append-version="true">
 
     <style>
-        #myModal a:hover {
-            color: gray;
+        /* Custom styles */
+        .sidebar {
+            font-family: 'Times New Roman', Times, serif;
+            background: #000000;
+            max-width: 355px;
+            height: 100vh;
+            flex:1
+        }
+
+        .content {
+            display: flex;
+            margin:0;
+       
+            background-color: #000000; /* Right side background color */
+            flex: 1; /* Content takes up remaining space */
+            padding: 20px; /* Add padding for better spacing */
         }
 
         #myModal {
-           
-            transition: all 0.3s ease;
+            max-width: 266px;
+            height: 300px;
+            background: #262626;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 20px;
         }
     </style>
-
 </head>
 <body>
-    <nav style="font-family: 'Times New Roman', Times, serif; background: #000000; max-width: 355px;height:100vh;  ">
-        <ul class="pt-5" style="overflow-y: auto;  margin: 0;">
-            <li style="list-style-type: none;" class="d-flex flex-column">
-                <a style="color: #f5f5f5; text-decoration: none; font-size: 29px;margin-bottom:40px;">Instagram</a>
 
-                <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-home" style="margin-right: 10px;"></i>Home</a>
-                <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-search" style="margin-right: 10px;"></i>Search</a>
-                <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-compass" style="margin-right: 10px;"></i>Explore</a>
-                <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-play" style="margin-right: 10px;"></i>Reels</a>
-                <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-envelope" style="margin-right: 10px;"></i>Messages</a>
-                <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-bell" style="margin-right: 10px;"></i>Notifications</a>
-                <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-plus" style="margin-right: 10px;"></i>Create</a>
-                <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-user" style="margin-right: 10px;"></i>Profile</a>
-                <a class="morebutton" style="color: #f5f5f5; text-decoration: none;  font-size: 20px; "><i class=" fa fa-ellipsis-v" style="margin-right: 10px;"></i>More</a>
+    <div class="d-flex g-lg-5"  >
+        <nav class="sidebar" style="border-right:2px solid #262626">
+            <ul class="pt-5">
+                <li style="list-style-type: none;" class="d-flex flex-column">
+                    <a asp-action="Index" asp-controller="Home" style="color: #f5f5f5; text-decoration: none; font-size: 29px; margin-bottom: 40px;">Instagram</a>
 
+                    <a asp-action="Index" asp-controller="Home" style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-home" style="margin-right: 10px;"></i>Home</a>
+                    <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-search" style="margin-right: 10px;"></i>Search</a>
+                    <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-compass" style="margin-right: 10px;"></i>Explore</a>
+                    <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-play" style="margin-right: 10px;"></i>Reels</a>
+                    <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-envelope" style="margin-right: 10px;"></i>Messages</a>
+                    <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-bell" style="margin-right: 10px;"></i>Notifications</a>
+                    <a style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-plus" style="margin-right: 10px;"></i>Create</a>
+                    <a asp-action="ProfilePage" asp-controller="Account" asp-route-UserName="@User.Identity.Name" style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><img style="border-radius:8px;" src="~/Images//pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" width="20px" height="20px" /> Profile</a>
+                    <a class="morebutton" style="color: #f5f5f5; text-decoration: none;  font-size: 20px; "><i class=" fa fa-ellipsis-v" style="margin-right: 10px;"></i>More</a>
 
-                <div id="myModal" class="modal mt-3" style="max-width: 266px; height: 300px; background: #262626; border-radius: 12px; padding: 12px; font-size: 20px;">
-                    <div class="text-white d-flex flex-column ">
-                        <a style="margin-left: 15px; margin-top: 15px;" id="settingsBtn"><i class="fa fa-cog" style="margin-right:10px"></i> Settings</a>
-                        <a style="margin-left: 15px; margin-top: 15px;" id="reportBtn"><i class="fa fa-exclamation-circle" style="margin-right:10px"></i> Report a Problem</a>
-                        <a style="margin-left: 15px; margin-top: 15px;" id="savedBtn"><i class="fa fa-save" style="margin-right:10px"></i> Saved</a>
-                        <form asp-action="LogOutUser" asp-controller="Account" method="post" class="mt-3">
-                            <a style="margin-left: 15px; margin-top: 15px;" id="logoutBtn"><i class="fa fa-sign-out-alt" style="margin-right:10px"></i> <button class="btn btn-primary" type="submit">Logout</button></a>
-                        </form>
-                     
+                    
+                    <div id="myModal" class="modal mt-3" style="max-width: 266px; height: 300px; background: #262626; border-radius: 12px; padding: 12px; font-size: 20px;">
+                        <div class="text-white d-flex flex-column ">
+                            <a style="margin-left: 15px; margin-top: 15px;" id="settingsBtn"><i class="fa fa-cog" style="margin-right:10px"></i> Settings</a>
+                            <a style="margin-left: 15px; margin-top: 15px;" id="reportBtn"><i class="fa fa-exclamation-circle" style="margin-right:10px"></i> Report a Problem</a>
+                            <a style="margin-left: 15px; margin-top: 15px;" id="savedBtn"><i class="fa fa-save" style="margin-right:10px"></i> Saved</a>
+                            <form asp-action="LogOutUser" asp-controller="Account" method="post" class="mt-3">
+                                <a style="margin-left: 15px; margin-top: 15px;" id="logoutBtn"><i class="fa fa-sign-out-alt" style="margin-right:10px"></i> <button class="btn btn-primary" type="submit">Logout</button></a>
+                            </form>
+
+                        </div>
                     </div>
-                </div>
+                </li>
+            </ul>
+        </nav>
 
-
-            </li>
-        </ul>
-    </nav>
-
-
-
-
-
-
-
-
-
-
-
-    <div class="container mx-auto">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        <div class="container content" style="max-width:100vh;display:flex;justify-content:center;border-right:2px solid #262626 ">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
+ 
 
     
     
@@ -90,15 +99,13 @@
         }
 
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
+     
 
-    body
 
 </script>
+   
+
 </body>
 </html>

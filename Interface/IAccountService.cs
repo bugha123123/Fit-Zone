@@ -11,5 +11,9 @@ namespace Instagram_Clone.Interface
         Task RegisterUser(CreateUserDTO CreateUserDTO);
 
         Task LogOutUser();
+
+        Task<List<User>> GetUsers();
+
+        Task<User> GetLoggedInUserAsync();
     }
 }

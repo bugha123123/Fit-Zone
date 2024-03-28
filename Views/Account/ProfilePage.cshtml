@@ -1,0 +1,39 @@
+﻿@model User
+
+<div class="container-fluid d-flex justify-content-between align-items-start mt-5" style="gap:70px;">
+    <div>
+        <img style="border-radius:100%" src="~/Images//pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" asp-append-version=true width="150" height="150" />
+    </div>
+    <div>
+        <div class="d-flex" style="gap:15px;">
+            <h4 style="color:white">@Model.UserName</h4>
+            <button class="btn" style="background:#363636;color:white;border-radius:8px;">Edit Profile</button>
+            <button class="btn" style="background:#363636;color:white;border-radius:8px;">View Archive</button>
+            <button class="btn" style="background:#363636;color:white;border-radius:8px;">Ad Tools</button>
+
+
+        </div>
+        <div class="mt-4 d-flex gap-5">
+            <p class="text-white">0 posts</p>
+            <p class="text-white">0 followers</p>
+            <p class="text-white">0 following</p>
+        </div>
+    </div>
+
+    <div>
+
+    </div>
+
+
+</div>
+<br />
+<br />
+
+<div class="mt-5 container-fluid d-flex">
+    <button class="btn rounded-circle position-relative" style="padding: 0; width: 77px; height: 77px; background: #121212;border:1px solid gray">
+        <i class="fas fa-plus position-absolute top-50 start-50 translate-middle" style="font-size: 40px;color:#737373;"></i>
+    </button>
+</div>
+
+
+
