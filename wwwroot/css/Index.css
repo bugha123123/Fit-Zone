@@ -5,6 +5,7 @@
 
 body {
   overflow: hidden;
+  background: #000000;
 }
 
 nav ul li a {
