@@ -1,0 +1,58 @@
+﻿@using Instagram_Clone.DTO
+@{
+    Layout = null;
+}
+@model CreateUserDTO
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Instagram</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Account.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" asp-append-version="true">
+
+</head>
+<body>
+    <form asp-action="RegisterUser" asp-controller="Account" method="post">
+        <div class="container mx-auto mt-lg-5" style="display: flex; justify-content: center;">
+            <div style="display: flex; gap:10px;">
+                <div>
+                    <img src="~/Images/434145171_965364725098678_5692622076557531336_n.png" asp-append-version="true" class="img-fluid" style="max-width: 380.317px; min-height: 581.15px; border-radius: 12px;">
+                </div>
+                <div class="flex flex-column" style="margin-left: 20px;">
+                    <div style="border: 1px solid #dbdbdb; max-width: 400px; min-height: 409px; text-align: center; padding: 15px; border-radius: 12px;">
+                        <a style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 35px; color: #262626;">Instagram</a>
+                        <br /><br />
+                        <input asp-for="Username" placeholder="Username"  style="padding: 10px; width: 80%; max-width: 300px; border-radius: 8px; background: #fafafa; outline: none; border: 1px solid #dbdbdb;" class="mt-2" />
+
+                        <input asp-for="Gmail" placeholder="Email" style="padding: 10px; width: 80%; max-width: 300px; border-radius: 8px; background: #fafafa; outline: none; border: 1px solid #dbdbdb;" class="mt-2" />
+                        <input asp-for="Password" placeholder="Password" type="password" style="padding: 10px; width: 80%; max-width: 300px; border-radius: 8px; background: #fafafa; outline: none; border: 1px solid #dbdbdb;" class="mt-2" />
+                        <button type="submit" class="btn mt-3" style="background:#4bb4f8; color:white;max-width:300px;width:80%">Sign Up</button>
+
+                        <p class="mt-3">OR</p>
+
+                        <p style="color:#385185;font-weight:bold; display: flex; align-items: center; justify-content: center;">
+                            <i class="fab fa-facebook"></i>
+                            Log in with Facebook
+                        </p>
+
+                        <p style="color:#00376b; font-size:12px;">Forgot password?</p>
+                    </div>
+
+                    <div class="mt-3" style="border: 1px solid #dbdbdb; max-width: 400px; min-height: 63px; text-align: center; padding: 15px; border-radius: 12px;display:flex; align-items:center;justify-content:center;">
+                        <p> have an account? <span><a asp-action="LogInPage" asp-controller="Account" style="text-decoration:none; color:#0095f6">Sign In</a></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+</body>
+</html>

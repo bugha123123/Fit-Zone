@@ -4,5 +4,13 @@
 }
 
 body {
-  background: #000000;
+  overflow: hidden;
+}
+
+nav ul li a {
+  cursor: pointer;
+}
+nav ul li a:hover {
+  color: gray;
+  cursor: pointer;
 }
