@@ -16,7 +16,12 @@ namespace Instagram_Clone.Service
         }
         public async Task LogInUser(LogInUserDTO logInUserDTO)
         {
-            await _signInManager.PasswordSignInAsync(logInUserDTO.Gmail, logInUserDTO.Password, isPersistent: false, lockoutOnFailure: false);
+            await _signInManager.PasswordSignInAsync(logInUserDTO.UserName, logInUserDTO.Password, isPersistent: false, lockoutOnFailure: false);
+        }
+
+        public async Task LogOutUser()
+        {
+            await _signInManager.SignOutAsync();
         }
 
         public async Task RegisterUser(CreateUserDTO createUserDTO)

@@ -38,5 +38,13 @@ namespace Instagram_Clone.Controllers
             await _accountService.LogInUser(logInUserDTO);
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost("LogOutUser")]
+        public async Task<IActionResult> LogOutUser()
+        {
+
+           await  _accountService.LogOutUser();
+            return RedirectToAction("LogInPage", "Account");
+        }
     }
 }

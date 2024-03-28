@@ -9,5 +9,7 @@ namespace Instagram_Clone.Interface
         Task LogInUser(LogInUserDTO logInUserDTO);
 
         Task RegisterUser(CreateUserDTO CreateUserDTO);
+
+        Task LogOutUser();
     }
 }
