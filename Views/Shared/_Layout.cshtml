@@ -38,6 +38,21 @@
             padding: 12px;
             font-size: 20px;
         }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+            .close-btn:hover {
+                color: red; /* Change color on hover if desired */
+            }
     </style>
 </head>
 <body>
@@ -54,7 +69,7 @@
                     <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-play" style="margin-right: 15px;"></i>Reels</a>
                     <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-envelope" style="margin-right: 15px;"></i>Messages</a>
                     <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-bell" style="margin-right: 15px;"></i>Notifications</a>
-                    <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-plus" style="margin-right: 15px;"></i>Create</a>
+                    <a class="createbutton" style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-plus " style="margin-right: 15px;"></i>Create</a>
                     
 <a asp-action="ProfilePage" asp-controller="Account" asp-route-UserName="@User.Identity.Name" style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><img style="border-radius:8px;margin-right:6px;" src="~/Images//pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" width="20px" height="20px" /> Profile</a>
 
@@ -79,6 +94,23 @@
                 </li>
             </ul>
         </nav>
+        <div class="modal d-flex flex-column align-items-center" style="opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 15px; max-width: 630px; height: 630px; background: #262626 no-repeat; background-size: cover; background-position: center;" id="modalContainer">
+            <button class="close-btn" onclick="closeModal()">X</button>
+            <h3 class="text-center text-white mt-3 mb-auto" style="font-size: 20px;">Create new post</h3>
+            <div class="d-flex align-items-center justify-content-center flex-grow-1 drop-area" id="dropArea">
+                <input type="file" id="fileInput" multiple style="display: none;">
+                    <label for="fileInput" class="btn btn-primary">Select from computer</label>
+                    <br />
+               
+            </div>
+            <button class="btn btn-primary mb-5">Create Post</button>
+            
+        </div>
+
+
+
+
+
 
         <div class="container content" style="max-width:100vh;display:flex;justify-content:center;border-right:2px solid #262626 ">
             <main role="main" class="pb-3">
@@ -87,10 +119,88 @@
         </div>
     </div>
  
-
+   
     
     
 <script>
+
+        const modal2 = document.getElementById('modalContainer');
+        const fileInput = document.getElementById('fileInput');
+
+    document.querySelector(".createbutton").addEventListener("click", () => {
+        modal2.style.opacity = 1;
+        modal2.style.visibility = "visible";
+    });
+
+        function closeModal() {
+            const modal = document.getElementById('modalContainer');
+            modal.style.opacity = 0;
+            modal.style.visibility = 'hidden';
+    };
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            modal2.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        // Highlight drop area when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            modal2.addEventListener(eventName, highlight, false);
+        });
+
+        // Remove highlight when item is dragged away from drop area
+        ['dragleave', 'drop'].forEach(eventName => {
+            modal2.addEventListener(eventName, unhighlight, false);
+        });
+
+        // Handle dropped files
+        modal2.addEventListener('drop', handleDrop, false);
+
+        // Open file input dialog when "Select from computer" is clicked
+        document.getElementById('dropArea').addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Handle file input change
+        fileInput.addEventListener('change', handleFileInput, false);
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight() {
+            modal2.classList.add('highlight');
+        }
+
+        function unhighlight() {
+            modal2.classList.remove('highlight');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            handleFiles(files);
+        }
+
+        function handleFileInput(e) {
+            const files = e.target.files;
+
+            handleFiles(files);
+        }
+
+        function handleFiles(files) {
+            // Assuming only the first file is processed
+            const file = files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                modal2.style.backgroundImage = `url('${e.target.result}')`;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
         var modal = document.getElementById("myModal");
 
         // Get the button that opens the modal
@@ -99,7 +209,6 @@
         // When the user clicks on the button, open the modal
         moreButton.onclick = function () {
             modal.style.display = "block";
-            // Adjust modal position
             var moreButtonRect = moreButton.getBoundingClientRect();
             modal.style.top = (moreButtonRect.bottom + window.scrollY) + "px";
             modal.style.left = moreButtonRect.left + "px";
@@ -108,9 +217,6 @@
     modal.addEventListener("click", () => {
         modal.style.display="none"
     })
-        // Get the <span> element that closes the modal
-
-        // When the user clicks on <span> (x), close the modal
      
 
 
