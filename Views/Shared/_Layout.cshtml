@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Post
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -97,15 +99,36 @@
         <div class="modal d-flex flex-column align-items-center" style="opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 15px; max-width: 630px; height: 630px; background: #262626 no-repeat; background-size: cover; background-position: center;" id="modalContainer">
             <button class="close-btn" onclick="closeModal()">X</button>
             <h3 class="text-center text-white mt-3 mb-auto" style="font-size: 20px;">Create new post</h3>
-            <div class="d-flex align-items-center justify-content-center flex-grow-1 drop-area" id="dropArea">
-                <input type="file" id="fileInput" multiple style="display: none;">
-                    <label for="fileInput" class="btn btn-primary">Select from computer</label>
-                    <br />
-               
-            </div>
-            <button class="btn btn-primary mb-5">Create Post</button>
-            
+            <form asp-action="CreateNewPost" asp-controller="Home" method="post">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-column align-items-center justify-content-center flex-grow-1 drop-area" id="dropArea">
+                                <input type="file" asp-for="MainImagePath" id="fileInput" required multiple style="display: none;">
+                                <label for="fileInput" class="btn btn-primary mb-3">Select from computer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="description" class="text-white">Description</label>
+                                <textarea class="form-control" id="description" name="Description" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align: center;">
+                                <button type="submit" class="btn btn-primary">Create Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
+
+
 
 
 

@@ -9,5 +9,7 @@ namespace Instagram_Clone.ApplicationDBContext
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
+
+        public DbSet<Post> Posts { get; set; }
     }
 }
