@@ -95,21 +95,9 @@
         var modal = document.getElementById("fitnessModal");
         var closeBtn = modal.querySelector(".close");
 
-        // Check if the button should be disabled
-        var lastClickedTime = localStorage.getItem("lastClickedTime");
-        if (lastClickedTime) {
-            var currentTime = new Date().getTime();
-            var oneDay = 24 * 60 * 60 * 1000; // 1 day in milliseconds
-            if (currentTime - parseInt(lastClickedTime) < oneDay) {
-                changeFitnessLevelBtn.disabled = true;
-            }
-        }
-
         // Display modal when the button is clicked
         changeFitnessLevelBtn.addEventListener("click", function () {
             modal.style.display = "block";
-            changeFitnessLevelBtn.disabled = true; // Disable the button when clicked
-            localStorage.setItem("lastClickedTime", new Date().getTime().toString()); // Save the last clicked time
         });
 
         // Close modal when the close button is clicked
