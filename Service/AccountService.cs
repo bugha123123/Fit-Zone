@@ -1,4 +1,5 @@
-﻿using Instagram_Clone.DTO;
+﻿using Instagram_Clone.ApplicationDBContext;
+using Instagram_Clone.DTO;
 using Instagram_Clone.Interface;
 using Instagram_Clone.Models;
 using Microsoft.AspNetCore.Identity;
@@ -11,11 +12,14 @@ namespace Instagram_Clone.Service
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public AccountService(UserManager<User> userManager, SignInManager<User> signInManager, IHttpContextAccessor httpContextAccessor)
+        private readonly AppDbContext _appDbContext;
+
+        public AccountService(UserManager<User> userManager, SignInManager<User> signInManager, IHttpContextAccessor httpContextAccessor, AppDbContext appDbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _httpContextAccessor = httpContextAccessor;
+            _appDbContext = appDbContext;
         }
         public async Task<User> GetLoggedInUserAsync()
         {
@@ -59,5 +63,17 @@ namespace Instagram_Clone.Service
                 await _signInManager.SignInAsync(user, isPersistent: false);
             }
         }
+
+        public async Task SaveUserFitnessLevel(Exercise exercise)
+        {
+         var user = await GetLoggedInUserAsync();
+            user.FitnessLevel = exercise.ExerciseCategory.ToString();
+
+          await  _appDbContext.SaveChangesAsync();
+            
+        }
+
+
+
     }
 }

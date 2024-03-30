@@ -16,5 +16,10 @@
 
         public string? ExerciseImage { get; set; }
 
+        public ExerciseCategory ExerciseCategory { get; set; }
+
+
+
+
     }
 }

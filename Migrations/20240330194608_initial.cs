@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Instagram_Clone.Migrations
 {
     /// <inheritdoc />
@@ -30,6 +32,7 @@ namespace Instagram_Clone.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FitnessLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -48,6 +51,24 @@ namespace Instagram_Clone.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Exercises",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExerciseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExerciseTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RestBetweenExercises = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExerciseReps = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExerciseImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExerciseCategory = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Exercises", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,6 +177,33 @@ namespace Instagram_Clone.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Exercises",
+                columns: new[] { "Id", "ExerciseCategory", "ExerciseImage", "ExerciseName", "ExerciseReps", "ExerciseTime", "RestBetweenExercises" },
+                values: new object[,]
+                {
+                    { 1, 0, "/ExerciseImages/PushUp.jpg", "Push-up", "15 reps", "30", "10" },
+                    { 2, 0, "/ExerciseImages/BodyWeightSquat.jpg", "Squats", "20 reps", "45", "15" },
+                    { 3, 0, "/ExerciseImages/Plank.png", "Plank", "3", "60", "10" },
+                    { 4, 0, "/ExerciseImages/Lunges.jpg", "Lunges", "12 reps per leg", "45", "10" },
+                    { 5, 1, "/ExerciseImages/Burpees.jpg", "Burpees", "12 reps", "45", "15" },
+                    { 6, 1, "/ExerciseImages/MountainClimbers.jpg", "Mountain Climbers", "20 reps", "45", "10" },
+                    { 7, 1, "/ExerciseImages/SitUps.jpg", "Sit-ups", "20 reps", "60", "10" },
+                    { 8, 1, "/ExerciseImages/JumpingJacks.jpg", "Jumping Jacks", "30 reps", "60", "10" },
+                    { 9, 1, "/ExerciseImages/HighKnees.jpg", "High Knees", "30 reps", "45", "10" },
+                    { 10, 1, "/ExerciseImages/PlankJacks.jpg", "Plank Jacks", "20 reps", "30", "10" },
+                    { 11, 2, "/ExerciseImages/RussianTwists.jpg", "Russian Twists", "20 reps", "60", "10" },
+                    { 12, 2, "/ExerciseImages/WallSit.jpg", "Wall Sit", "N/A", "60", "10" },
+                    { 13, 2, "/ExerciseImages/TricepDips.jpg", "Tricep Dips", "15 reps", "45", "10" },
+                    { 14, 2, "/ExerciseImages/BicycleCrunches.jpg", "Bicycle Crunches", "20 reps", "60", "10" },
+                    { 15, 2, "/ExerciseImages/CalfRaises.jpg", "Calf Raises", "20 reps", "45", "10" },
+                    { 16, 2, "/ExerciseImages/ShoulderPress.jpg", "Shoulder Press", "12 reps", "45", "10" },
+                    { 17, 2, "/ExerciseImages/DeadBug.jpg", "Dead Bug", "20 reps", "60", "10" },
+                    { 18, 2, "/ExerciseImages/Superman.jpg", "Superman", "10", "60", "10" },
+                    { 19, 2, "/ExerciseImages/ReverseCrunches.jpg", "Reverse Crunches", "15 reps", "45", "10" },
+                    { 20, 2, "/ExerciseImages/JumpRope.jpg", "Jump Rope", "3", "60", "10" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -213,6 +261,9 @@ namespace Instagram_Clone.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Exercises");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

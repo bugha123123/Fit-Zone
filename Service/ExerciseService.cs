@@ -8,10 +8,11 @@ namespace Instagram_Clone.Service
     public class ExerciseService : IExerciseService
     {
         private readonly AppDbContext _appDbContext;
-
-        public ExerciseService(AppDbContext appDbContext)
+        private readonly IAccountService _accountService;
+        public ExerciseService(AppDbContext appDbContext, IAccountService accountService)
         {
             _appDbContext = appDbContext;
+            _accountService = accountService;
         }
 
         public async Task<Exercise> GetExerciseByIdAsync(int id)
@@ -28,8 +29,17 @@ namespace Instagram_Clone.Service
 
         public async Task<List<Exercise>> GetExerciseListAsync()
         {
-            var exerciseList = await _appDbContext.Exercises.Take(4).ToListAsync();
+            var user = await _accountService.GetLoggedInUserAsync();
+            var fitnessLevel = Enum.Parse<ExerciseCategory>(user.FitnessLevel);
+
+            var exerciseList = await _appDbContext.Exercises
+                .Where(e => e.ExerciseCategory == fitnessLevel)
+                .Take(4)
+                .ToListAsync();
+
             return exerciseList;
         }
+
+
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240330181537_addingexeimages")]
-    partial class addingexeimages
+    [Migration("20240330194608_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace Instagram_Clone.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ExerciseCategory")
+                        .HasColumnType("int");
 
                     b.Property<string>("ExerciseImage")
                         .HasColumnType("nvarchar(max)");
@@ -60,166 +63,202 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            ExerciseImage = "~/ExerciseImages/PushUp.jpg",
+                            ExerciseCategory = 0,
+                            ExerciseImage = "/ExerciseImages/PushUp.jpg",
                             ExerciseName = "Push-up",
                             ExerciseReps = "15 reps",
-                            ExerciseTime = "30 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "30",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 2,
-                            ExerciseImage = "~/ExerciseImages/BodyWeightSquat.jpg",
+                            ExerciseCategory = 0,
+                            ExerciseImage = "/ExerciseImages/BodyWeightSquat.jpg",
                             ExerciseName = "Squats",
                             ExerciseReps = "20 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "15 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "15"
                         },
                         new
                         {
                             Id = 3,
-                            ExerciseImage = "~/ExerciseImages/Plank",
+                            ExerciseCategory = 0,
+                            ExerciseImage = "/ExerciseImages/Plank.png",
                             ExerciseName = "Plank",
                             ExerciseReps = "3",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 4,
-                            ExerciseImage = "~/ExerciseImages/Lunges",
+                            ExerciseCategory = 0,
+                            ExerciseImage = "/ExerciseImages/Lunges.jpg",
                             ExerciseName = "Lunges",
                             ExerciseReps = "12 reps per leg",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 5,
+                            ExerciseCategory = 1,
+                            ExerciseImage = "/ExerciseImages/Burpees.jpg",
                             ExerciseName = "Burpees",
                             ExerciseReps = "12 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "15 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "15"
                         },
                         new
                         {
                             Id = 6,
+                            ExerciseCategory = 1,
+                            ExerciseImage = "/ExerciseImages/MountainClimbers.jpg",
                             ExerciseName = "Mountain Climbers",
                             ExerciseReps = "20 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 7,
+                            ExerciseCategory = 1,
+                            ExerciseImage = "/ExerciseImages/SitUps.jpg",
                             ExerciseName = "Sit-ups",
                             ExerciseReps = "20 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 8,
+                            ExerciseCategory = 1,
+                            ExerciseImage = "/ExerciseImages/JumpingJacks.jpg",
                             ExerciseName = "Jumping Jacks",
                             ExerciseReps = "30 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 9,
+                            ExerciseCategory = 1,
+                            ExerciseImage = "/ExerciseImages/HighKnees.jpg",
                             ExerciseName = "High Knees",
                             ExerciseReps = "30 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 10,
+                            ExerciseCategory = 1,
+                            ExerciseImage = "/ExerciseImages/PlankJacks.jpg",
                             ExerciseName = "Plank Jacks",
                             ExerciseReps = "20 reps",
-                            ExerciseTime = "30 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "30",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 11,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/RussianTwists.jpg",
                             ExerciseName = "Russian Twists",
                             ExerciseReps = "20 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 12,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/WallSit.jpg",
                             ExerciseName = "Wall Sit",
                             ExerciseReps = "N/A",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 13,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/TricepDips.jpg",
                             ExerciseName = "Tricep Dips",
                             ExerciseReps = "15 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 14,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/BicycleCrunches.jpg",
                             ExerciseName = "Bicycle Crunches",
                             ExerciseReps = "20 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 15,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/CalfRaises.jpg",
                             ExerciseName = "Calf Raises",
                             ExerciseReps = "20 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 16,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/ShoulderPress.jpg",
                             ExerciseName = "Shoulder Press",
                             ExerciseReps = "12 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 17,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/DeadBug.jpg",
                             ExerciseName = "Dead Bug",
                             ExerciseReps = "20 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 18,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/Superman.jpg",
                             ExerciseName = "Superman",
                             ExerciseReps = "10",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 19,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/ReverseCrunches.jpg",
                             ExerciseName = "Reverse Crunches",
                             ExerciseReps = "15 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseTime = "45",
+                            RestBetweenExercises = "10"
                         },
                         new
                         {
                             Id = 20,
+                            ExerciseCategory = 2,
+                            ExerciseImage = "/ExerciseImages/JumpRope.jpg",
                             ExerciseName = "Jump Rope",
-                            ExerciseReps = "N/A",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
+                            ExerciseReps = "3",
+                            ExerciseTime = "60",
+                            RestBetweenExercises = "10"
                         });
                 });
 
@@ -241,6 +280,10 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FitnessLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

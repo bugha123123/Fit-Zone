@@ -15,5 +15,7 @@ namespace Instagram_Clone.Interface
         Task<List<User>> GetUsers();
 
         Task<User> GetLoggedInUserAsync();
+
+        Task SaveUserFitnessLevel(Exercise exercise);
     }
 }

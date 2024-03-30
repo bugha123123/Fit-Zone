@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\ExerciseCategory.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
 
@@ -17,6 +21,7 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="Enums\ExerciseCategory.cs" />
   </ItemGroup>
 
   <ItemGroup>
