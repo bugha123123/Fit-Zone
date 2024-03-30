@@ -44,7 +44,6 @@ builder.Services.AddAuthentication(options =>
 //services
 
 builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<IPostService, PostService>();
 //services
 
 

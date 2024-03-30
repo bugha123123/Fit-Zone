@@ -1,5 +1,4 @@
-﻿@model Post
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,120 +12,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" asp-append-version="true">
 
-    <style>
-        /* Custom styles */
-        .sidebar {
-            font-family: 'Times New Roman', Times, serif;
-            background: #000000;
-            max-width: 355px;
-            height: 100vh;
-            flex:1
-        }
-
-        .content {
-            display: flex;
-            margin:0;
-       
-            background-color: #000000; /* Right side background color */
-            flex: 1; /* Content takes up remaining space */
-            padding: 20px; /* Add padding for better spacing */
-        }
-
-        #myModal {
-            max-width: 266px;
-            height: 300px;
-            background: #262626;
-            border-radius: 12px;
-            padding: 12px;
-            font-size: 20px;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-            .close-btn:hover {
-                color: red; /* Change color on hover if desired */
-            }
-    </style>
 </head>
 <body>
 
-    <div class="d-flex g-lg-5"  >
-        <nav class="sidebar" style="border-right:2px solid #262626">
-            <ul class="pt-5">
-                <li style="list-style-type: none;" class="d-flex flex-column">
-                    <a asp-action="Index" asp-controller="Home" style="color: #f5f5f5; text-decoration: none; font-size: 29px; margin-bottom: 40px;">Instagram</a>
-
-                    <a asp-action="Index" asp-controller="Home" style="color: #f5f5f5; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-home" style="margin-right: 10px;"></i>Home</a>
-                    <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-search" style="margin-right: 15px;"></i>Search</a>
-                    <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-compass" style="margin-right: 15px;"></i>Explore</a>
-                    <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-play" style="margin-right: 15px;"></i>Reels</a>
-                    <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-envelope" style="margin-right: 15px;"></i>Messages</a>
-                    <a style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-bell" style="margin-right: 15px;"></i>Notifications</a>
-                    <a class="createbutton" style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><i class="fa fa-plus " style="margin-right: 15px;"></i>Create</a>
-                    
-<a asp-action="ProfilePage" asp-controller="Account" asp-route-UserName="@User.Identity.Name" style="color: #d0d0d0; text-decoration: none; margin-bottom: 25px; font-size: 20px; "><img style="border-radius:8px;margin-right:6px;" src="~/Images//pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" width="20px" height="20px" /> Profile</a>
-
-
-
-
-                    <a class="morebutton" style="color: #d0d0d0; text-decoration: none;  font-size: 20px; "><i class=" fa fa-ellipsis-v" style="margin-right: 15px;"></i>More</a>
-
-                    
-                    <div id="myModal" class="modal mt-3" style="max-width: 266px; height: 300px; background: #262626; border-radius: 12px; padding: 12px; font-size: 20px;">
-                        <div class="text-white d-flex flex-column ">
-                            <a style="margin-left: 15px; margin-top: 20px;color:#d0d0d0" id="settingsBtn"><i class="fa fa-cog" style="margin-right:10px"></i> Settings</a>
-                            <a style="margin-left: 15px; margin-top: 20px;color:#d0d0d0" id="reportBtn"><i class="fa fa-exclamation-circle" style="margin-right:10px"></i> Report a Problem</a>
-                            <a style="margin-left: 15px; margin-top: 20px;color:#d0d0d0" id="savedBtn"><i class="fa fa-save" style="margin-right:10px"></i> Saved</a>
-                            <line></line>
-                            <form asp-action="LogOutUser" asp-controller="Account" method="post" class="mt-3" style="margin-top: 25px;margin-bottom:-10px">
-                                <a style="margin-left: 15px; " id="logoutBtn"><i class="fa fa-sign-out-alt" style="margin-right:10px"></i> <button class="btn btn-primary" type="submit">Logout</button></a>
-                            </form>
-
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <div class="modal d-flex flex-column align-items-center" style="opacity: 0; visibility: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 15px; max-width: 630px; height: 630px; background: #262626 no-repeat; background-size: cover; background-position: center;" id="modalContainer">
-            <button class="close-btn" onclick="closeModal()">X</button>
-            <h3 class="text-center text-white mt-3 mb-auto" style="font-size: 20px;">Create new post</h3>
-            <form asp-action="CreateNewPost" asp-controller="Home" method="post">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="d-flex flex-column align-items-center justify-content-center flex-grow-1 drop-area" id="dropArea">
-                                <input type="file" asp-for="MainImagePath" id="fileInput" required multiple style="display: none;">
-                                <label for="fileInput" class="btn btn-primary mb-3">Select from computer</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="description" class="text-white">Description</label>
-                                <textarea class="form-control" id="description" name="Description" rows="3" required></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div style="text-align: center;">
-                                <button type="submit" class="btn btn-primary">Create Post</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+  
 
 
 
@@ -135,7 +24,7 @@
 
 
 
-        <div class="container content" style="max-width:100vh;display:flex;justify-content:center;border-right:2px solid #262626 ">
+        <div class="container mx-auto"
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
@@ -144,106 +33,7 @@
  
    
     
-    
-<script>
 
-        const modal2 = document.getElementById('modalContainer');
-        const fileInput = document.getElementById('fileInput');
-
-    document.querySelector(".createbutton").addEventListener("click", () => {
-        modal2.style.opacity = 1;
-        modal2.style.visibility = "visible";
-    });
-
-        function closeModal() {
-            const modal = document.getElementById('modalContainer');
-            modal.style.opacity = 0;
-            modal.style.visibility = 'hidden';
-    };
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            modal2.addEventListener(eventName, preventDefaults, false);
-            document.body.addEventListener(eventName, preventDefaults, false);
-        });
-
-        // Highlight drop area when item is dragged over it
-        ['dragenter', 'dragover'].forEach(eventName => {
-            modal2.addEventListener(eventName, highlight, false);
-        });
-
-        // Remove highlight when item is dragged away from drop area
-        ['dragleave', 'drop'].forEach(eventName => {
-            modal2.addEventListener(eventName, unhighlight, false);
-        });
-
-        // Handle dropped files
-        modal2.addEventListener('drop', handleDrop, false);
-
-        // Open file input dialog when "Select from computer" is clicked
-        document.getElementById('dropArea').addEventListener('click', () => {
-            fileInput.click();
-        });
-
-        // Handle file input change
-        fileInput.addEventListener('change', handleFileInput, false);
-
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        function highlight() {
-            modal2.classList.add('highlight');
-        }
-
-        function unhighlight() {
-            modal2.classList.remove('highlight');
-        }
-
-        function handleDrop(e) {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-
-            handleFiles(files);
-        }
-
-        function handleFileInput(e) {
-            const files = e.target.files;
-
-            handleFiles(files);
-        }
-
-        function handleFiles(files) {
-            // Assuming only the first file is processed
-            const file = files[0];
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                modal2.style.backgroundImage = `url('${e.target.result}')`;
-            };
-
-            reader.readAsDataURL(file);
-        }
-
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-        var moreButton = document.querySelector('.morebutton');
-
-        // When the user clicks on the button, open the modal
-        moreButton.onclick = function () {
-            modal.style.display = "block";
-            var moreButtonRect = moreButton.getBoundingClientRect();
-            modal.style.top = (moreButtonRect.bottom + window.scrollY) + "px";
-            modal.style.left = moreButtonRect.left + "px";
-        }
-
-    modal.addEventListener("click", () => {
-        modal.style.display="none"
-    })
-     
-
-
-</script>
    
 
 </body>

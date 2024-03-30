@@ -8,12 +8,8 @@ namespace Instagram_Clone.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPostService _postService;
 
-        public HomeController(IPostService postService)
-        {
-            _postService = postService;
-        }
+      
 
         [Authorize]
         public IActionResult Index()
@@ -22,15 +18,6 @@ namespace Instagram_Clone.Controllers
         }
 
 
-        [HttpPost("createnewpost")]
-        public async Task<IActionResult> CreateNewPost(Post post, IFormFile MainImage)
-        {
-           
-                await _postService.CreatePost(post, MainImage);
-                return RedirectToAction("Index", "Home");
-            
-
-        }
 
 
 

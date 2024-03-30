@@ -10,6 +10,5 @@ namespace Instagram_Clone.ApplicationDBContext
         {
         }
 
-        public DbSet<Post> Posts { get; set; }
     }
 }
