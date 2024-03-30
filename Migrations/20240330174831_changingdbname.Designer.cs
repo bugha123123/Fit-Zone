@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240330174831_changingdbname")]
+    partial class changingdbname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,204 +24,6 @@ namespace Instagram_Clone.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Instagram_Clone.Models.Exercise", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ExerciseImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExerciseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExerciseReps")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExerciseTime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RestBetweenExercises")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Exercises");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ExerciseImage = "/ExerciseImages/PushUp.jpg",
-                            ExerciseName = "Push-up",
-                            ExerciseReps = "15 reps",
-                            ExerciseTime = "30 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ExerciseImage = "/ExerciseImages/BodyWeightSquat.jpg",
-                            ExerciseName = "Squats",
-                            ExerciseReps = "20 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "15 seconds"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ExerciseImage = "/ExerciseImages/Plank.png",
-                            ExerciseName = "Plank",
-                            ExerciseReps = "3",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ExerciseImage = "/ExerciseImages/Lunges.jpg",
-                            ExerciseName = "Lunges",
-                            ExerciseReps = "12 reps per leg",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ExerciseName = "Burpees",
-                            ExerciseReps = "12 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "15 seconds"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ExerciseName = "Mountain Climbers",
-                            ExerciseReps = "20 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ExerciseName = "Sit-ups",
-                            ExerciseReps = "20 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ExerciseName = "Jumping Jacks",
-                            ExerciseReps = "30 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ExerciseName = "High Knees",
-                            ExerciseReps = "30 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ExerciseName = "Plank Jacks",
-                            ExerciseReps = "20 reps",
-                            ExerciseTime = "30 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ExerciseName = "Russian Twists",
-                            ExerciseReps = "20 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ExerciseName = "Wall Sit",
-                            ExerciseReps = "N/A",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ExerciseName = "Tricep Dips",
-                            ExerciseReps = "15 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ExerciseName = "Bicycle Crunches",
-                            ExerciseReps = "20 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ExerciseName = "Calf Raises",
-                            ExerciseReps = "20 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ExerciseName = "Shoulder Press",
-                            ExerciseReps = "12 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            ExerciseName = "Dead Bug",
-                            ExerciseReps = "20 reps",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            ExerciseName = "Superman",
-                            ExerciseReps = "10",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            ExerciseName = "Reverse Crunches",
-                            ExerciseReps = "15 reps",
-                            ExerciseTime = "45 seconds",
-                            RestBetweenExercises = "10 seconds"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            ExerciseName = "Jump Rope",
-                            ExerciseReps = "N/A",
-                            ExerciseTime = "1 minute",
-                            RestBetweenExercises = "10 seconds"
-                        });
-                });
 
             modelBuilder.Entity("Instagram_Clone.Models.User", b =>
                 {

@@ -4,18 +4,51 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Instagram_Clone</title>
+    <title>@ViewData["Title"] - FitZone</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
 
     <link rel="stylesheet" href="~/css/Account.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" asp-append-version="true">
-
+    <style>
+        .ml-lg-auto {
+            margin-left: auto !important;
+        }
+    </style>
 </head>
 <body>
 
-  
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand mr-auto rounded-3" asp-action="Index" asp-controller="Home"><img src="~/Images/pixlr-image-generator-458a6518-485b-4637-8964-4b641e7637b3.png" width="90px" height="80px" style="border-radius:12px;" asp-append-version=true /></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link mr-3" href="#">Exercises</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mr-3" href="#">Subscriptions</a>
+                    </li>
+                    <!-- Add more nav-items for other sections -->
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link mr-3" href="#"><i class="fas fa-user" style="margin-right:5px;"></i>Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logoutForm" asp-action="LogOutUser" asp-controller="Account" method="post">
+                            <a class="nav-link" href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
 
@@ -29,12 +62,13 @@
                 @RenderBody()
             </main>
         </div>
-    </div>
  
    
     
 
    
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-g1jcaZsVN6OgjSOTuYFcA9kgGf5l/bB+7WFsZv5ZPWlW5rR+XVT4p8gYExEtJZM1zTgC5gpiQu1R/RtG6Df2Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

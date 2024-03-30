@@ -8,13 +8,18 @@ namespace Instagram_Clone.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IExerciseService _exerciseService;
 
-      
+        public HomeController(IExerciseService exerciseService)
+        {
+            _exerciseService = exerciseService;
+        }
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var exerciseList = await _exerciseService.GetExerciseListAsync();
+            return View(exerciseList);
         }
 
 

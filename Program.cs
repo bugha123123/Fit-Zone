@@ -43,6 +43,8 @@ builder.Services.AddAuthentication(options =>
 });
 //services
 
+builder.Services.AddScoped<IExerciseService, ExerciseService>();
+
 builder.Services.AddScoped<IAccountService, AccountService>();
 //services
 

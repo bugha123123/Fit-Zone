@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240330180230_addingExercises")]
+    partial class addingExercises
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,6 @@ namespace Instagram_Clone.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ExerciseImage")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExerciseName")
                         .IsRequired()
@@ -57,7 +57,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            ExerciseImage = "/ExerciseImages/PushUp.jpg",
                             ExerciseName = "Push-up",
                             ExerciseReps = "15 reps",
                             ExerciseTime = "30 seconds",
@@ -66,7 +65,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 2,
-                            ExerciseImage = "/ExerciseImages/BodyWeightSquat.jpg",
                             ExerciseName = "Squats",
                             ExerciseReps = "20 reps",
                             ExerciseTime = "45 seconds",
@@ -75,16 +73,14 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 3,
-                            ExerciseImage = "/ExerciseImages/Plank.png",
                             ExerciseName = "Plank",
-                            ExerciseReps = "3",
+                            ExerciseReps = "N/A",
                             ExerciseTime = "1 minute",
                             RestBetweenExercises = "10 seconds"
                         },
                         new
                         {
                             Id = 4,
-                            ExerciseImage = "/ExerciseImages/Lunges.jpg",
                             ExerciseName = "Lunges",
                             ExerciseReps = "12 reps per leg",
                             ExerciseTime = "45 seconds",
