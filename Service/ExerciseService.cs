@@ -14,6 +14,18 @@ namespace Instagram_Clone.Service
             _appDbContext = appDbContext;
         }
 
+        public async Task<Exercise> GetExerciseByIdAsync(int id)
+        {
+            var exercise = await _appDbContext.Exercises.FirstOrDefaultAsync(e => e.Id == id);
+
+            if (exercise == null)
+            {
+                throw new Exception("Excercise not found");
+            }
+
+            return exercise;
+        }
+
         public async Task<List<Exercise>> GetExerciseListAsync()
         {
             var exerciseList = await _appDbContext.Exercises.Take(4).ToListAsync();

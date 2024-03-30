@@ -26,7 +26,7 @@
                             <strong>Rest Between Exercises:</strong> @exercise.RestBetweenExercises<br>
                             <strong>Reps:</strong> @exercise.ExerciseReps
                         </p>
-                        <a href="#" class="btn btn-primary">View Exercise</a>
+                        <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id" class="btn btn-primary">View Exercise</a>
                     </div>
                 </div>
             </div>

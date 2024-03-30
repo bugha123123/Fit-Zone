@@ -6,5 +6,7 @@ namespace Instagram_Clone.Interface
     {
 
         Task<List<Exercise>> GetExerciseListAsync();
+
+        Task<Exercise> GetExerciseByIdAsync(int id);
     }
 }

@@ -1,0 +1,75 @@
+﻿@model Exercise
+<div class="container mt-5">
+    <div class="row">
+      
+        <div class="col-md-6">
+            <div class="text-center mb-4">
+                <img src="@Model.ExerciseImage" class="img-fluid" alt="Exercise Image">
+            </div>
+            <div class="progress mt-3">
+                <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 100%"></div>
+            </div>
+            <div id="exerciseTime" class="text-center mt-2">@Model.ExerciseTime seconds</div>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Exercise Details</h2>
+            <ul class="list-group">
+                <li class="list-group-item mt-2">Exercise Name: @Model.ExerciseName</li>
+                <li class="list-group-item mt-2">Exercise Time: @Model.ExerciseTime</li>
+                <li class="list-group-item mt-2">Rest Between Exercises: @Model.RestBetweenExercises</li>
+                <li class="list-group-item mt-2">Reps: @Model.ExerciseReps</li>
+            </ul>
+            <button id="startWorkoutButton" class="btn btn-primary mt-3">Start Working Out</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('startWorkoutButton').addEventListener('click', function () {
+        let progressBar = document.getElementById('progressBar');
+        let exerciseTimeInSeconds = parseInt("@Model.ExerciseTime");
+        let exerciseTimeElement = document.getElementById('exerciseTime');
+
+        let animationDuration = exerciseTimeInSeconds * 1000; 
+        let remainingTime = exerciseTimeInSeconds;
+
+        progressBar.style.transition = `width ${animationDuration}ms linear`;
+        progressBar.style.width = '0%'; 
+
+        let countdownInterval = setInterval(function () {
+            remainingTime--;
+            if (remainingTime >= 0) {
+                exerciseTimeElement.textContent = remainingTime + ' seconds';
+            }
+            if (remainingTime <= 0) {
+                clearInterval(countdownInterval);
+                resetExercise(); 
+            }
+        }, 1000);
+
+        setTimeout(function () {
+            progressBar.style.width = '100%';
+        }, animationDuration);
+
+        setTimeout(function () {
+            progressBar.style.transition = 'none'; 
+            progressBar.style.width = '0%';
+        }, animationDuration);
+    });
+
+    function resetExercise() {
+        let progressBar = document.getElementById('progressBar');
+        let exerciseTimeElement = document.getElementById('exerciseTime');
+
+        // Reset the progress bar
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '100%';
+
+        // Reset the exercise time
+        exerciseTimeElement.textContent = "@Model.ExerciseTime + ' seconds'";
+    }
+</script>
+
+
+
