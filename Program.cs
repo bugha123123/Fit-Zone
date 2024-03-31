@@ -87,7 +87,8 @@ app.MapGet("/", context =>
 
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+        name: "default",
+        pattern: "{controller}/{action=Index}/{id?}",
+        defaults: new { controller = "Home", action = "Index" });
 
 app.Run();
