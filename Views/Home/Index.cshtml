@@ -40,7 +40,6 @@
                 <span class="close">&times;</span>
                 <h2 class="mb-4">Select Your Fitness Level</h2>
                 <div class="form-group">
-                    <!-- Styled dropdown -->
                     @Html.DropDownListFor(model => model.First().ExerciseCategory, new SelectList(Enum.GetValues(typeof(Instagram_Clone.Models.ExerciseCategory))), new { @class = "form-control mb-3", id = "exerciseCategoryDropdown" })
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

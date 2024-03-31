@@ -22,8 +22,7 @@ namespace Instagram_Clone.Controllers
             return View(exerciseList);
         }
 
-
-
+  
 
 
     }

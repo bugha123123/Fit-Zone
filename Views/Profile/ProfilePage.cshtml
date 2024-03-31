@@ -1,0 +1,41 @@
+﻿@using Instagram_Clone.Interface
+@inject IAccountService _accountservice;
+@{
+    var LoggedInUser = await _accountservice.GetLoggedInUserAsync();
+}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <!-- Left side with logo and user image -->
+        <div class="col-md-4">
+            <!-- Fitzone logo -->
+
+            <!-- User's profile image -->
+            <img src="user-profile-image.jpg" class="img-fluid rounded-circle mb-4 mx-auto d-block" alt="User Profile Image" style="max-width: 200px;">
+        </div>
+
+        <!-- Right side with user details -->
+        <div class="col-md-8">
+            <!-- User details -->
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex align-items-center justify-content-between">
+                    <span>User Details</span>
+
+                    <img src="~/Images/pixlr-image-generator-458a6518-485b-4637-8964-4b641e7637b3.png" height="40" width="40" class="img-fluid rounded-3 mr-3" alt="Fitzone Logo">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@LoggedInUser.UserName</h5>
+                    <p class="card-text"><strong>Age:</strong> 30</p>
+                    <p class="card-text"><strong>Height:</strong> 180 cm</p>
+                    <p class="card-text"><strong>Weight:</strong> 75 kg</p>
+                    <p class="card-text"><strong>Fitness Goal:</strong> Lose Weight</p>
+                    <p class="card-text"><strong>Subscription:</strong> @LoggedInUser.HasSubscription</p>
+                </div>
+            </div>
+
+
+            <!-- Add more sections for user statistics, achievements, etc. -->
+        </div>
+    </div>
+</div>

@@ -37,11 +37,10 @@
                     <li class="nav-item">
                         <a class="nav-link mr-3" asp-action="SubscriptionPage" asp-controller="Subscription" asp-route-SubscriptionId="">Buy Subscription</a>
                     </li>
-                    <!-- Add more nav-items for other sections -->
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link mr-3" href="#"><i class="fas fa-user" style="margin-right:5px;"></i>Profile</a>
+                        <a class="nav-link mr-3" asp-action="ProfilePage" asp-controller="Profile"><i class="fas fa-user" style="margin-right:5px;"></i>Profile</a>
                     </li>
                     <li class="nav-item">
                         <form id="logoutForm" asp-action="LogOutUser" asp-controller="Account" method="post">
