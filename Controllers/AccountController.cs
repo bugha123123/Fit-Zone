@@ -1,5 +1,6 @@
 ﻿using Instagram_Clone.DTO;
 using Instagram_Clone.Interface;
+using Instagram_Clone.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,12 +56,18 @@ namespace Instagram_Clone.Controllers
         }
 
         [HttpPost]
-
-        public async Task<IActionResult> UploadUserProfileImage(IFormFile ProfileImage)
+        public async Task<IActionResult> UpdateUserProfile(User user, IFormFile profileImage)
         {
-            await _accountService.UploadUserProfileImage(ProfileImage);
+            if (ModelState.IsValid)
+            {
+                await _accountService.UploadUserProfileImage(user, profileImage);
+                return RedirectToAction("ProfilePage", "Profile"); 
+            }
+
             return RedirectToAction("ProfilePage", "Profile");
+
         }
+
         public IActionResult FacebookLogin()
         {
             // Redirect the user to Facebook for authentication

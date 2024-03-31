@@ -77,64 +77,43 @@ namespace Instagram_Clone.Service
             
         }
 
-        public async Task UploadUserProfileImage(IFormFile ProfileImage)
+        public async Task UploadUserProfileImage(User user, IFormFile profileImage)
         {
-            var user = await GetLoggedInUserAsync();   
+            var authenticatedUser = await GetLoggedInUserAsync();
 
-            if (ProfileImage != null && ProfileImage.Length > 0)
+            if (profileImage != null && profileImage.Length > 0)
             {
-
-                string uniqueFileName = ProcessUploadedFile(ProfileImage);
-
-                user.ProfileImageFileName = uniqueFileName;
+                string uniqueFileName = await ProcessUploadedFile(profileImage);
+                authenticatedUser.ProfileImageFileName = uniqueFileName;
             }
 
             await _appDbContext.SaveChangesAsync();
         }
 
-        //image process logic 
-        private string ProcessUploadedFile(IFormFile profileImage)
+        private async Task<string> ProcessUploadedFile(IFormFile profileImage)
         {
-            var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "ProfileImage");
-            var uniqueFileName = Guid.NewGuid().ToString() + "_" + profileImage.FileName;
-            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-            using (var image = System.Drawing.Image.FromStream(profileImage.OpenReadStream()))
+            if (profileImage != null && profileImage.Length > 0)
             {
-                // Resize the image if needed (adjust dimensions accordingly)
-                var resizedImage = ResizeImage(image, 200, 200);
+                var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "ProfileImages");
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(profileImage.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                // Save the resized image to the file system
-                resizedImage.Save(filePath, ImageFormat.Png);
-            }
-
-            return uniqueFileName;
-        }
-
-        private System.Drawing.Image ResizeImage(System.Drawing.Image image, int width, int height)
-        {
-            var destRect = new System.Drawing.Rectangle(0, 0, width, height);
-            var destImage = new Bitmap(width, height);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (var graphics = Graphics.FromImage(destImage))
-            {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                using (var wrapMode = new ImageAttributes())
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                    await profileImage.CopyToAsync(stream);
                 }
-            }
 
-            return destImage;
+                return uniqueFileName;
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(profileImage), "Profile image is null.");
+            }
         }
+
+
+
+
 
     }
 }
