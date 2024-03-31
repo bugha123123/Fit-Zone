@@ -9,7 +9,6 @@ namespace Instagram_Clone.Controllers
     public class HomeController : Controller
     {
         private readonly IExerciseService _exerciseService;
-
         public HomeController(IExerciseService exerciseService)
         {
             _exerciseService = exerciseService;
@@ -22,7 +21,6 @@ namespace Instagram_Clone.Controllers
             return View(exerciseList);
         }
 
-  
 
 
     }

@@ -15,6 +15,7 @@ namespace Instagram_Clone.ApplicationDBContext
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

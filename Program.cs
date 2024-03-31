@@ -45,8 +45,8 @@ builder.Services.AddAuthentication(options =>
 });
 //services
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
-
 builder.Services.AddScoped<IAccountService, AccountService>();
+
 //services
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
