@@ -31,12 +31,25 @@
         right: 10px; 
         cursor: pointer;
     }
+
+    #exerciseResults {
+        display: flex;
+        flex-wrap: nowrap; /* Prevent wrapping onto multiple lines */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+    }
+
+    /* Optional: Adjust styling for individual cards if needed */
+    .exercise-card {
+        flex: 0 0 auto; /* Prevent flex items from growing or shrinking */
+        margin-right: 10px; /* Adjust spacing between cards */
+    }
 </style>
 
 <div class="container-fluid mt-3">
     <input type="text" id="exerciseSearch" class="form-control mb-3" placeholder="Search exercises...">
 
-    <div id="exerciseResults" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 position-relative" style="z-index:1000; color:red;">
+    <div id="exerciseResults" class="d-flex flex-nowrap overflow-auto row  g-4 mt-3 position-relative" style="z-index:1000; color:red;">
         <!-- Exercise cards will be dynamically added here -->
     </div>
 </div>
@@ -183,20 +196,19 @@
             flexContainer.classList.add('d-flex', 'flex-wrap');
 
             exercises.forEach(function (exercise) {
-                var cardHtml = '<div class="col-md-6 col-lg-4 mb-4">' + // Adjust column sizes as needed
-                    '<div class="card border-0 rounded-3 shadow">' +
-                    '<img src="' + exercise.exerciseImage + '" class="card-img-top" alt="' + exercise.exerciseName + '">' + // Exercise Image
-                    '<div class="card-body">' +
-                    '<h5 class="card-title">' + exercise.exerciseName + '</h5>' +
-                    '<p class="card-text">Exercise Time: ' + exercise.exerciseTime + '</p>' +
-                    '<p class="card-text">Rest Between Exercises: ' + exercise.restBetweenExercises + '</p>' +
-                    '<p class="card-text">Exercise Reps: ' + exercise.exerciseReps + '</p>' +
-                    // Add other exercise details here...
+                var cardHtml = '<div class="col-md-3 col-lg-2 mb-4">' + // Adjust column sizes as needed
+                    '<div class="card border-0 rounded-3 shadow" style="height: 200px; margin-right: 10px;">' + // Set a fixed height for the card and add margin
+                    '<img src="' + exercise.exerciseImage + '" class="card-img-top" style="object-fit: cover; height: 100%;" alt="' + exercise.exerciseName + '">' + // Exercise Image
+                    '<div class="card-body d-flex justify-content-center align-items-center">' +
+                    '<a href="/Exercise/ExerciseDetailsPage/' + exercise.Id + '" class="btn btn-primary">View More</a>' + // Dynamically generate link
                     '</div>' +
                     '</div>' +
                     '</div>';
                 flexContainer.insertAdjacentHTML("beforeend", cardHtml);
             });
+
+
+
 
             exerciseResultsContainer.appendChild(flexContainer);
         }
