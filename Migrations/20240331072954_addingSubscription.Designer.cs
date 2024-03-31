@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240331072954_addingSubscription")]
+    partial class addingSubscription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,6 @@ namespace Instagram_Clone.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("ExclusiveContent")
-                        .HasColumnType("bit");
 
                     b.Property<int>("ExerciseCategory")
                         .HasColumnType("int");
@@ -63,7 +63,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            ExclusiveContent = true,
                             ExerciseCategory = 0,
                             ExerciseImage = "/ExerciseImages/PushUp.jpg",
                             ExerciseName = "Push-up",
@@ -74,7 +73,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 2,
-                            ExclusiveContent = false,
                             ExerciseCategory = 0,
                             ExerciseImage = "/ExerciseImages/BodyWeightSquat.jpg",
                             ExerciseName = "Squats",
@@ -85,7 +83,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 3,
-                            ExclusiveContent = true,
                             ExerciseCategory = 0,
                             ExerciseImage = "/ExerciseImages/Plank.png",
                             ExerciseName = "Plank",
@@ -96,7 +93,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 4,
-                            ExclusiveContent = false,
                             ExerciseCategory = 0,
                             ExerciseImage = "/ExerciseImages/Lunges.jpg",
                             ExerciseName = "Lunges",
@@ -107,7 +103,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 5,
-                            ExclusiveContent = true,
                             ExerciseCategory = 1,
                             ExerciseImage = "/ExerciseImages/Burpees.jpg",
                             ExerciseName = "Burpees",
@@ -118,7 +113,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 6,
-                            ExclusiveContent = false,
                             ExerciseCategory = 1,
                             ExerciseImage = "/ExerciseImages/MountainClimbers.jpg",
                             ExerciseName = "Mountain Climbers",
@@ -129,7 +123,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 7,
-                            ExclusiveContent = true,
                             ExerciseCategory = 1,
                             ExerciseImage = "/ExerciseImages/Sit-ups.jpg",
                             ExerciseName = "Sit-ups",
@@ -140,7 +133,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 8,
-                            ExclusiveContent = false,
                             ExerciseCategory = 1,
                             ExerciseImage = "/ExerciseImages/Jumping Jacks.jpg",
                             ExerciseName = "Jumping Jacks",
@@ -151,7 +143,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 9,
-                            ExclusiveContent = true,
                             ExerciseCategory = 1,
                             ExerciseImage = "/ExerciseImages/HighKnees.jpg",
                             ExerciseName = "High Knees",
@@ -162,7 +153,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 10,
-                            ExclusiveContent = false,
                             ExerciseCategory = 1,
                             ExerciseImage = "/ExerciseImages/PlankJacks.jpg",
                             ExerciseName = "Plank Jacks",
@@ -173,7 +163,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 11,
-                            ExclusiveContent = true,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/RussianTwists.jpg",
                             ExerciseName = "Russian Twists",
@@ -184,7 +173,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 12,
-                            ExclusiveContent = false,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/WallSit.jpg",
                             ExerciseName = "Wall Sit",
@@ -195,7 +183,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 13,
-                            ExclusiveContent = true,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/TricepDips.jpg",
                             ExerciseName = "Tricep Dips",
@@ -206,7 +193,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 14,
-                            ExclusiveContent = false,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/BicycleCrunches.jpg",
                             ExerciseName = "Bicycle Crunches",
@@ -217,7 +203,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 15,
-                            ExclusiveContent = true,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/CalfRaises.jpg",
                             ExerciseName = "Calf Raises",
@@ -228,7 +213,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 16,
-                            ExclusiveContent = false,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/ShoulderPress.jpg",
                             ExerciseName = "Shoulder Press",
@@ -239,7 +223,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 17,
-                            ExclusiveContent = true,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/DeadBug.jpg",
                             ExerciseName = "Dead Bug",
@@ -250,7 +233,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 18,
-                            ExclusiveContent = false,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/Superman.jpg",
                             ExerciseName = "Superman",
@@ -261,7 +243,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 19,
-                            ExclusiveContent = true,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/ReverseCrunches.jpg",
                             ExerciseName = "Reverse Crunches",
@@ -272,7 +253,6 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 20,
-                            ExclusiveContent = false,
                             ExerciseCategory = 2,
                             ExerciseImage = "/ExerciseImages/JumpRope.jpg",
                             ExerciseName = "Jump Rope",
@@ -311,8 +291,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyData = new DateTime(2024, 3, 31, 11, 53, 19, 494, DateTimeKind.Local).AddTicks(9810),
-                            ExpireDate = new DateTime(2024, 4, 30, 11, 53, 19, 494, DateTimeKind.Local).AddTicks(9819),
+                            BuyData = new DateTime(2024, 3, 31, 11, 29, 54, 624, DateTimeKind.Local).AddTicks(4703),
+                            ExpireDate = new DateTime(2024, 4, 30, 11, 29, 54, 624, DateTimeKind.Local).AddTicks(4714),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -327,6 +307,7 @@ namespace Instagram_Clone.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("BoughtSubscriptionName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")

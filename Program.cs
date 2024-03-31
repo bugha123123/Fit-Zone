@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Stripe;
+using AccountService = Instagram_Clone.Service.AccountService;
 
 var builder = WebApplication.CreateBuilder(args);
 var facebookAppId = builder.Configuration["Authentication:Facebook:AppId"];
@@ -42,12 +44,11 @@ builder.Services.AddAuthentication(options =>
     options.AppSecret = facebookAppSecret;
 });
 //services
-
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 //services
-
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {

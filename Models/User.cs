@@ -6,5 +6,8 @@ namespace Instagram_Clone.Models
     {
 
         public string FitnessLevel { get; set; } = "Beginner";
+        public bool HasSubscription { get; set; } = false;
+
+        public string? BoughtSubscriptionName { get; set; }
     }
 }

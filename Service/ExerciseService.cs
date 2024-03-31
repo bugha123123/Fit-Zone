@@ -40,6 +40,10 @@ namespace Instagram_Clone.Service
             return exerciseList;
         }
 
-
+        public async Task<List<Subscription>> GetSubscriptionsAsync()
+        {
+            var subs = await _appDbContext.Subscriptions.ToListAsync();
+            return subs;
+        }
     }
 }

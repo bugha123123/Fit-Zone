@@ -7,6 +7,18 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
     {
         public static void Seed(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Subscription>().HasData(
+      new Subscription
+      {
+          Id = 1,
+          BuyData = DateTime.Now,
+          PlanPrice = 9.99,
+          PlanType = "Basic",
+          ExpireDate = DateTime.Now.AddMonths(1) 
+      }
+  );
+
             modelBuilder.Entity<Exercise>().HasData(
                 new Exercise
                 {
@@ -16,7 +28,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "15 reps",
                     ExerciseImage = "/ExerciseImages/PushUp.jpg",
-                    ExerciseCategory = ExerciseCategory.Beginner
+                    ExerciseCategory = ExerciseCategory.Beginner,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -26,7 +39,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "15",
                     ExerciseReps = "20 reps",
                     ExerciseImage = "/ExerciseImages/BodyWeightSquat.jpg",
-                    ExerciseCategory = ExerciseCategory.Beginner
+                    ExerciseCategory = ExerciseCategory.Beginner,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -36,7 +50,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "3",
                     ExerciseImage = "/ExerciseImages/Plank.png",
-                    ExerciseCategory = ExerciseCategory.Beginner
+                    ExerciseCategory = ExerciseCategory.Beginner,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -46,7 +61,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "12 reps per leg",
                     ExerciseImage = "/ExerciseImages/Lunges.jpg",
-                    ExerciseCategory = ExerciseCategory.Beginner
+                    ExerciseCategory = ExerciseCategory.Beginner,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -56,7 +72,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "15",
                     ExerciseReps = "12 reps",
                     ExerciseImage = "/ExerciseImages/Burpees.jpg",
-                    ExerciseCategory = ExerciseCategory.Intermediate
+                    ExerciseCategory = ExerciseCategory.Intermediate,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -66,7 +83,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "20 reps",
                     ExerciseImage = "/ExerciseImages/MountainClimbers.jpg",
-                    ExerciseCategory = ExerciseCategory.Intermediate
+                    ExerciseCategory = ExerciseCategory.Intermediate,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -75,8 +93,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     ExerciseTime = "60",
                     RestBetweenExercises = "10",
                     ExerciseReps = "20 reps",
-                    ExerciseImage = "/ExerciseImages/SitUps.jpg",
-                    ExerciseCategory = ExerciseCategory.Intermediate
+                    ExerciseImage = "/ExerciseImages/Sit-ups.jpg",
+                    ExerciseCategory = ExerciseCategory.Intermediate,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -85,8 +104,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     ExerciseTime = "60",
                     RestBetweenExercises = "10",
                     ExerciseReps = "30 reps",
-                    ExerciseImage = "/ExerciseImages/JumpingJacks.jpg",
-                    ExerciseCategory = ExerciseCategory.Intermediate
+                    ExerciseImage = "/ExerciseImages/Jumping Jacks.jpg",
+                    ExerciseCategory = ExerciseCategory.Intermediate,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -96,7 +116,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "30 reps",
                     ExerciseImage = "/ExerciseImages/HighKnees.jpg",
-                    ExerciseCategory = ExerciseCategory.Intermediate
+                    ExerciseCategory = ExerciseCategory.Intermediate,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -106,7 +127,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "20 reps",
                     ExerciseImage = "/ExerciseImages/PlankJacks.jpg",
-                    ExerciseCategory = ExerciseCategory.Intermediate
+                    ExerciseCategory = ExerciseCategory.Intermediate,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -116,7 +138,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "20 reps",
                     ExerciseImage = "/ExerciseImages/RussianTwists.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -126,7 +149,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "N/A",
                     ExerciseImage = "/ExerciseImages/WallSit.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -136,7 +160,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "15 reps",
                     ExerciseImage = "/ExerciseImages/TricepDips.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -146,7 +171,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "20 reps",
                     ExerciseImage = "/ExerciseImages/BicycleCrunches.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -156,7 +182,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "20 reps",
                     ExerciseImage = "/ExerciseImages/CalfRaises.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -166,7 +193,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "12 reps",
                     ExerciseImage = "/ExerciseImages/ShoulderPress.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -176,7 +204,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "20 reps",
                     ExerciseImage = "/ExerciseImages/DeadBug.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -186,7 +215,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "10",
                     ExerciseImage = "/ExerciseImages/Superman.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = false
                 },
                 new Exercise
                 {
@@ -196,7 +226,8 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "15 reps",
                     ExerciseImage = "/ExerciseImages/ReverseCrunches.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = true
                 },
                 new Exercise
                 {
@@ -206,9 +237,12 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
                     RestBetweenExercises = "10",
                     ExerciseReps = "3",
                     ExerciseImage = "/ExerciseImages/JumpRope.jpg",
-                    ExerciseCategory = ExerciseCategory.Advanced
+                    ExerciseCategory = ExerciseCategory.Advanced,
+                    ExclusiveContent = false
                 }
             );
+
+
         }
     }
 }

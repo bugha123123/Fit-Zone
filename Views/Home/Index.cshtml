@@ -1,6 +1,9 @@
-﻿@model List<Exercise>
-
-
+﻿@using Instagram_Clone.Interface
+@model List<Exercise>
+@inject IAccountService _accountservice;
+@{
+    var LoggedInUser = await _accountservice.GetLoggedInUserAsync();
+}
 <style>
     .modal {
         display: none;
@@ -61,28 +64,64 @@
 
     </div>
     <div class="container-fluid mt-5">
-        <h2 class="text-left mb-4">Exercises for you</h2> 
+        <h2 class="text-left mb-4">Exercises for you</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3">
             <!-- Adjusted margin top -->
             @foreach (var exercise in Model)
             {
                 <div class="col">
-                    <div class="card h-100 border-0 rounded-3 shadow">
-                        <img src="@exercise.ExerciseImage" height="220px" style="object-fit:cover;" class="card-img-top" alt="@exercise.ExerciseName">
+                    <div class="card h-100 border-0 rounded-3 shadow position-relative">
+                        <!-- Check if user has a subscription -->
+                        @if (!LoggedInUser.HasSubscription && exercise.ExclusiveContent)
+                        {
+                            <!-- Subscription Card -->
+                            <div class="position-absolute  start-50 translate-middle" style="z-index: 1000;top:30%">
+                                <h2 class="text-center text-white">Exclusive Content</h2>
+                                <a asp-action="SubscriptionPage" asp-controller="Subscription">
+                                    <button class="btn btn-danger d-block mx-auto mt-3">Subscribe</button>
+                                </a>
+                            </div>
+                        }
+
+                        @if (!LoggedInUser.HasSubscription && exercise.ExclusiveContent)
+                        {
+                            <img src="@exercise.ExerciseImage" height="220px" style="object-fit:cover; filter: blur(25px);" class="card-img-top" alt="@exercise.ExerciseName">
+                        }
+                        else
+                        {
+                            <img src="@exercise.ExerciseImage" height="220px" style="object-fit:cover;" class="card-img-top" alt="@exercise.ExerciseName">
+
+                        }
+
+                            
+                            
+
                         <div class="card-body">
-                            <h5 class="card-title">@exercise.ExerciseName</h5>
                             <p class="card-text">
-                                <strong>Time:</strong> @exercise.ExerciseTime<br>
-                                <strong>Rest Between Exercises:</strong> @exercise.RestBetweenExercises<br>
-                                <strong>Reps:</strong> @exercise.ExerciseReps
                             </p>
-                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id" class="btn btn-primary">View Exercise</a>
+                            @if (!LoggedInUser.HasSubscription && exercise.ExclusiveContent)
+                            {
+                                <a>
+                                    <button disabled class="btn btn-primary">View Exercise</button>
+                                </a>
+                            }else
+
+                            {
+                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id">
+                                <button  class="btn btn-primary">View Exercise</button>
+                            </a>
+                            }
+                           
                         </div>
                     </div>
                 </div>
             }
         </div>
     </div>
+
+
+    </div>
+
 
 
 

@@ -9,6 +9,7 @@ namespace Instagram_Clone.Interface
 
         Task<Exercise> GetExerciseByIdAsync(int id);
 
+        Task<List<Subscription>> GetSubscriptionsAsync();
 
     }
 }

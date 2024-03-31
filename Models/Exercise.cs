@@ -18,7 +18,7 @@
 
         public ExerciseCategory ExerciseCategory { get; set; }
 
-
+        public bool ExclusiveContent { get; set; }
 
 
     }
