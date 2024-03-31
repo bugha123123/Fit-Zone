@@ -5,6 +5,7 @@ namespace Instagram_Clone.Interface
     public interface IExerciseService
     {
 
+        // this returns only 4 exercise
         Task<List<Exercise>> GetExerciseListAsync();
 
         Task<Exercise> GetExerciseByIdAsync(int id);
@@ -14,5 +15,9 @@ namespace Instagram_Clone.Interface
         Task<Subscription> GetSubscriptionByIdAsync(int id);
 
         Task RemoveSubscription();
+
+
+        // this returns all of the exercises
+        Task<List<Exercise>> GetExercisesAsync();
     }
 }

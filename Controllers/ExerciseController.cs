@@ -20,6 +20,8 @@ namespace Instagram_Clone.Controllers
             return View(ExerciseById);
         }
 
+       
+
         [HttpPost]
 
         public async Task<IActionResult> SaveUserFitnessLevel(Exercise exercise)
