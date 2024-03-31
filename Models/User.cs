@@ -9,5 +9,7 @@ namespace Instagram_Clone.Models
         public bool HasSubscription { get; set; } = false;
 
         public string? BoughtSubscriptionName { get; set; }
+
+        public string? ProfileImageFileName { get; set; }
     }
 }

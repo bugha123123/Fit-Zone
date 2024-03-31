@@ -36,4 +36,8 @@
     <PackageReference Include="Stripe.net" Version="43.21.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\ProfileImage\" />
+  </ItemGroup>
+
 </Project>

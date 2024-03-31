@@ -13,18 +13,23 @@ namespace Instagram_Clone.Controllers
         private readonly UserManager<User> userManager;
         private readonly AppDbContext appDbContext;
         private readonly IExerciseService exerciseService;
-        private readonly IExerciseService exerciseService1;
-        public SubscriptionController(UserManager<User> userManager, AppDbContext appDbContext, IExerciseService exerciseService, IExerciseService exerciseService1)
+        public SubscriptionController(UserManager<User> userManager, AppDbContext appDbContext, IExerciseService exerciseService)
         {
             this.userManager = userManager;
             this.appDbContext = appDbContext;
             this.exerciseService = exerciseService;
-            this.exerciseService1 = exerciseService1;
         }
 
         public IActionResult SubscriptionPage()
         {
             return View();
+        }
+
+        [HttpPost("removesubscription")]
+
+        public async Task<IActionResult> RemoveSubscription() {
+            await exerciseService.RemoveSubscription();
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> CheckOutConfirmation()

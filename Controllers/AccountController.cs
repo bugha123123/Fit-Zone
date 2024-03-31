@@ -24,12 +24,7 @@ namespace Instagram_Clone.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ProfilePage()
-        {
-          
-            var user = await _accountService.GetLoggedInUserAsync();
-            return View(user);
-        }
+      
         [HttpPost("registeruser")]
         public async Task<IActionResult> RegisterUser(CreateUserDTO createUserDTO)
         {
@@ -59,7 +54,13 @@ namespace Instagram_Clone.Controllers
             return RedirectToAction("LogInPage", "Account");
         }
 
+        [HttpPost]
 
+        public async Task<IActionResult> UploadUserProfileImage(IFormFile ProfileImage)
+        {
+            await _accountService.UploadUserProfileImage(ProfileImage);
+            return RedirectToAction("ProfilePage", "Profile");
+        }
         public IActionResult FacebookLogin()
         {
             // Redirect the user to Facebook for authentication

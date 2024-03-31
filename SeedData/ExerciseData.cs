@@ -12,7 +12,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
       new Subscription
       {
           Id = 1,
-          BuyData = DateTime.Now,
+          BuyDate = DateTime.Now,
           PlanPrice = 9.99,
           PlanType = "Basic",
           ExpireDate = DateTime.Now.AddMonths(1) 

@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240331121413_changingBuyDate")]
+    partial class changingBuyDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -311,8 +314,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 3, 31, 16, 37, 1, 457, DateTimeKind.Local).AddTicks(2303),
-                            ExpireDate = new DateTime(2024, 4, 30, 16, 37, 1, 457, DateTimeKind.Local).AddTicks(2313),
+                            BuyDate = new DateTime(2024, 3, 31, 16, 14, 12, 910, DateTimeKind.Local).AddTicks(4011),
+                            ExpireDate = new DateTime(2024, 4, 30, 16, 14, 12, 910, DateTimeKind.Local).AddTicks(4023),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -369,9 +372,6 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("ProfileImageFileName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

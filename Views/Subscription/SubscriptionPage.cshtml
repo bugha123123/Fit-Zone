@@ -2,39 +2,44 @@
 @model Subscription
 @inject IAccountService _accountservice;
 
-
 @{
 
-
     var LoggedInUser = await _accountservice.GetLoggedInUserAsync();
+}
 
-    if (LoggedInUser.HasSubscription)
+
+    @if (LoggedInUser.HasSubscription)
     {
         // User has a subscription, show subscription data
         <div class="container-fluid mt-5">
-            <div class="row">
+           
                 <!-- Left side with image -->
-                <div class="col-md-6">
-                    <img src="~/Images/pixlr-image-generator-458a6518-485b-4637-8964-4b641e7637b3.png" class="img-fluid subscription-image rounded-3 mb-4" alt="Subscription Image">
-                </div>
-
-                <!-- Right side with subscription card -->
-                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                    <div class="card border-primary" style="width: 400px; height: 500px;">
+                <div class=" d-flex align-items-center justify-content-center">
+                    <div class="card border-primary text-center" style="width: 400px;">
                         <div class="card-header bg-primary text-white">
-                            Subscription Plan
+                            Your Current Plan
                         </div>
+                        <img src="~/Images/pixlr-image-generator-458a6518-485b-4637-8964-4b641e7637b3.png" class="card-img-top subscription-image rounded-3 mt-1" alt="Subscription Image">
                         <div class="card-body">
                             <h5 class="card-title">Basic</h5>
                             <p class="card-text">Price: $9.99/month</p>
                             <p class="card-text">Benefits:</p>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Access to exclusive content</li>
+                                <!-- Add more benefits here -->
                             </ul>
+                            <br />
+                    <form asp-action="RemoveSubscription" asp-controller="Subscription" method="post">
+                        <button type="submit" class="btn btn-danger">Remove Subscription</button>
+                            </form>
+                        
                         </div>
-                  
                     </div>
-                </div>
+                
+
+                <!-- Right side with subscription card -->
+              
+               
             </div>
         </div>
     }
@@ -44,16 +49,12 @@
         <div class="container-fluid mt-5">
             <div class="row">
                 <!-- Left side with image -->
-                <div class="col-md-6">
-                    <img src="~/Images/pixlr-image-generator-458a6518-485b-4637-8964-4b641e7637b3.png" class="img-fluid subscription-image rounded-3 mb-4" alt="Subscription Image">
-                </div>
-
-                <!-- Right side with subscription card -->
                 <div class="col-md-6 d-flex align-items-center justify-content-center">
-                    <div class="card border-primary" style="width: 400px; height: 500px;">
+                    <div class="card border-primary text-center" style="width: 400px;">
                         <div class="card-header bg-primary text-white">
-                            Subscription Plan
+                            Subscription Options
                         </div>
+                        <img src="~/Images/pixlr-image-generator-458a6518-485b-4637-8964-4b641e7637b3.png" class="card-img-top subscription-image rounded-3 mt-1" alt="Subscription Image">
                         <div class="card-body">
                             <h5 class="card-title">Basic Plan</h5>
                             <p class="card-text">Price: $9.99/month</p>
@@ -64,13 +65,28 @@
                             </ul>
                             <a asp-action="StripeCheckOut" asp-controller="Subscription" class="btn btn-primary btn-lg mt-3">Subscribe Now</a>
                         </div>
-                        <div class="card-footer text-muted">
-                            1 Month Free Trial
+                        <div class="card-footer bg-light text-muted">
+                            1 Month  Trial
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right side with image -->
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <div class="card border-primary text-center" style="width: 400px;">
+                        <div class="card-header bg-primary text-white">
+                            Why Subscribe?
+                        </div>
+                        <img src="~/Images/pixlr-image-generator-458a6518-485b-4637-8964-4b641e7637b3.png" class="card-img-top subscription-image rounded-3 mt-1" alt="Subscription Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Unlock Exclusive Content</h5>
+                            <p class="card-text">Gain access to premium content only available to subscribers.</p>
+                            <h5 class="card-title">Support Creators</h5>
+                            <p class="card-text">Help your favorite creators thrive by subscribing to their content.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     }
-}
 

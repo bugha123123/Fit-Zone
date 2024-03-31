@@ -17,5 +17,7 @@ namespace Instagram_Clone.Interface
         Task<User> GetLoggedInUserAsync();
 
         Task SaveUserFitnessLevel(Exercise exercise);
+
+        Task UploadUserProfileImage(IFormFile ProfileImage);
     }
 }

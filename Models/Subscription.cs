@@ -9,7 +9,7 @@
 
         public double PlanPrice { get; set; }
 
-        public DateTime BuyData { get; set; }
+        public DateTime BuyDate { get; set; }
 
         public DateTime ExpireDate  { get; set; }
 

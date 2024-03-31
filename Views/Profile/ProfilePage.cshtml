@@ -1,17 +1,27 @@
 ﻿@using Instagram_Clone.Interface
 @inject IAccountService _accountservice;
+@inject IExerciseService _exerciseservice;
 @{
     var LoggedInUser = await _accountservice.GetLoggedInUserAsync();
+    var subscriptions = await _exerciseservice.GetSubscriptionsAsync();
 }
 
 <div class="container-fluid mt-5">
     <div class="row">
         <!-- Left side with logo and user image -->
         <div class="col-md-4">
-            <!-- Fitzone logo -->
+         
+            <img src="@LoggedInUser.ProfileImageFileName" class="img-fluid rounded-circle mb-4 mx-auto d-block" alt="User Profile Image" style="max-width: 200px;">
 
-            <!-- User's profile image -->
-            <img src="user-profile-image.jpg" class="img-fluid rounded-circle mb-4 mx-auto d-block" alt="User Profile Image" style="max-width: 200px;">
+            <!-- Upload image button -->
+            <form asp-action="UploadUserProfileImage" asp-controller="Account" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="imageUpload">Upload Image</label>
+                    <input type="file" class="form-control d-none" id="imageUpload" name="imageUpload">
+                    <button type="submit" class="btn btn-primary mt-3">Choose File</button>
+                </div>
+            </form>
+
         </div>
 
         <!-- Right side with user details -->
@@ -31,6 +41,11 @@
                     <p class="card-text"><strong>Weight:</strong> 75 kg</p>
                     <p class="card-text"><strong>Fitness Goal:</strong> Lose Weight</p>
                     <p class="card-text"><strong>Subscription:</strong> @LoggedInUser.HasSubscription</p>
+                    <p class="card-text"><strong>Bought at:</strong>@subscriptions.First().BuyDate </p>
+
+                    <p class="card-text"><strong>Expires at:</strong>@subscriptions.First().ExpireDate </p>
+
+
                 </div>
             </div>
 

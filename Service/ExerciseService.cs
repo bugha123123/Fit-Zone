@@ -56,5 +56,19 @@ namespace Instagram_Clone.Service
             var subs = await _appDbContext.Subscriptions.ToListAsync();
             return subs;
         }
+
+        public async Task RemoveSubscription()
+        {
+            var user = await _accountService.GetLoggedInUserAsync();
+
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            user.HasSubscription = false;
+
+            await _appDbContext.SaveChangesAsync();
+        }
     }
 }
