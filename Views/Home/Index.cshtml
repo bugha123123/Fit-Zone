@@ -64,7 +64,7 @@
 
     </div>
     <div class="container-fluid mt-5">
-        <h2 class="text-left mb-4">Exercises for you</h2>
+        <h2 class="text-left mb-4">Exercises for you:</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3">
             <!-- Adjusted margin top -->
             @foreach (var exercise in Model)
@@ -77,7 +77,7 @@
                             <!-- Subscription Card -->
                             <div class="position-absolute  start-50 translate-middle" style="z-index: 1000;top:30%">
                                 <h2 class="text-center text-white">Exclusive Content</h2>
-                                <a asp-action="SubscriptionPage" asp-controller="Subscription">
+                                <a style="text-decoration:none;" asp-action="SubscriptionPage" asp-controller="Subscription">
                                     <button class="btn btn-danger d-block mx-auto mt-3">Subscribe</button>
                                 </a>
                             </div>

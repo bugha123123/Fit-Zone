@@ -40,6 +40,17 @@ namespace Instagram_Clone.Service
             return exerciseList;
         }
 
+        public async Task<Subscription> GetSubscriptionByIdAsync(int id)
+        {
+            var subscription = await _appDbContext.Subscriptions.FirstOrDefaultAsync(e => e.Id == id);
+            if (subscription == null)
+            {
+                throw new Exception("Excercise not found");
+            }
+            return subscription;
+
+        }
+
         public async Task<List<Subscription>> GetSubscriptionsAsync()
         {
             var subs = await _appDbContext.Subscriptions.ToListAsync();
