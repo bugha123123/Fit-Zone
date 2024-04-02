@@ -50,10 +50,12 @@
 <div class="container-fluid mt-3">
     <input type="text" id="exerciseSearch" class="form-control mb-3" placeholder="Search exercises...">
 
-    <div id="exerciseResults" class="d-flex flex-nowrap overflow-auto row  g-4 mt-3 position-relative" style="z-index:1000; color:red;">
+    <div id="exerciseResults" class="d-flex flex-nowrap overflow-auto row g-4 mt-3 position-relative" style="z-index:1000;">
         <!-- Exercise cards will be dynamically added here -->
+   
     </div>
 </div>
+
 
 <div class="container-fluid mt-5 ">
     <div id="fitnessModal" class="modal">
@@ -258,9 +260,8 @@
                     '</div>' +
                     '</div>' +
                     '</div>';
-                flexContainer.insertAdjacentHTML("beforeend", cardHtml);
+                exerciseResultsContainer.insertAdjacentHTML("beforeend", cardHtml);
             });
-
 
 
 
