@@ -24,7 +24,7 @@
             </div>
 
             <div class="text-center">
-                <img src="@Url.Content(imagePath)" class="img-fluid rounded-3" alt="User Profile Image" style="max-width: 400px; height: 300px;">
+                <img src="@Url.Content(imagePath)" class="img-fluid rounded-3"  style="max-width: 400px; height: 300px;">
             </div>
         </div>
 
@@ -46,9 +46,9 @@
                     <p class="card-text"><strong>Weight:</strong> 75 kg</p>
                     <p class="card-text"><strong>Fitness Goal:</strong> Lose Weight</p>
                     <p class="card-text"><strong>Subscription:</strong> @LoggedInUser.HasSubscription</p>
-                    <p class="card-text"><strong>Bought at:</strong>@subscriptions.First().BuyDate </p>
+                    <p class="card-text"><strong>Bought at: </strong>@subscriptions.First().BuyDate </p>
 
-                    <p class="card-text"><strong>Expires at:</strong>@subscriptions.First().ExpireDate </p>
+                    <p class="card-text"><strong>Expires at: </strong>@subscriptions.First().ExpireDate </p>
 
 
                 </div>

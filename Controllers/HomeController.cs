@@ -17,6 +17,7 @@ namespace Instagram_Clone.Controllers
         {
             _exerciseService = exerciseService;
             _dbContext = dbContext;
+            
         }
 
         [Authorize]
