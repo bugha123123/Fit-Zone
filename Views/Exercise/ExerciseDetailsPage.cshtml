@@ -1,11 +1,13 @@
-﻿@model Exercise
+﻿@using Instagram_Clone.Interface
+@model Exercise
+@inject IExerciseService _exerciseservice;
 <div class="container mt-5">
     <div class="row">
-
         <div class="col-md-6">
             <div class="text-center mb-4">
-                <img src="@Model.ExerciseImage" class="img-fluid rounded-3 exercise-image w-100" style="object-fit:cover;" alt="Exercise Image">
+                <img src="@Model.ExerciseImage" class="img-fluid rounded-3 exercise-image w-100" style="object-fit: cover; height: 430px;" alt="Exercise Image">
             </div>
+
             <div class="progress mt-3">
                 <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 100%"></div>
             </div>
@@ -26,6 +28,29 @@
         </div>
     </div>
 </div>
+
+
+<div class="container mt-3">
+    <h2 class="text-white mt-5">Similar Exercises:</h2>
+    <div class="row">
+        @foreach (var item in await _exerciseservice.GetSimilarExercises(Model.Id))
+        {
+            <div class="col-md-6 mb-3 mt-3">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <img src="@item.ExerciseImage" class="img-fluid rounded-3 exercise-image" style="object-fit: cover; width: 100px; height: 100px;" alt="Exercise Image">
+                        <div class="ms-3">
+                            <h5 class="card-title">@item.ExerciseName</h5>
+                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@item.Id" class="btn btn-primary outline-none">View More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
 
 
 
@@ -69,11 +94,9 @@
         let progressBar = document.getElementById('progressBar');
         let exerciseTimeElement = document.getElementById('exerciseTime');
 
-        // Reset the progress bar
         progressBar.style.transition = 'none';
         progressBar.style.width = '100%';
 
-        // Reset the exercise time
         exerciseTimeElement.textContent = "@Model.ExerciseTime";
     }
 

@@ -13,14 +13,19 @@ namespace Instagram_Clone.Service
             _dbcontext = dbcontext;
         }
 
-        public Task AddVoteForExercise(ExerciseVotes exerciseVotes)
+        public async Task AddVoteForExercise(ExerciseVotes exerciseVotes)
         {
             var NewVote = new ExerciseVotes()
             {
                 DownVote
                 = exerciseVotes.DownVote,
                 UpVote = exerciseVotes.UpVote,
+                DownVoteCount = exerciseVotes.DownVote,
+                UpVoteCount = exerciseVotes.UpVote,
             };
+
+            await _dbcontext.AddAsync(NewVote);
+            await _dbcontext.SaveChangesAsync();
         }
     }
 }

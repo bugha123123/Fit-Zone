@@ -45,6 +45,17 @@ namespace Instagram_Clone.Service
             var exercises = await _appDbContext.Exercises.ToListAsync();
             return exercises;
         }
+        public async Task<List<Exercise>> GetSimilarExercises(int excludedExerciseId)
+        {
+            var exercisesList = await _appDbContext.Exercises
+                                                  .Where(e => e.Id != excludedExerciseId)
+                                                  .Take(4)
+                                                  .ToListAsync();
+            return exercisesList;
+        }
+
+
+
 
         public async Task<Subscription> GetSubscriptionByIdAsync(int id)
         {

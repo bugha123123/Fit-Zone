@@ -60,11 +60,12 @@ namespace Instagram_Clone.Service
                 Email = createUserDTO.Gmail
             };
 
+
             var result = await _userManager.CreateAsync(user, createUserDTO.Password);
 
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await _signInManager.SignInAsync(user, isPersistent: true,TimeSpan.FromHours(2).ToString());
             }
         }
 

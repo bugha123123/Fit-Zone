@@ -19,5 +19,8 @@ namespace Instagram_Clone.Interface
 
         // this returns all of the exercises
         Task<List<Exercise>> GetExercisesAsync();
+
+
+        Task<List<Exercise>> GetSimilarExercises(int excludedExerciseId);
     }
 }

@@ -8,6 +8,8 @@ namespace Instagram_Clone.Models
         public  int Id { get; set; }
 
         [Required(ErrorMessage ="FeedBack is required")]
+        [MinLength(10)]
+        [MaxLength(50)]
         public string UserFeedBack { get; set; }
 
         public string? Name { get; set; }
