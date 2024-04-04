@@ -21,5 +21,10 @@
         public bool ExclusiveContent { get; set; }
 
 
+        public string? UpVote { get; set; }
+
+        public string? DownVote { get; set; }
+
+
     }
 }

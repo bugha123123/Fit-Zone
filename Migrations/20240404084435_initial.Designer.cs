@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240331123701_addingprofileimageupload")]
-    partial class addingprofileimageupload
+    [Migration("20240404084435_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace Instagram_Clone.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DownVote")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ExclusiveContent")
                         .HasColumnType("bit");
@@ -56,6 +59,9 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<string>("RestBetweenExercises")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpVote")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -285,6 +291,30 @@ namespace Instagram_Clone.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Instagram_Clone.Models.FeedBack", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserFeedBack")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FeedBacks");
+                });
+
             modelBuilder.Entity("Instagram_Clone.Models.Subscription", b =>
                 {
                     b.Property<int>("Id")
@@ -314,8 +344,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 3, 31, 16, 37, 1, 457, DateTimeKind.Local).AddTicks(2303),
-                            ExpireDate = new DateTime(2024, 4, 30, 16, 37, 1, 457, DateTimeKind.Local).AddTicks(2313),
+                            BuyDate = new DateTime(2024, 4, 4, 12, 44, 35, 183, DateTimeKind.Local).AddTicks(9385),
+                            ExpireDate = new DateTime(2024, 5, 4, 12, 44, 35, 183, DateTimeKind.Local).AddTicks(9395),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });

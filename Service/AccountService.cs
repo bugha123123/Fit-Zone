@@ -65,7 +65,7 @@ namespace Instagram_Clone.Service
 
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, isPersistent: true,TimeSpan.FromHours(2).ToString());
+                await _signInManager.SignInAsync(user, isPersistent: false);
             }
         }
 

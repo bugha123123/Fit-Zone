@@ -30,6 +30,9 @@ namespace Instagram_Clone.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("DownVote")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("ExclusiveContent")
                         .HasColumnType("bit");
 
@@ -53,6 +56,9 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<string>("RestBetweenExercises")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpVote")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -298,7 +304,8 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<string>("UserFeedBack")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -334,8 +341,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 2, 20, 5, 27, 2, DateTimeKind.Local).AddTicks(9415),
-                            ExpireDate = new DateTime(2024, 5, 2, 20, 5, 27, 2, DateTimeKind.Local).AddTicks(9427),
+                            BuyDate = new DateTime(2024, 4, 4, 12, 44, 35, 183, DateTimeKind.Local).AddTicks(9385),
+                            ExpireDate = new DateTime(2024, 5, 4, 12, 44, 35, 183, DateTimeKind.Local).AddTicks(9395),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
