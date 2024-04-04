@@ -6,16 +6,16 @@
 
 @* Styles *@
 <style>
-   
-
+    /* Styles with Specified Colors */
     .container2 {
         display: flex;
         max-width: 1200px;
         margin: 20px auto;
-        background-color: #fff;
+        background-color: #09090b; /* Background color */
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color:white;
     }
 
     .filter-section {
@@ -32,12 +32,14 @@
         padding: 20px;
         overflow-y: auto; /* Make the container scrollable vertically */
         max-height: 500px; /* Set a max height to enable scrolling */
+        color:black;
+  
     }
 
     .exercise {
         margin-bottom: 20px;
         padding: 20px;
-        background-color: #fff;
+        background-color: #fafafa; /* Exercise background color */
         border-radius: 8px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         display: flex;
@@ -61,27 +63,29 @@
             padding: 8px 16px;
             border: none;
             border-radius: 4px;
-            background-color: #007bff;
-            color: #fff;
+            background-color: #fafafa; /* Button background color */
+            color: #99999a; /* Text color */
             cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
         }
 
             .pagination button:hover {
-                background-color: #0056b3;
+                background-color: #09090b; /* Hover background color */
+                color: #fafafa; /* Hover text color */
             }
 </style>
 
 <div class="container2">
     <div class="filter-section">
-        <h2>Filters</h2>
+        <h2>Filters:</h2>
         <form method="get" action="@Url.Action("ExercisePage", "Exercise")">
             <!-- Filter by Muscle Group -->
             <div class="filter-group">
                 <h3>Muscle Group</h3>
                 <select name="muscleGroup">
                     <option value="">All</option>
-                    <!-- Add options dynamically based on available muscle groups -->
-                    <!-- Example: <option value="Chest">Chest</option> -->
+                    <option value="Cardio">Cardio</option>
+                    <option value="Chest">Chest</option>
                 </select>
             </div>
 
@@ -105,6 +109,7 @@
             </div>
 
 
+
             <!-- Filter by Exercise Main Focus -->
             <div class="filter-group">
                 <h3>Exercise Main Focus</h3>
@@ -115,27 +120,30 @@
                 </select>
             </div>
 
-            <button type="submit">Apply Filters</button>
+            <button type="submit" style="background:#fafafa;" class="btn">Apply Filters</button>
         </form>
     </div>
+  
     <div class="exercises-column">
         @foreach (var exercise in Model)
         {
             <div class="exercise">
-                <img src="@exercise.ExerciseImage" alt="Exercise Image">
-                <p>@exercise.ExerciseName</p>
+                <img src="@exercise.ExerciseImage" class="rounded-3" alt="Exercise Image">
+                <p style="background: #fafafa">@exercise.ExerciseName</p>
             </div>
         }
 
-        <!-- Pagination Buttons -->
-        <div class="pagination">
-            <button>Previous</button>
-            <!-- Loop through pages and display buttons -->
-            @for (int i = 1; i <= Math.Ceiling((double)Model.Count / 10); i++)
-            {
-                <button>@i</button>
-            }
-            <button>Next</button>
-        </div>
+        <form asp-action="ExersicePage" asp-controller="Exercise" method="get">
+            <div class="pagination">
+                <button>Previous</button>
+                <!-- Loop through pages and display buttons -->
+                @for (int i = 1; i <= Math.Ceiling((double)Model.Count / 10); i++)
+                {
+                    <button>@i</button>
+                }
+                <button type="submit">Next</button>
+            </div>
+        </form>
+    
     </div>
 </div>

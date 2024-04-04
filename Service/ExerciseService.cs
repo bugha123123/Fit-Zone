@@ -41,17 +41,17 @@ namespace Instagram_Clone.Service
         }
 
 
-
         public async Task<List<Exercise>> GetExercisesAsync(
             string muscleGroup = null,
             bool? equipmentRequired = null,
             ExerciseCategory? exerciseCategory = null,
             ExerciseMainFocus? exerciseMainFocus = null,
             int pageNumber = 1,
-            int pageSize = 10) // Default page size is 10
+            int pageSize = 10)
         {
             IQueryable<Exercise> query = _appDbContext.Exercises.AsQueryable();
 
+            // Apply filters
             if (muscleGroup != null)
             {
                 query = query.Where(e => e.MuscleGroup == muscleGroup);
@@ -72,13 +72,17 @@ namespace Instagram_Clone.Service
                 query = query.Where(e => e.ExerciseMainFocus == exerciseMainFocus.Value);
             }
 
-            int itemsToSkip = (pageNumber - 1) * pageSize;
+            // Get total count before pagination
+            int totalCount = await query.CountAsync();
 
             // Apply pagination
+            int itemsToSkip = (pageNumber - 1) * pageSize;
             query = query.Skip(itemsToSkip).Take(pageSize);
 
-            return await query.ToListAsync();
+            List<Exercise> result = await query.ToListAsync();
+            return result;
         }
+
         public async Task<List<Exercise>> GetSimilarExercises(int excludedExerciseId)
         {
             var exercisesList = await _appDbContext.Exercises
