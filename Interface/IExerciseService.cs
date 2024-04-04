@@ -18,9 +18,16 @@ namespace Instagram_Clone.Interface
 
 
         // this returns all of the exercises
-        Task<List<Exercise>> GetExercisesAsync();
+        Task<List<Exercise>> GetExercisesAsync(string muscleGroup = null,
+            bool? equipmentRequired = null,
+            ExerciseCategory? exerciseCategory = null,
+            ExerciseMainFocus? exerciseMainFocus = null, int pageNumber = 1,
+        int pageSize = 10);
 
 
         Task<List<Exercise>> GetSimilarExercises(int excludedExerciseId);
+
+        
+
     }
 }

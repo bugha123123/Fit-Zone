@@ -40,10 +40,44 @@ namespace Instagram_Clone.Service
             return exerciseList;
         }
 
-        public async Task<List<Exercise>> GetExercisesAsync()
+
+
+        public async Task<List<Exercise>> GetExercisesAsync(
+            string muscleGroup = null,
+            bool? equipmentRequired = null,
+            ExerciseCategory? exerciseCategory = null,
+            ExerciseMainFocus? exerciseMainFocus = null,
+            int pageNumber = 1,
+            int pageSize = 10) // Default page size is 10
         {
-            var exercises = await _appDbContext.Exercises.ToListAsync();
-            return exercises;
+            IQueryable<Exercise> query = _appDbContext.Exercises.AsQueryable();
+
+            if (muscleGroup != null)
+            {
+                query = query.Where(e => e.MuscleGroup == muscleGroup);
+            }
+
+            if (equipmentRequired.HasValue)
+            {
+                query = query.Where(e => e.EquipmentRequired == equipmentRequired.Value);
+            }
+
+            if (exerciseCategory.HasValue)
+            {
+                query = query.Where(e => e.ExerciseCategory == exerciseCategory.Value);
+            }
+
+            if (exerciseMainFocus.HasValue)
+            {
+                query = query.Where(e => e.ExerciseMainFocus == exerciseMainFocus.Value);
+            }
+
+            int itemsToSkip = (pageNumber - 1) * pageSize;
+
+            // Apply pagination
+            query = query.Skip(itemsToSkip).Take(pageSize);
+
+            return await query.ToListAsync();
         }
         public async Task<List<Exercise>> GetSimilarExercises(int excludedExerciseId)
         {

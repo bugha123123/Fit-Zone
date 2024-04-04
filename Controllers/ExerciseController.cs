@@ -20,7 +20,12 @@ namespace Instagram_Clone.Controllers
             return View(ExerciseById);
         }
 
-       
+        public async Task<IActionResult> ExercisePage(string muscleGroup = null, bool? equipmentRequired = null, ExerciseCategory? exerciseCategory = null, ExerciseMainFocus? exerciseMainFocus = null, int pageNumber = 1, int pageSize = 10)
+        {
+            var exercises = await _exerciseService.GetExercisesAsync(muscleGroup, equipmentRequired, exerciseCategory, exerciseMainFocus, pageNumber, pageSize);
+            return View(exercises);
+        }
+
 
         [HttpPost]
 

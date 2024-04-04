@@ -1,0 +1,141 @@
+﻿@model List<Exercise>
+
+@{
+    ViewBag.Title = "Exercise Filter";
+}
+
+@* Styles *@
+<style>
+   
+
+    .container2 {
+        display: flex;
+        max-width: 1200px;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-section {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .filter-group {
+        margin-bottom: 20px;
+    }
+
+    .exercises-column {
+        flex: 2;
+        padding: 20px;
+        overflow-y: auto; /* Make the container scrollable vertically */
+        max-height: 500px; /* Set a max height to enable scrolling */
+    }
+
+    .exercise {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+    }
+
+        .exercise img {
+            max-width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+    .pagination {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            .pagination button:hover {
+                background-color: #0056b3;
+            }
+</style>
+
+<div class="container2">
+    <div class="filter-section">
+        <h2>Filters</h2>
+        <form method="get" action="@Url.Action("ExercisePage", "Exercise")">
+            <!-- Filter by Muscle Group -->
+            <div class="filter-group">
+                <h3>Muscle Group</h3>
+                <select name="muscleGroup">
+                    <option value="">All</option>
+                    <!-- Add options dynamically based on available muscle groups -->
+                    <!-- Example: <option value="Chest">Chest</option> -->
+                </select>
+            </div>
+
+            <!-- Filter by Equipment Required -->
+            <div class="filter-group">
+                <h3>Equipment Required</h3>
+                <input type="checkbox" id="equipmentRequired" name="equipmentRequired" value="true">
+                <label for="equipmentRequired">Yes</label>
+            </div>
+
+            <!-- Filter by Exercise Category -->
+            <div class="filter-group">
+                <h3>Exercise Category</h3>
+                <select name="exerciseCategory">
+                    <option value="">All</option>
+                    @foreach (var category in Enum.GetValues(typeof(ExerciseCategory)))
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </select>
+            </div>
+
+
+            <!-- Filter by Exercise Main Focus -->
+            <div class="filter-group">
+                <h3>Exercise Main Focus</h3>
+                <select name="exerciseMainFocus">
+                    <option value="">All</option>
+                    <option value="LoseWeight">Lose Weight</option>
+                    <option value="GainWeight">Gain Weight</option>
+                </select>
+            </div>
+
+            <button type="submit">Apply Filters</button>
+        </form>
+    </div>
+    <div class="exercises-column">
+        @foreach (var exercise in Model)
+        {
+            <div class="exercise">
+                <img src="@exercise.ExerciseImage" alt="Exercise Image">
+                <p>@exercise.ExerciseName</p>
+            </div>
+        }
+
+        <!-- Pagination Buttons -->
+        <div class="pagination">
+            <button>Previous</button>
+            <!-- Loop through pages and display buttons -->
+            @for (int i = 1; i <= Math.Ceiling((double)Model.Count / 10); i++)
+            {
+                <button>@i</button>
+            }
+            <button>Next</button>
+        </div>
+    </div>
+</div>

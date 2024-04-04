@@ -117,8 +117,8 @@
 
                         }
 
-                            
-                            
+
+
 
                         <div class="card-body">
                             <p class="card-text">
@@ -128,15 +128,19 @@
                                 <a>
                                     <button disabled class="btn btn-primary">View Exercise</button>
                                 </a>
-                            }else
-
-                            {
-                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id">
-                                <button  class="btn btn-primary">View Exercise</button>
-                            </a>
                             }
+                            else
+                            {
+                                <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id">
+                                    <button class="btn btn-primary">View Exercise</button>
+                                </a>
                            
+                            }
                         </div>
+
+
+
+
                     </div>
                 </div>
             }

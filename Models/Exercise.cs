@@ -1,30 +1,28 @@
-﻿namespace Instagram_Clone.Models
+﻿using System;
+
+namespace Instagram_Clone.Models
 {
+    public enum ExerciseMainFocus
+    {
+        LoseWeight,
+        GainWeight,
+    }
+
+
     public class Exercise
     {
-
         public int Id { get; set; }
-
         public string ExerciseName { get; set; }
-
         public string ExerciseTime { get; set; }
-
         public string RestBetweenExercises { get; set; }
-
-
-            public string ExerciseReps { get; set; }
-
+        public string ExerciseReps { get; set; }
         public string? ExerciseImage { get; set; }
-
         public ExerciseCategory ExerciseCategory { get; set; }
-
+        public ExerciseMainFocus ExerciseMainFocus { get; set; }
         public bool ExclusiveContent { get; set; }
 
-
-        public string? UpVote { get; set; }
-
-        public string? DownVote { get; set; }
-
-
+        // Additional properties for filtering
+        public string MuscleGroup { get; set; } // e.g., "Legs", "Arms", "Core", etc.
+        public bool EquipmentRequired { get; set; } 
     }
 }
