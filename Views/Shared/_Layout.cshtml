@@ -20,7 +20,7 @@
 
         #absoluteContainer {
             position: fixed;
-        
+        padding:0px;
             max-height: calc(100vh - 150px); 
             overflow: scroll;
             transition: top 0.3s ease; 
@@ -61,7 +61,7 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 0; /* Initially hidden */
+            width: 0; 
             height: 100%;
             background-color: #09090b;
             transition: width 0.3s ease;
@@ -69,40 +69,37 @@
             overflow: auto;
             border-radius: 15px;
         }
-            /* Enhanced card styling for a shopping website look */
             .absolute-container .card {
-                background-color: #fff; /* White background for better contrast */
-                border: 1px solid #e5e5e5; /* Light gray border */
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft drop shadow */
-                transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+                background-color: #fff; 
+                border: 1px solid #e5e5e5; 
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+                transition: transform 0.2s ease-in-out;
             }
 
                 .absolute-container .card:hover {
-                    transform: scale(1.02); /* Slight zoom on hover */
+                    transform: scale(1.02); 
                 }
 
-            /* Further card styling */
             .absolute-container .card-body {
-                padding: 1rem; /* Adjust card content padding */
+                padding: 1rem; 
             }
 
             .absolute-container .card-title {
-                font-weight: bold; /* Emphasize title */
-                font-size: 1.2rem; /* Slightly larger title text */
+                font-weight: bold; 
+                font-size: 1.2rem; 
             }
 
             .absolute-container .card-text {
-                line-height: 1.5; /* Improve text readability */
+                line-height: 1.5; 
             }
 
             .absolute-container .btn {
-                background-color: #f05454; /* Red button, adjust as needed */
+                background-color: #f05454; 
                 color: #fff;
                 border: none;
                 border-radius: 5px; 
             }
 
-        /* Styling for close button */
         .close-button {
             position: absolute;
             top: 15px;
@@ -219,8 +216,10 @@
             var container = document.getElementById('absoluteContainer');
             if (container.style.width === '300px') {
                 container.style.width = '0';
+                container.style.padding = "0"; 
             } else {
                 container.style.width = '300px';
+                container.style.padding = "15px"; 
             }
         }
 
@@ -238,14 +237,38 @@
                 container.classList.remove('sticky');
             }
         });
-        var closeButton = document.getElementById('closeButton');
 
-        closeButton.addEventListener('click', function () {
-            var container = document.getElementById('absoluteContainer');
-            container.style.display = 'none';
-            container.style.width = "0";
+     
+        var isDragging = false;
+        var startX;
+        var startY;
+        var container = document.getElementById('absoluteContainer');
+
+        container.addEventListener('mousedown', function (event) {
+            isDragging = true;
+            startX = event.clientX;
+            startY = event.clientY;
         });
 
+        container.addEventListener('mousemove', function (event) {
+            if (isDragging) {
+                var offsetX = event.clientX - startX;
+                var offsetY = event.clientY - startY;
+
+                if (offsetX > 50) {
+                    container.style.transition = 'width 0.3s ease';
+                    container.style.width = '0';
+                    container.style.padding = "0";
+
+                    isDragging = false;
+                }
+            }
+        });
+
+
+        container.addEventListener('mouseup', function () {
+            isDragging = false;
+        });
     </script>
 </body>
 </html>
