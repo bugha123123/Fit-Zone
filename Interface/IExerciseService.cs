@@ -27,7 +27,11 @@ namespace Instagram_Clone.Interface
 
         Task<List<Exercise>> GetSimilarExercises(int excludedExerciseId);
 
-        
+        Task SaveExercise(int exerciseId, string exerciseName);
+
+        Task<bool> IsExerciseAlreadySaved(string exerciseName, string userId);
+
+        Task<List<SavedExercise>> GetSavedExercises();
 
     }
 }

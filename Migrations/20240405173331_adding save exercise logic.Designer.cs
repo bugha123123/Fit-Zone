@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240405173331_adding save exercise logic")]
+    partial class addingsaveexerciselogic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -419,10 +422,6 @@ namespace Instagram_Clone.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SavedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("SavedExercises");
@@ -457,8 +456,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 5, 21, 40, 20, 670, DateTimeKind.Local).AddTicks(3751),
-                            ExpireDate = new DateTime(2024, 5, 5, 21, 40, 20, 670, DateTimeKind.Local).AddTicks(3763),
+                            BuyDate = new DateTime(2024, 4, 5, 21, 33, 30, 834, DateTimeKind.Local).AddTicks(5877),
+                            ExpireDate = new DateTime(2024, 5, 5, 21, 33, 30, 834, DateTimeKind.Local).AddTicks(5890),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });

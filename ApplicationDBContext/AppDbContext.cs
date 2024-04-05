@@ -17,6 +17,8 @@ namespace Instagram_Clone.ApplicationDBContext
 
         public DbSet<FeedBack> FeedBacks { get; set; }
 
+        public DbSet<SavedExercise> SavedExercises { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

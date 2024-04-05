@@ -1,10 +1,15 @@
-﻿@using Instagram_Clone.Interface
+﻿@using Instagram_Clone.ApplicationDBContext
+@using Instagram_Clone.Interface
 @model List<Exercise>
 @inject IAccountService _accountservice;
 @inject IFeedBackService _feedbackservice;
+@inject IExerciseService _exerciseservice;
 @{
     var LoggedInUser = await _accountservice.GetLoggedInUserAsync();
+    
 }
+
+
 <style>
 
     .modal {
@@ -47,7 +52,14 @@
         margin-right: 10px; 
     }
 </style>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorMessage" class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
 
+
+}
 <div class="container-fluid mt-3">
     <input type="text" id="exerciseSearch" class="form-control mb-3" placeholder="Search exercises...">
 
@@ -87,6 +99,8 @@
         </div>
 
     </div>
+ 
+
     <div class="container-fluid mt-5">
         <h2 class="text-left mb-4 text-white">Exercises for you:</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3">
@@ -131,9 +145,20 @@
                             }
                             else
                             {
-                                <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id">
-                                    <button class="btn btn-primary">View Exercise</button>
-                                </a>
+                                <div class="d-flex justify-content-between">
+                                    <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id">
+                                        <button class="btn btn-primary">View Exercise</button>
+                                    </a>
+                                    <form asp-action="SaveExercise" asp-controller="Exercise" method="post">
+                                        <input type="hidden" name="exerciseId" value="@exercise.Id" />
+                                        <input type="hidden" name="exerciseName" value="@exercise.ExerciseName" />
+
+                                        <button type="submit" class="btn " style="background:#09090b; color:white">
+                                            <i class="fas fa-save"></i> Save Exercise 
+                                        </button>
+                                    </form>
+                                </div>
+
                            
                             }
                         </div>
@@ -210,6 +235,10 @@
 </div>
 
 <script>
+
+
+
+
     document.addEventListener("DOMContentLoaded", function () {
     var changeFitnessLevelBtn = document.getElementById("changeFitnessLevelBtn");
     var modal = document.getElementById("fitnessModal");

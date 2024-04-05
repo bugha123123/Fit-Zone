@@ -34,5 +34,22 @@ namespace Instagram_Clone.Controllers
             await _accountService.SaveUserFitnessLevel(exercise);
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost("saveexercise")]
+        public async Task<IActionResult> SaveExercise(int exerciseId, string exerciseName)
+        {
+            try
+            {
+                await _exerciseService.SaveExercise(exerciseId, exerciseName);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (ArgumentException)
+            {
+                TempData["ErrorMessage"] = "You have already saved this exercise.";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+
     }
 }

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Instagram_Clone.Interface
+@inject IExerciseService _exerciseservice;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,6 +18,34 @@
             margin-left: auto !important;
         }
 
+        #absoluteContainer {
+            position: fixed;
+        
+            max-height: calc(100vh - 150px); 
+            overflow: scroll;
+            transition: top 0.3s ease; 
+        }
+
+            #absoluteContainer.sticky {
+                top: 10px; 
+            }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+
+            .close-button:focus {
+                outline: none;
+            }
+
+
         * {
             margin: 0;
             box-sizing: border-box;
@@ -23,9 +54,68 @@
         body {
             background: black;
             transition: background 0.3s;
+            position:relative;
         }
 
-   
+        .absolute-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0; /* Initially hidden */
+            height: 100%;
+            background-color: #09090b;
+            transition: width 0.3s ease;
+            z-index: 999;
+            overflow: auto;
+            border-radius: 15px;
+        }
+            /* Enhanced card styling for a shopping website look */
+            .absolute-container .card {
+                background-color: #fff; /* White background for better contrast */
+                border: 1px solid #e5e5e5; /* Light gray border */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft drop shadow */
+                transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+            }
+
+                .absolute-container .card:hover {
+                    transform: scale(1.02); /* Slight zoom on hover */
+                }
+
+            /* Further card styling */
+            .absolute-container .card-body {
+                padding: 1rem; /* Adjust card content padding */
+            }
+
+            .absolute-container .card-title {
+                font-weight: bold; /* Emphasize title */
+                font-size: 1.2rem; /* Slightly larger title text */
+            }
+
+            .absolute-container .card-text {
+                line-height: 1.5; /* Improve text readability */
+            }
+
+            .absolute-container .btn {
+                background-color: #f05454; /* Red button, adjust as needed */
+                color: #fff;
+                border: none;
+                border-radius: 5px; 
+            }
+
+        /* Styling for close button */
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index:1000;
+            background-color: transparent;
+            border: none;
+            font-size: 25px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+
     </style>
 </head>
 <body class="dark-mode">
@@ -46,19 +136,14 @@
                     <li class="nav-item">
                         <a class="nav-link mr-3" asp-action="SubscriptionPage" asp-controller="Subscription">Buy Subscription</a>
                     </li>
+                
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <!-- Dropdown menu for changing themes -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="themeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-sun"></i> Theme <!-- Sun icon -->
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="themeDropdown">
-                            <a class="dropdown-item" href="#" >Green</a>
-                            <a class="dropdown-item" href="#" >Dark</a>
-                            <a class="dropdown-item" href="#" >White</a>
-                        </div>
+                    <li class="nav-item">
+                        <a id="toggleAbsoluteContainer" class="nav-link mr-3" href="#">Saved Workouts</a>
+
                     </li>
+                
                     <li class="nav-item">
                         <a class="nav-link mr-3" asp-action="ProfilePage" asp-controller="Profile"><i class="fas fa-user" style="margin-right:5px;"></i>Profile</a>
                     </li>
@@ -67,13 +152,44 @@
                             <a class="nav-link" href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
                         </form>
                     </li>
+
                 </ul>
             </div>
         </div>
     </nav>
 
 
- 
+    <div id="absoluteContainer" class="absolute-container">
+        <button id="closeButton" class="close-button">&#10006;</button>
+
+        @foreach (var savedExercise in await _exerciseservice.GetSavedExercises())
+        {
+            <div class="card mb-3 shadow " style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <!-- Set a fixed height for the image -->
+                        <img src="@savedExercise.ExerciseImage" class="img-fluid rounded-start" style="height: 150px;" alt="Exercise Image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body p-2">
+                            <h5 class="card-title">@savedExercise.ExerciseName</h5>
+                            <p class="card-text text-muted">@savedExercise.ExerciseMainFocus</p>
+                            <p class="card-text text-muted">Muscle Group: @savedExercise.MuscleGroup</p>
+                            <p class="card-text text-muted">Reps: @savedExercise.ExerciseReps</p>
+
+                            <button class="btn btn-danger btn-sm" onclick="removeExercise(@savedExercise.Id)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+
+
+
 
 
 
@@ -98,6 +214,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-g1jcaZsVN6OgjSOTuYFcA9kgGf5l/bB+7WFsZv5ZPWlW5rR+XVT4p8gYExEtJZM1zTgC5gpiQu1R/RtG6Df2Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- 
+    <script>
+        function toggleAbsoluteContainerWidth() {
+            var container = document.getElementById('absoluteContainer');
+            if (container.style.width === '300px') {
+                container.style.width = '0';
+            } else {
+                container.style.width = '300px';
+            }
+        }
+
+        document.getElementById('toggleAbsoluteContainer').addEventListener('click', function (event) {
+            event.preventDefault();
+            toggleAbsoluteContainerWidth();
+        });
+        window.addEventListener('scroll', function () {
+            var container = document.getElementById('absoluteContainer');
+            var threshold = 500; 
+
+            if (window.scrollY > threshold) {
+                container.classList.add('sticky');
+            } else {
+                container.classList.remove('sticky');
+            }
+        });
+        var closeButton = document.getElementById('closeButton');
+
+        closeButton.addEventListener('click', function () {
+            var container = document.getElementById('absoluteContainer');
+            container.style.display = 'none';
+            container.style.width = "0";
+        });
+
+    </script>
 </body>
 </html>

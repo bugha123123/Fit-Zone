@@ -125,5 +125,68 @@ namespace Instagram_Clone.Service
 
             await _appDbContext.SaveChangesAsync();
         }
+
+        public async Task<bool> IsExerciseAlreadySaved(string exerciseName, string userId)
+        {
+            var existingSavedExercise = await _appDbContext.SavedExercises
+                .FirstOrDefaultAsync(se => se.ExerciseName == exerciseName && se.SavedBy == userId);
+
+            return existingSavedExercise != null;
+        }
+
+        public async Task SaveExercise(int exerciseId, string exerciseName)
+        {
+            var exercise = await _appDbContext.Exercises.FindAsync(exerciseId);
+            var user = await _accountService.GetLoggedInUserAsync();
+
+            if (exercise != null)
+            {
+                var isExerciseSaved = await IsExerciseAlreadySaved(exerciseName, user.Id);
+
+                if (!isExerciseSaved)
+                {
+                    var savedExercise = new SavedExercise()
+                    {
+                        EquipmentRequired = exercise.EquipmentRequired,
+                        ExclusiveContent = exercise.ExclusiveContent,
+                        ExerciseCategory = exercise.ExerciseCategory,
+                        ExerciseImage = exercise.ExerciseImage,
+                        ExerciseMainFocus = exercise.ExerciseMainFocus,
+                        ExerciseName = exercise.ExerciseName,
+                        ExerciseReps = exercise.ExerciseReps,
+                        ExerciseTime = exercise.ExerciseTime,
+                        MuscleGroup = exercise.MuscleGroup,
+                        RestBetweenExercises = exercise.RestBetweenExercises,
+                        SavedBy = user.Id
+                    };
+
+                    await _appDbContext.SavedExercises.AddAsync(savedExercise);
+                    await _appDbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    
+                    throw new ArgumentException("Exercise has already been saved by the user");
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Exercise with the specified ID not found");
+            }
+        }
+
+        public async Task<List<SavedExercise>> GetSavedExercises()
+        {
+            var user = await _accountService.GetLoggedInUserAsync();
+            var savedExercises = await _appDbContext.SavedExercises.Where(u => u.SavedBy == user.Id).ToListAsync();
+
+            if (savedExercises == null)
+            {
+                throw new Exception("Exercises not found");
+            }
+
+            return savedExercises;
+        }
+
     }
 }
