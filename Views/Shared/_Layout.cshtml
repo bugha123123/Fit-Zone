@@ -6,11 +6,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FitZone</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
 
     <link rel="stylesheet" href="~/css/Account.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/Images/pixlr-image-generator-458a6518-485b-4637-8964-4b641e7637b3.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" asp-append-version="true">
     <style>
@@ -169,7 +170,7 @@
                             <p class="card-text text-muted">Reps: @savedExercise.ExerciseReps</p>
                             <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@savedExercise.Id" class="btn btn-info me-3 mb-2">View More</a>
 
-                            <button class="btn btn-danger btn-sm" onclick="removeExercise(@savedExercise.Id)">Remove</button>
+                            <button class="btn btn-danger " onclick="removeExercise(@savedExercise.Id)">Remove</button>
                         </div>
                     </div>
                 </div>
@@ -209,11 +210,11 @@
     <script>
         function toggleAbsoluteContainerWidth() {
             var container = document.getElementById('absoluteContainer');
-            if (container.style.width === '300px') {
+            if (container.style.width === '400px') {
                 container.style.width = '0';
                 container.style.padding = "0"; 
             } else {
-                container.style.width = '300px';
+                container.style.width = '400px';
                 container.style.padding = "15px"; 
             }
         }

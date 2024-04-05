@@ -6,6 +6,7 @@
     var LoggedInUser = await _accountservice.GetLoggedInUserAsync();
     var subscriptions = await _exerciseservice.GetSubscriptionsAsync();
     var imagePath = $"~/ProfileImages/{LoggedInUser.ProfileImageFileName}";
+    ViewBag.Title = "Fit Zone";
 }
 
 <div class="container-fluid mt-5">

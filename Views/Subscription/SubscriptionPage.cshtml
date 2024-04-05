@@ -3,7 +3,7 @@
 @inject IAccountService _accountservice;
 
 @{
-
+    ViewBag.Title = "Fit Zone";
     var LoggedInUser = await _accountservice.GetLoggedInUserAsync();
 }
 

@@ -6,9 +6,10 @@
 @inject IExerciseService _exerciseservice;
 @{
     var LoggedInUser = await _accountservice.GetLoggedInUserAsync();
-    
-}
+    ViewBag.Title = "Fit Zone";
 
+}
+<title>@ViewData["Title"]</title>
 
 <style>
 
