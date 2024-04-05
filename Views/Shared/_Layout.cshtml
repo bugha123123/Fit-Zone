@@ -93,12 +93,7 @@
                 line-height: 1.5; 
             }
 
-            .absolute-container .btn {
-                background-color: #f05454; 
-                color: #fff;
-                border: none;
-                border-radius: 5px; 
-            }
+            
 
         .close-button {
             position: absolute;
@@ -157,7 +152,6 @@
 
 
     <div id="absoluteContainer" class="absolute-container">
-        <button id="closeButton" class="close-button">&#10006;</button>
 
         @foreach (var savedExercise in await _exerciseservice.GetSavedExercises())
         {
@@ -165,7 +159,7 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         <!-- Set a fixed height for the image -->
-                        <img src="@savedExercise.ExerciseImage" class="img-fluid rounded-start" style="height: 150px;" alt="Exercise Image">
+                        <img src="@savedExercise.ExerciseImage" class="img-fluid rounded-3" style="height: 200px;" alt="Exercise Image">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body p-2">
@@ -173,6 +167,7 @@
                             <p class="card-text text-muted">@savedExercise.ExerciseMainFocus</p>
                             <p class="card-text text-muted">Muscle Group: @savedExercise.MuscleGroup</p>
                             <p class="card-text text-muted">Reps: @savedExercise.ExerciseReps</p>
+                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@savedExercise.Id" class="btn btn-info me-3 mb-2">View More</a>
 
                             <button class="btn btn-danger btn-sm" onclick="removeExercise(@savedExercise.Id)">Remove</button>
                         </div>

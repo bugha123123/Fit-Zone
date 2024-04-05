@@ -41,12 +41,20 @@
                         <img src="@item.ExerciseImage" class="img-fluid rounded-3 exercise-image" style="object-fit: cover; width: 100px; height: 100px;" alt="Exercise Image">
                         <div class="ms-3">
                             <h5 class="card-title">@item.ExerciseName</h5>
-                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@item.Id" class="btn btn-primary outline-none">View More</a>
+                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@item.Id" class="btn btn-primary me-3 mb-2">View More</a>
+                            <form asp-action="SaveExercise" asp-controller="Exercise" method="post">
+                                <input type="hidden" name="exerciseId" value="@item.Id" />
+                                <input type="hidden" name="exerciseName" value="@item.ExerciseName" />
+                                <button type="submit" class="btn btn-dark">
+                                    <i class="fas fa-save me-1"></i> Save Exercise
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         }
+
     </div>
 </div>
 
