@@ -28,7 +28,7 @@ namespace Instagram_Clone.Controllers
                 await _feedBackService.AddFeedBack(feedBack);
                 return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("FeedBackPage", "FeedBack");
+            return View("FeedBackPage", feedBack);
 
         }
 

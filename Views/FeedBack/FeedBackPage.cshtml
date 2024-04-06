@@ -10,6 +10,7 @@
             <div class="form-group mt-3">
                 <label for="feedback-input">Your Feedback:</label>
                 <textarea asp-for="UserFeedBack" class="form-control mt-2" id="feedback-input"  rows="4" placeholder="Write your feedback here..." style="background-color: #28282a; color: #ffffff;" required></textarea>
+                <span asp-validation-for="UserFeedBack" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label for="name-input">Name:</label>

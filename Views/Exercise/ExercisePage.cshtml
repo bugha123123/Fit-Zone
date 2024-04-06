@@ -86,7 +86,6 @@
     <div class="filter-section">
         <h2>Filters:</h2>
         <form method="get" action="@Url.Action("ExercisePage", "Exercise")">
-            <!-- Filter by Muscle Group -->
             <div class="filter-group">
                 <h3>Muscle Group</h3>
                 <select name="muscleGroup">
@@ -96,14 +95,12 @@
                 </select>
             </div>
 
-            <!-- Filter by Equipment Required -->
             <div class="filter-group">
                 <h3>Equipment Required</h3>
                 <input type="checkbox" id="equipmentRequired" name="equipmentRequired" value="true">
                 <label for="equipmentRequired">Yes</label>
             </div>
 
-            <!-- Filter by Exercise Category -->
             <div class="filter-group">
                 <h3>Exercise Category</h3>
                 <select name="exerciseCategory">
@@ -112,12 +109,10 @@
                     {
                         <option value="@category">@category</option>
                     }
+                    }
                 </select>
             </div>
 
-
-
-            <!-- Filter by Exercise Main Focus -->
             <div class="filter-group">
                 <h3>Exercise Main Focus</h3>
                 <select name="exerciseMainFocus">
@@ -130,27 +125,54 @@
             <button type="submit" style="background:#fafafa;" class="btn">Apply Filters</button>
         </form>
     </div>
-  
+
     <div class="exercises-column">
         @foreach (var exercise in Model)
         {
-            <div class="exercise">
-                <img src="@exercise.ExerciseImage" class="rounded-3" alt="Exercise Image">
-                <p style="background: #fafafa">@exercise.ExerciseName</p>
+            <div class="exercise row align-items-center mb-3">
+                <div class="col-md-4">
+                    <img src="@exercise.ExerciseImage" class="img-fluid rounded-3" alt="Exercise Image">
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="exercise-name">@exercise.ExerciseName</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="exercise-details">Time: @exercise.ExerciseTime</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="exercise-details">Rest: @exercise.RestBetweenExercises</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="exercise-details">Reps: @exercise.ExerciseReps</p>
+                        </div>
+                        <div class="col-md-6">
+                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id">
+                                <button class="btn btn-info view-more-btn" >View More</button>
+
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         }
+
+
+        <div class="view-more-container">
+        </div>
 
         <form asp-action="ExersicePage" asp-controller="Exercise" method="get">
             <div class="pagination">
                 <button>Previous</button>
-                <!-- Loop through pages and display buttons -->
                 @for (int i = 1; i <= Math.Ceiling((double)Model.Count / 10); i++)
                 {
                     <button>@i</button>
                 }
+                
                 <button type="submit">Next</button>
             </div>
         </form>
-    
     </div>
 </div>

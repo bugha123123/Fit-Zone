@@ -66,7 +66,7 @@
             height: 100%;
             background-color: #09090b;
             transition: width 0.3s ease;
-            z-index: 999;
+            z-index: 2000;
             overflow: auto;
             border-radius: 15px;
         }
@@ -152,11 +152,10 @@
     </nav>
 
 
-    <div id="absoluteContainer" class="absolute-container">
-
+    <div id="absoluteContainer" class="container absolute-container">
         @foreach (var savedExercise in await _exerciseservice.GetSavedExercises())
         {
-            <div class="card mb-3 shadow " style="max-width: 540px;">
+            <div class="card mb-3 shadow" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <!-- Set a fixed height for the image -->
@@ -172,16 +171,15 @@
 
                             <form asp-action="DeleteExercise" asp-controller="Exercise" method="post">
                                 <input type="hidden" name="savedExerciseId" value="@savedExercise.Id" />
-                                <button type="submit" class="btn btn-danger">Remove</button>
+                                <button type="submit" class="btn btn-danger mb-2">Remove</button>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         }
     </div>
+
 
 
 
