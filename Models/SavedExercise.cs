@@ -18,5 +18,6 @@
         public bool EquipmentRequired { get; set; }
 
         public  string SavedBy { get; set; }
+
     }
 }

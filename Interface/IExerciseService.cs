@@ -33,5 +33,7 @@ namespace Instagram_Clone.Interface
 
         Task<List<SavedExercise>> GetSavedExercises();
 
+        Task RemoveExercise(int savedexerciseid);
+
     }
 }

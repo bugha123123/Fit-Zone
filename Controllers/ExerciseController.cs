@@ -49,6 +49,13 @@ namespace Instagram_Clone.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        [HttpPost("deleteexercise")]
+        public async Task<IActionResult> DeleteExercise(int savedExerciseId)
+        {
+            await _exerciseService.RemoveExercise(savedExerciseId);
+            return RedirectToAction("Index", "Home");
+        }
+
 
 
     }

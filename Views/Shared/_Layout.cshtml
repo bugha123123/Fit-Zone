@@ -170,7 +170,12 @@
                             <p class="card-text text-muted">Reps: @savedExercise.ExerciseReps</p>
                             <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@savedExercise.Id" class="btn btn-info me-3 mb-2">View More</a>
 
-                            <button class="btn btn-danger " onclick="removeExercise(@savedExercise.Id)">Remove</button>
+                            <form asp-action="DeleteExercise" asp-controller="Exercise" method="post">
+                                <input type="hidden" name="savedExerciseId" value="@savedExercise.Id" />
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+
+
                         </div>
                     </div>
                 </div>

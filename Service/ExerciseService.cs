@@ -188,5 +188,17 @@ namespace Instagram_Clone.Service
             return savedExercises;
         }
 
+        public async Task RemoveExercise(int savedexerciseid)
+        {
+            var foundExercise = _appDbContext.SavedExercises.FirstOrDefault(u => u.Id == savedexerciseid);
+
+            if (foundExercise != null)
+            {
+                _appDbContext.SavedExercises.Remove(foundExercise);
+                await _appDbContext.SaveChangesAsync();
+            }
+       
+        }
+
     }
 }
