@@ -156,34 +156,44 @@
         </div>
     </nav>
 
-
     <div id="absoluteContainer" class="container absolute-container">
-        @foreach (var savedExercise in await _exerciseservice.GetSavedExercises())
+        @if (!(await _exerciseservice.GetSavedExercises()).Any())
         {
-            <div class="card mb-3 shadow" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <!-- Set a fixed height for the image -->
-                        <img src="@savedExercise.ExerciseImage" class="img-fluid rounded-3" style="height: 200px;" alt="Exercise Image">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body p-2">
-                            <h5 class="card-title">@savedExercise.ExerciseName</h5>
-                            <p class="card-text text-muted">@savedExercise.ExerciseMainFocus</p>
-                            <p class="card-text text-muted">Muscle Group: @savedExercise.MuscleGroup</p>
-                            <p class="card-text text-muted">Reps: @savedExercise.ExerciseReps</p>
-                            <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@savedExercise.Id" class="btn btn-info me-3 mb-2">View More</a>
+            <div class="text-center mt-5">
+                <h1 class="text-white">No Data</h1>
+                <img src="~/NotFoundImages/undraw_no_data_re_kwbl(1).svg" width="300" height="300" class="img-fluid" alt="No Data Image" asp-append-version="true">
+            </div>
+        }
+        else
+        {
+            @foreach (var savedExercise in await _exerciseservice.GetSavedExercises())
+            {
+                <div class="card mb-3 shadow" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <!-- Set a fixed height for the image -->
+                            <img src="@savedExercise.ExerciseImage" class="img-fluid rounded-3" style="height: 200px;" alt="Exercise Image">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-2">
+                                <h5 class="card-title">@savedExercise.ExerciseName</h5>
+                                <p class="card-text text-muted">@savedExercise.ExerciseMainFocus</p>
+                                <p class="card-text text-muted">Muscle Group: @savedExercise.MuscleGroup</p>
+                                <p class="card-text text-muted">Reps: @savedExercise.ExerciseReps</p>
+                                <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@savedExercise.Id" class="btn btn-info me-3 mb-2">View More</a>
 
-                            <form asp-action="DeleteExercise" asp-controller="Exercise" method="post">
-                                <input type="hidden" name="savedExerciseId" value="@savedExercise.Id" />
-                                <button type="submit" class="btn btn-danger mb-2">Remove</button>
-                            </form>
+                                <form asp-action="DeleteExercise" asp-controller="Exercise" method="post">
+                                    <input type="hidden" name="savedExerciseId" value="@savedExercise.Id" />
+                                    <button type="submit" class="btn btn-danger mb-2">Remove</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
+
 
 
 
