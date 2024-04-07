@@ -8,6 +8,11 @@ namespace Instagram_Clone.Models
         GainWeight,
     }
 
+    public enum ExerciseState
+    {
+        JustStarted,
+        Finished,
+    }
 
     public class Exercise
     {
@@ -20,13 +25,9 @@ namespace Instagram_Clone.Models
         public ExerciseCategory ExerciseCategory { get; set; }
         public ExerciseMainFocus ExerciseMainFocus { get; set; }
         public bool ExclusiveContent { get; set; }
-
-        // Additional properties for filtering
         public string MuscleGroup { get; set; }
         public bool EquipmentRequired { get; set; }
-
         public int Progress { get; set; } = 0;
-
-        public bool ExerciseFinished { get; set; } = false;
+        
     }
 }

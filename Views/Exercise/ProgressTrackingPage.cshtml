@@ -1,4 +1,9 @@
-﻿@model List<Exercise>
+﻿@using Instagram_Clone.Interface
+@model List<Exercise>
+@inject IAccountService _accountservice;
+@{
+    var user = await _accountservice.GetLoggedInUserAsync();
+}
 <main class="container mt-5">
     <h1 class="text-center text-white  mb-4">Fitness Progress Tracker</h1>
 
@@ -17,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var exercise in Model) // Replace with data source
+                @foreach (var exercise in Model)
                 {
                     <tr>
                         <td class="text-white">@exercise.ExerciseName</td>
@@ -26,10 +31,12 @@
                         <td class="text-white">@exercise.ExerciseReps</td>
                         <td class="text-white">@exercise.RestBetweenExercises</td>
                         <td>
-                            <span style="font-size:15px;" class="badge text-info">@exercise.Progress %</span>
+                         
+
                         </td>
                     </tr>
                 }
+
             </tbody>
         </table>
     </div>

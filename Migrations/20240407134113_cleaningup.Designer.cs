@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240407134113_cleaningup")]
+    partial class cleaningup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,8 +56,14 @@ namespace Instagram_Clone.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ExerciseState")
+                        .HasColumnType("int");
+
                     b.Property<string>("ExerciseTime")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinishedByUserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MuscleGroup")
@@ -68,7 +77,12 @@ namespace Instagram_Clone.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Exercises");
 
@@ -83,6 +97,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Push-up",
                             ExerciseReps = "15 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "30",
                             MuscleGroup = "Chest",
                             Progress = 0,
@@ -98,6 +113,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 1,
                             ExerciseName = "Squats",
                             ExerciseReps = "20 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Legs",
                             Progress = 0,
@@ -113,6 +129,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Plank",
                             ExerciseReps = "3",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
                             Progress = 0,
@@ -128,6 +145,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Lunges",
                             ExerciseReps = "12 reps per leg",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Legs",
                             Progress = 0,
@@ -143,6 +161,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Burpees",
                             ExerciseReps = "12 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Full Body",
                             Progress = 0,
@@ -158,6 +177,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Mountain Climbers",
                             ExerciseReps = "20 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Core",
                             Progress = 0,
@@ -173,6 +193,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 1,
                             ExerciseName = "Sit-ups",
                             ExerciseReps = "20 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
                             Progress = 0,
@@ -188,6 +209,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Jumping Jacks",
                             ExerciseReps = "30 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Full Body",
                             Progress = 0,
@@ -203,6 +225,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "High Knees",
                             ExerciseReps = "30 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Cardio",
                             Progress = 0,
@@ -218,6 +241,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Plank Jacks",
                             ExerciseReps = "20 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "30",
                             MuscleGroup = "Core",
                             Progress = 0,
@@ -233,6 +257,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Russian Twists",
                             ExerciseReps = "20 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
                             Progress = 0,
@@ -248,6 +273,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 1,
                             ExerciseName = "Wall Sit",
                             ExerciseReps = "N/A",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Legs",
                             Progress = 0,
@@ -263,6 +289,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 1,
                             ExerciseName = "Tricep Dips",
                             ExerciseReps = "15 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Arms",
                             Progress = 0,
@@ -278,6 +305,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Bicycle Crunches",
                             ExerciseReps = "20 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
                             Progress = 0,
@@ -293,6 +321,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 1,
                             ExerciseName = "Calf Raises",
                             ExerciseReps = "20 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Legs",
                             Progress = 0,
@@ -308,6 +337,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 1,
                             ExerciseName = "Shoulder Press",
                             ExerciseReps = "12 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Shoulders",
                             Progress = 0,
@@ -323,6 +353,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Dead Bug",
                             ExerciseReps = "20 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
                             Progress = 0,
@@ -338,6 +369,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 1,
                             ExerciseName = "Superman",
                             ExerciseReps = "10",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Back",
                             Progress = 0,
@@ -353,6 +385,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Reverse Crunches",
                             ExerciseReps = "15 reps",
+                            ExerciseState = 0,
                             ExerciseTime = "45",
                             MuscleGroup = "Core",
                             Progress = 0,
@@ -368,6 +401,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseMainFocus = 0,
                             ExerciseName = "Jump Rope",
                             ExerciseReps = "3",
+                            ExerciseState = 0,
                             ExerciseTime = "60",
                             MuscleGroup = "Cardio",
                             Progress = 0,
@@ -480,8 +514,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 7, 17, 45, 37, 69, DateTimeKind.Local).AddTicks(642),
-                            ExpireDate = new DateTime(2024, 5, 7, 17, 45, 37, 69, DateTimeKind.Local).AddTicks(651),
+                            BuyDate = new DateTime(2024, 4, 7, 17, 41, 12, 847, DateTimeKind.Local).AddTicks(202),
+                            ExpireDate = new DateTime(2024, 5, 7, 17, 41, 12, 847, DateTimeKind.Local).AddTicks(213),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -554,6 +588,9 @@ namespace Instagram_Clone.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<int?>("UserProgressInPercentsForParticularExercise")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -701,6 +738,13 @@ namespace Instagram_Clone.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Instagram_Clone.Models.Exercise", b =>
+                {
+                    b.HasOne("Instagram_Clone.Models.User", null)
+                        .WithMany("ExercisesFinished")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -750,6 +794,11 @@ namespace Instagram_Clone.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Instagram_Clone.Models.User", b =>
+                {
+                    b.Navigation("ExercisesFinished");
                 });
 #pragma warning restore 612, 618
         }

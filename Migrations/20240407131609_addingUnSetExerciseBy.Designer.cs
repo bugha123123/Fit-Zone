@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240407131609_addingUnSetExerciseBy")]
+    partial class addingUnSetExerciseBy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,6 +42,9 @@ namespace Instagram_Clone.Migrations
                     b.Property<int>("ExerciseCategory")
                         .HasColumnType("int");
 
+                    b.Property<bool>("ExerciseFinished")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ExerciseImage")
                         .HasColumnType("nvarchar(max)");
 
@@ -53,8 +59,14 @@ namespace Instagram_Clone.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ExerciseStateUnSetByUserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ExerciseTime")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinishedByUserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MuscleGroup")
@@ -79,6 +91,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 0,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/PushUp.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Push-up",
@@ -94,6 +107,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 0,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/BodyWeightSquat.jpg",
                             ExerciseMainFocus = 1,
                             ExerciseName = "Squats",
@@ -109,6 +123,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 0,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/Plank.png",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Plank",
@@ -124,6 +139,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 0,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/Lunges.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Lunges",
@@ -139,6 +155,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 1,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/Burpees.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Burpees",
@@ -154,6 +171,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 1,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/MountainClimbers.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Mountain Climbers",
@@ -169,6 +187,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 1,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/Sit-ups.jpg",
                             ExerciseMainFocus = 1,
                             ExerciseName = "Sit-ups",
@@ -184,6 +203,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 1,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/JumpingJacks.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Jumping Jacks",
@@ -199,6 +219,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 1,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/HighKnees.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "High Knees",
@@ -214,6 +235,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 1,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/PlankJacks.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Plank Jacks",
@@ -229,6 +251,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/RussianTwists.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Russian Twists",
@@ -244,6 +267,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/WallSit.jpg",
                             ExerciseMainFocus = 1,
                             ExerciseName = "Wall Sit",
@@ -259,6 +283,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = true,
                             ExclusiveContent = true,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/TricepDips.jpg",
                             ExerciseMainFocus = 1,
                             ExerciseName = "Tricep Dips",
@@ -274,6 +299,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/BicycleCrunches.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Bicycle Crunches",
@@ -289,6 +315,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/CalfRaises.jpg",
                             ExerciseMainFocus = 1,
                             ExerciseName = "Calf Raises",
@@ -304,6 +331,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = true,
                             ExclusiveContent = false,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/ShoulderPress.jpg",
                             ExerciseMainFocus = 1,
                             ExerciseName = "Shoulder Press",
@@ -319,6 +347,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/DeadBug.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Dead Bug",
@@ -334,6 +363,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/Superman.jpg",
                             ExerciseMainFocus = 1,
                             ExerciseName = "Superman",
@@ -349,6 +379,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = true,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/ReverseCrunches.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Reverse Crunches",
@@ -364,6 +395,7 @@ namespace Instagram_Clone.Migrations
                             EquipmentRequired = false,
                             ExclusiveContent = false,
                             ExerciseCategory = 2,
+                            ExerciseFinished = false,
                             ExerciseImage = "/ExerciseImages/JumpRope.jpg",
                             ExerciseMainFocus = 0,
                             ExerciseName = "Jump Rope",
@@ -480,8 +512,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 7, 17, 45, 37, 69, DateTimeKind.Local).AddTicks(642),
-                            ExpireDate = new DateTime(2024, 5, 7, 17, 45, 37, 69, DateTimeKind.Local).AddTicks(651),
+                            BuyDate = new DateTime(2024, 4, 7, 17, 16, 9, 8, DateTimeKind.Local).AddTicks(6859),
+                            ExpireDate = new DateTime(2024, 5, 7, 17, 16, 9, 8, DateTimeKind.Local).AddTicks(6869),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -547,9 +579,6 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
-
-                    b.Property<int>("UserExerciseState")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)

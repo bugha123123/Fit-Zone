@@ -63,6 +63,5 @@ namespace Instagram_Clone.Controllers
         }
 
 
-
     }
 }
