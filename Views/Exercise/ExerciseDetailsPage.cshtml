@@ -32,17 +32,21 @@
             <button id="resetButton" class="btn btn-secondary mt-3">Reset</button>
             <p id="warningText" class="text-danger mt-3" style="display: none;">Resetting beyond 45 seconds may count as an additional rep.</p>
             <div class="mt-3">
-                <form asp-action="UpdateExerciseState" asp-controller="Exercise" method="post">
-                    <input type="hidden" value="@Model.Id" name="exerciseId" />
-                    <input type="hidden" value="@user.Id" name="UserId" />
-                    <select class="form-select" name="exercise">
-                        <option value="JustStarted">Just Started</option>
-                        <option value="Finished">Finished</option>
-                    </select>
-                    <br />
-                    <button type="submit" class="btn btn-success">Save State</button>
+                <form asp-action="AddProgress" asp-controller="Exercise" method="post">
+                    <input type="hidden" name="ExerciseId" value="@Model.Id" />
+                    <div class="mb-3">
+                        <label for="exerciseState" class="form-label">Exercise State</label>
+                        <select class="form-select" id="exerciseState" name="ExerciseState" required>
+                            <option value="JustStarted">Just Started</option>
+                            <option value="Finished">Finished</option>
+                            <option value="Halfway">Halfway</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add Progress</button>
                 </form>
             </div>
+
+
 
 
 

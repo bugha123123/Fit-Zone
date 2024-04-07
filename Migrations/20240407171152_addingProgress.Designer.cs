@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240407171152_addingProgress")]
+    partial class addingProgress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -388,8 +391,8 @@ namespace Instagram_Clone.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Points")
-                        .HasColumnType("float");
+                    b.Property<int?>("Points")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -484,8 +487,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 7, 21, 32, 2, 925, DateTimeKind.Local).AddTicks(3000),
-                            ExpireDate = new DateTime(2024, 5, 7, 21, 32, 2, 925, DateTimeKind.Local).AddTicks(3010),
+                            BuyDate = new DateTime(2024, 4, 7, 21, 11, 52, 402, DateTimeKind.Local).AddTicks(4389),
+                            ExpireDate = new DateTime(2024, 5, 7, 21, 11, 52, 402, DateTimeKind.Local).AddTicks(4400),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });

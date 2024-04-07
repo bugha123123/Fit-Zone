@@ -1,43 +1,79 @@
 ﻿@using Instagram_Clone.Interface
-@model List<Exercise>
+@model List<Progress>
 @inject IAccountService _accountservice;
 @{
     var user = await _accountservice.GetLoggedInUserAsync();
 }
 <main class="container mt-5">
-    <h1 class="text-center text-white  mb-4">Fitness Progress Tracker</h1>
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h1 class="card-title text-center mb-0">Fitness Progress Tracker</h1>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Exercise Name</th>
+                            <th>Exercise State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var exercise in Model)
+                        {
+                            <tr>
+                                <td>@exercise.ExerciseName</td>
+                                <td>@exercise.exerciseState</td>
+                            </tr>
+                        }
 
-    <div class="row mb-3"></div>
-
-    <div class="table-responsive">
-        <table class="table table-hover table-bordered text-center">
-            <thead class="table-dark">
-                <tr >
-                    <th>Exercise Name</th>
-                    <th>Category</th>
-                    <th>Focus</th>
-                    <th>Reps</th>
-                    <th>Rest</th>
-                    <th>Progress</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var exercise in Model)
-                {
-                    <tr>
-                        <td class="text-white">@exercise.ExerciseName</td>
-                        <td class="text-white">@exercise.ExerciseCategory</td>
-                        <td class="text-white">@exercise.ExerciseMainFocus</td>
-                        <td class="text-white">@exercise.ExerciseReps</td>
-                        <td class="text-white">@exercise.RestBetweenExercises</td>
-                        <td>
-                         
-
-                        </td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
+                        @if (Model.Any())
+                        {
+                            <tr class="table-secondary">
+                                <td><strong>Total Points:</strong></td>
+                                <td>@Model.Sum(exercise => exercise.Points)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
+
+
+<main class="container mt-5">
+
+    <div class="card">
+        <div class="card-header bg-dark text-info">
+            <h1 class="card-title text-center mb-0">Point System for Exercise States</h1>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Exercise State</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Just Started</td>
+                            <td>0.25</td>
+                        </tr>
+                        <tr>
+                            <td>Halfway</td>
+                            <td>0.5</td>
+                        </tr>
+                        <tr>
+                            <td>Finished</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+

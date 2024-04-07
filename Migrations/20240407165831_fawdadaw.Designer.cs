@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240407165831_fawdadaw")]
+    partial class fawdadaw
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,6 +64,9 @@ namespace Instagram_Clone.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Progress")
+                        .HasColumnType("int");
+
                     b.Property<string>("RestBetweenExercises")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -82,6 +88,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "15 reps",
                             ExerciseTime = "30",
                             MuscleGroup = "Chest",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -96,6 +103,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "20 reps",
                             ExerciseTime = "45",
                             MuscleGroup = "Legs",
+                            Progress = 0,
                             RestBetweenExercises = "15"
                         },
                         new
@@ -110,6 +118,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "3",
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -124,6 +133,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "12 reps per leg",
                             ExerciseTime = "45",
                             MuscleGroup = "Legs",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -138,6 +148,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "12 reps",
                             ExerciseTime = "45",
                             MuscleGroup = "Full Body",
+                            Progress = 0,
                             RestBetweenExercises = "15"
                         },
                         new
@@ -152,6 +163,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "20 reps",
                             ExerciseTime = "45",
                             MuscleGroup = "Core",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -166,6 +178,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "20 reps",
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -180,6 +193,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "30 reps",
                             ExerciseTime = "60",
                             MuscleGroup = "Full Body",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -194,6 +208,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "30 reps",
                             ExerciseTime = "45",
                             MuscleGroup = "Cardio",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -208,6 +223,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "20 reps",
                             ExerciseTime = "30",
                             MuscleGroup = "Core",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -222,6 +238,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "20 reps",
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -236,6 +253,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "N/A",
                             ExerciseTime = "60",
                             MuscleGroup = "Legs",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -250,6 +268,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "15 reps",
                             ExerciseTime = "45",
                             MuscleGroup = "Arms",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -264,6 +283,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "20 reps",
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -278,6 +298,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "20 reps",
                             ExerciseTime = "45",
                             MuscleGroup = "Legs",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -292,6 +313,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "12 reps",
                             ExerciseTime = "45",
                             MuscleGroup = "Shoulders",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -306,6 +328,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "20 reps",
                             ExerciseTime = "60",
                             MuscleGroup = "Core",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -320,6 +343,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "10",
                             ExerciseTime = "60",
                             MuscleGroup = "Back",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -334,6 +358,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "15 reps",
                             ExerciseTime = "45",
                             MuscleGroup = "Core",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         },
                         new
@@ -348,6 +373,7 @@ namespace Instagram_Clone.Migrations
                             ExerciseReps = "3",
                             ExerciseTime = "60",
                             MuscleGroup = "Cardio",
+                            Progress = 0,
                             RestBetweenExercises = "10"
                         });
                 });
@@ -374,33 +400,6 @@ namespace Instagram_Clone.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FeedBacks");
-                });
-
-            modelBuilder.Entity("Instagram_Clone.Models.Progress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ExerciseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("Points")
-                        .HasColumnType("float");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("exerciseState")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Progresss");
                 });
 
             modelBuilder.Entity("Instagram_Clone.Models.SavedExercise", b =>
@@ -484,8 +483,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 7, 21, 32, 2, 925, DateTimeKind.Local).AddTicks(3000),
-                            ExpireDate = new DateTime(2024, 5, 7, 21, 32, 2, 925, DateTimeKind.Local).AddTicks(3010),
+                            BuyDate = new DateTime(2024, 4, 7, 20, 58, 31, 126, DateTimeKind.Local).AddTicks(3227),
+                            ExpireDate = new DateTime(2024, 5, 7, 20, 58, 31, 126, DateTimeKind.Local).AddTicks(3238),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });

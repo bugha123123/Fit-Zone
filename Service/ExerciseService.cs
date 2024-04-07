@@ -2,6 +2,7 @@
 using Instagram_Clone.Interface;
 using Instagram_Clone.Models;
 using Microsoft.EntityFrameworkCore;
+using static Instagram_Clone.Models.Progress;
 
 namespace Instagram_Clone.Service
 {
@@ -199,6 +200,79 @@ namespace Instagram_Clone.Service
             }
        
         }
+
+
+        public async Task<List<Progress>> GetProgresses()
+        {
+            var user = await _accountService.GetLoggedInUserAsync();
+
+            var ProgressList = await _appDbContext.Progresss.Where(p => p.UserId == user.Id).ToListAsync();
+
+            return ProgressList;
+        }
+
+        public async Task TrackUserProgress(int ExerciseId, ExerciseState exerciseState)
+        {
+            var exercise = await _appDbContext.Exercises.FirstOrDefaultAsync(e => e.Id == ExerciseId);
+            var user = await _accountService.GetLoggedInUserAsync();
+            if (exercise == null)
+            {
+                throw new Exception("Exercise not found");
+            }
+
+            // Check the progress count for the user
+            var progressCount = await _appDbContext.Progresss.CountAsync(p => p.UserId == user.Id);
+            if (progressCount >= 5)
+            {
+                var progress2 = new Progress()
+                {
+                    ExerciseName = exercise.ExerciseName,
+                    UserId = user.Id,
+                    exerciseState = exerciseState,
+                };
+                // Allow the user to proceed without incrementing points if progress count is 5 or more
+                await _appDbContext.Progresss.AddAsync(progress2);
+                await _appDbContext.SaveChangesAsync();
+                return;
+            }
+
+            var existingExercise = await _appDbContext.Progresss
+                .FirstOrDefaultAsync(p => p.ExerciseName == exercise.ExerciseName && p.UserId == user.Id);
+
+            if (existingExercise != null)
+            {
+                throw new Exception($"Exercise with name '{exercise.ExerciseName}' already exists for the user.");
+            }
+
+            double pointsEarned = 0;
+
+            if (exerciseState == ExerciseState.Finished)
+            {
+                pointsEarned = 1;
+            }
+            else if (exerciseState == ExerciseState.Halfway)
+            {
+                pointsEarned = 0.5;
+            }
+            else if (exerciseState == ExerciseState.JustStarted)
+            {
+                pointsEarned = 0.5 / 2;
+            }
+
+
+            var progress = new Progress()
+            {
+                ExerciseName = exercise.ExerciseName,
+                UserId = user.Id,
+                exerciseState = exerciseState,
+                Points = pointsEarned
+            };
+
+            await _appDbContext.Progresss.AddAsync(progress);
+            await _appDbContext.SaveChangesAsync();
+        }
+
+
 
 
 

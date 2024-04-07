@@ -1,6 +1,7 @@
 ﻿using Instagram_Clone.Interface;
 using Instagram_Clone.Models;
 using Microsoft.AspNetCore.Mvc;
+using static Instagram_Clone.Models.Progress;
 
 namespace Instagram_Clone.Controllers
 {
@@ -28,7 +29,7 @@ namespace Instagram_Clone.Controllers
 
         public async Task<IActionResult> ProgressTrackingPage()
         {
-            var exerciseList = await _exerciseService.GetExercisesAsync();
+            var exerciseList = await _exerciseService.GetProgresses();
             return View(exerciseList);
         }
 
@@ -60,6 +61,14 @@ namespace Instagram_Clone.Controllers
         {
             await _exerciseService.RemoveExercise(savedExerciseId);
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost("addprogress")]
+
+        public async Task<IActionResult> AddProgress(int ExerciseId, ExerciseState exerciseState)
+        {
+            await _exerciseService.TrackUserProgress(ExerciseId, exerciseState);
+            return RedirectToAction("ProgressTrackingPage", "Exercise");
         }
 
 

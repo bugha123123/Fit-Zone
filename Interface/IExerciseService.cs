@@ -1,4 +1,5 @@
 ﻿using Instagram_Clone.Models;
+using static Instagram_Clone.Models.Progress;
 
 namespace Instagram_Clone.Interface
 {
@@ -36,6 +37,13 @@ namespace Instagram_Clone.Interface
         Task RemoveExercise(int savedexerciseid);
 
 
+        //tracking service
+        Task TrackUserProgress(int ExerciseId, ExerciseState exerciseState);
+
+        Task<List<Progress>> GetProgresses();
+
+       
+        //tracking service
 
 
     }
