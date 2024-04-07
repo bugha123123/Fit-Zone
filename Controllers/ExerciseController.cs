@@ -26,6 +26,12 @@ namespace Instagram_Clone.Controllers
             return View(exercises);
         }
 
+        public async Task<IActionResult> ProgressTrackingPage()
+        {
+            var exerciseList = await _exerciseService.GetExercisesAsync();
+            return View(exerciseList);
+        }
+
 
         [HttpPost]
 

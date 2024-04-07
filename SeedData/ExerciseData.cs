@@ -32,7 +32,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = true,
           MuscleGroup = "Chest",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -46,7 +48,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.GainWeight,
           ExclusiveContent = false,
           MuscleGroup = "Legs",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -60,7 +64,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = true,
           MuscleGroup = "Core",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -74,7 +80,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = false,
           MuscleGroup = "Legs",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -88,7 +96,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = true,
           MuscleGroup = "Full Body",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -102,7 +112,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = false,
           MuscleGroup = "Core",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -116,7 +128,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.GainWeight,
           ExclusiveContent = true,
           MuscleGroup = "Core",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -130,7 +144,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = false,
           MuscleGroup = "Full Body",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -144,7 +160,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = true,
           MuscleGroup = "Cardio",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -158,7 +176,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = false,
           MuscleGroup = "Core",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -172,7 +192,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = true,
           MuscleGroup = "Core",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -186,7 +208,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.GainWeight,
           ExclusiveContent = false,
           MuscleGroup = "Legs",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -200,7 +224,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.GainWeight,
           ExclusiveContent = true,
           MuscleGroup = "Arms",
-          EquipmentRequired = true
+          EquipmentRequired = true,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -214,7 +240,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = false,
           MuscleGroup = "Core",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -228,7 +256,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.GainWeight,
           ExclusiveContent = true,
           MuscleGroup = "Legs",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -242,7 +272,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.GainWeight,
           ExclusiveContent = false,
           MuscleGroup = "Shoulders",
-          EquipmentRequired = true
+          EquipmentRequired = true,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -256,7 +288,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = true,
           MuscleGroup = "Core",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -270,7 +304,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.GainWeight,
           ExclusiveContent = false,
           MuscleGroup = "Back",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -284,7 +320,9 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = true,
           MuscleGroup = "Core",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       },
       new Exercise
       {
@@ -298,9 +336,12 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExerciseMainFocus = ExerciseMainFocus.LoseWeight,
           ExclusiveContent = false,
           MuscleGroup = "Cardio",
-          EquipmentRequired = false
+          EquipmentRequired = false,
+          Progress = 0,
+          ExerciseFinished = false
       }
   );
+
 
 
 

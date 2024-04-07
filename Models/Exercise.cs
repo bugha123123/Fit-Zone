@@ -22,7 +22,11 @@ namespace Instagram_Clone.Models
         public bool ExclusiveContent { get; set; }
 
         // Additional properties for filtering
-        public string MuscleGroup { get; set; } // e.g., "Legs", "Arms", "Core", etc.
-        public bool EquipmentRequired { get; set; } 
+        public string MuscleGroup { get; set; }
+        public bool EquipmentRequired { get; set; }
+
+        public int Progress { get; set; } = 0;
+
+        public bool ExerciseFinished { get; set; } = false;
     }
 }

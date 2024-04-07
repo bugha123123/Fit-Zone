@@ -1,0 +1,36 @@
+﻿@model List<Exercise>
+<main class="container mt-5">
+    <h1 class="text-center text-white  mb-4">Fitness Progress Tracker</h1>
+
+    <div class="row mb-3"></div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered text-center">
+            <thead class="table-dark">
+                <tr >
+                    <th>Exercise Name</th>
+                    <th>Category</th>
+                    <th>Focus</th>
+                    <th>Reps</th>
+                    <th>Rest</th>
+                    <th>Progress</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var exercise in Model) // Replace with data source
+                {
+                    <tr>
+                        <td class="text-white">@exercise.ExerciseName</td>
+                        <td class="text-white">@exercise.ExerciseCategory</td>
+                        <td class="text-white">@exercise.ExerciseMainFocus</td>
+                        <td class="text-white">@exercise.ExerciseReps</td>
+                        <td class="text-white">@exercise.RestBetweenExercises</td>
+                        <td>
+                            <span style="font-size:15px;" class="badge text-info">@exercise.Progress %</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>
