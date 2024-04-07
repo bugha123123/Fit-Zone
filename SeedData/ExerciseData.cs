@@ -33,7 +33,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Chest",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -48,7 +48,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Legs",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -63,7 +63,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Core",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -78,7 +78,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Legs",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -93,7 +93,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Full Body",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -108,7 +108,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Core",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -123,7 +123,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Core",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -138,7 +138,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Full Body",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -153,7 +153,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Cardio",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -168,7 +168,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Core",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -183,7 +183,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Core",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -198,7 +198,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Legs",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -213,7 +213,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Arms",
           EquipmentRequired = true,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -228,7 +228,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Core",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -243,7 +243,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Legs",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -258,7 +258,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Shoulders",
           EquipmentRequired = true,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -273,7 +273,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Core",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -288,7 +288,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Back",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -303,7 +303,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = true,
           MuscleGroup = "Core",
           EquipmentRequired = false,
-          Progress = 0,
+          
       },
       new Exercise
       {
@@ -318,7 +318,7 @@ namespace Instagram_Clone.wwwroot.SeedExerciseData
           ExclusiveContent = false,
           MuscleGroup = "Cardio",
           EquipmentRequired = false,
-          Progress = 0,
+          
       }
   );
 

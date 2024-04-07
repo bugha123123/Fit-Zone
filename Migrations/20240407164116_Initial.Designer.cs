@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240407123351_addingProgress")]
-    partial class addingProgress
+    [Migration("20240407164116_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -483,8 +483,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 7, 16, 33, 51, 87, DateTimeKind.Local).AddTicks(3916),
-                            ExpireDate = new DateTime(2024, 5, 7, 16, 33, 51, 87, DateTimeKind.Local).AddTicks(3927),
+                            BuyDate = new DateTime(2024, 4, 7, 20, 41, 15, 783, DateTimeKind.Local).AddTicks(1302),
+                            ExpireDate = new DateTime(2024, 5, 7, 20, 41, 15, 783, DateTimeKind.Local).AddTicks(1313),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -550,6 +550,9 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
+
+                    b.Property<int>("UserExerciseState")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)

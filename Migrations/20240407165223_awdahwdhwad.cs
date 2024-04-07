@@ -6,39 +6,39 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Instagram_Clone.Migrations
 {
     /// <inheritdoc />
-    public partial class addingsavedby : Migration
+    public partial class awdahwdhwad : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "SavedBy",
-                table: "SavedExercises",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
+            migrationBuilder.DropColumn(
+                name: "UserExerciseState",
+                table: "AspNetUsers");
 
             migrationBuilder.UpdateData(
                 table: "Subscriptions",
                 keyColumn: "Id",
                 keyValue: 1,
                 columns: new[] { "BuyDate", "ExpireDate" },
-                values: new object[] { new DateTime(2024, 4, 5, 21, 40, 20, 670, DateTimeKind.Local).AddTicks(3751), new DateTime(2024, 5, 5, 21, 40, 20, 670, DateTimeKind.Local).AddTicks(3763) });
+                values: new object[] { new DateTime(2024, 4, 7, 20, 52, 22, 988, DateTimeKind.Local).AddTicks(7819), new DateTime(2024, 5, 7, 20, 52, 22, 988, DateTimeKind.Local).AddTicks(7829) });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "SavedBy",
-                table: "SavedExercises");
+            migrationBuilder.AddColumn<int>(
+                name: "UserExerciseState",
+                table: "AspNetUsers",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.UpdateData(
                 table: "Subscriptions",
                 keyColumn: "Id",
                 keyValue: 1,
                 columns: new[] { "BuyDate", "ExpireDate" },
-                values: new object[] { new DateTime(2024, 4, 5, 21, 33, 30, 834, DateTimeKind.Local).AddTicks(5877), new DateTime(2024, 5, 5, 21, 33, 30, 834, DateTimeKind.Local).AddTicks(5890) });
+                values: new object[] { new DateTime(2024, 4, 7, 20, 51, 37, 156, DateTimeKind.Local).AddTicks(4803), new DateTime(2024, 5, 7, 20, 51, 37, 156, DateTimeKind.Local).AddTicks(4946) });
         }
     }
 }

@@ -480,8 +480,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 7, 17, 45, 37, 69, DateTimeKind.Local).AddTicks(642),
-                            ExpireDate = new DateTime(2024, 5, 7, 17, 45, 37, 69, DateTimeKind.Local).AddTicks(651),
+                            BuyDate = new DateTime(2024, 4, 7, 20, 52, 22, 988, DateTimeKind.Local).AddTicks(7819),
+                            ExpireDate = new DateTime(2024, 5, 7, 20, 52, 22, 988, DateTimeKind.Local).AddTicks(7829),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -547,9 +547,6 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
-
-                    b.Property<int>("UserExerciseState")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)

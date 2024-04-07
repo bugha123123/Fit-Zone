@@ -10,10 +10,7 @@ namespace Instagram_Clone.Models
         public string? BoughtSubscriptionName { get; set; }
         public string? ProfileImageFileName { get; set; }
 
-        public ExerciseState UserExerciseState { get; set; } = ExerciseState.JustStarted;
-
-
-
-
+        // New property to hold exercise names
+        public List<string> ExerciseNames { get; set; } = new List<string>();
     }
 }

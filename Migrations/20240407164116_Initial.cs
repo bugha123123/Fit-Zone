@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Instagram_Clone.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,6 +36,7 @@ namespace Instagram_Clone.Migrations
                     HasSubscription = table.Column<bool>(type: "bit", nullable: false),
                     BoughtSubscriptionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfileImageFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserExerciseState = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -68,9 +69,11 @@ namespace Instagram_Clone.Migrations
                     ExerciseReps = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExerciseImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExerciseCategory = table.Column<int>(type: "int", nullable: false),
+                    ExerciseMainFocus = table.Column<int>(type: "int", nullable: false),
                     ExclusiveContent = table.Column<bool>(type: "bit", nullable: false),
-                    UpVote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DownVote = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MuscleGroup = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EquipmentRequired = table.Column<bool>(type: "bit", nullable: false),
+                    Progress = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,6 +93,29 @@ namespace Instagram_Clone.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FeedBacks", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SavedExercises",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExerciseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExerciseTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RestBetweenExercises = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExerciseReps = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExerciseImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExerciseCategory = table.Column<int>(type: "int", nullable: false),
+                    ExerciseMainFocus = table.Column<int>(type: "int", nullable: false),
+                    ExclusiveContent = table.Column<bool>(type: "bit", nullable: false),
+                    MuscleGroup = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EquipmentRequired = table.Column<bool>(type: "bit", nullable: false),
+                    SavedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SavedExercises", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,35 +242,35 @@ namespace Instagram_Clone.Migrations
 
             migrationBuilder.InsertData(
                 table: "Exercises",
-                columns: new[] { "Id", "DownVote", "ExclusiveContent", "ExerciseCategory", "ExerciseImage", "ExerciseName", "ExerciseReps", "ExerciseTime", "RestBetweenExercises", "UpVote" },
+                columns: new[] { "Id", "EquipmentRequired", "ExclusiveContent", "ExerciseCategory", "ExerciseImage", "ExerciseMainFocus", "ExerciseName", "ExerciseReps", "ExerciseTime", "MuscleGroup", "Progress", "RestBetweenExercises" },
                 values: new object[,]
                 {
-                    { 1, null, true, 0, "/ExerciseImages/PushUp.jpg", "Push-up", "15 reps", "30", "10", null },
-                    { 2, null, false, 0, "/ExerciseImages/BodyWeightSquat.jpg", "Squats", "20 reps", "45", "15", null },
-                    { 3, null, true, 0, "/ExerciseImages/Plank.png", "Plank", "3", "60", "10", null },
-                    { 4, null, false, 0, "/ExerciseImages/Lunges.jpg", "Lunges", "12 reps per leg", "45", "10", null },
-                    { 5, null, true, 1, "/ExerciseImages/Burpees.jpg", "Burpees", "12 reps", "45", "15", null },
-                    { 6, null, false, 1, "/ExerciseImages/MountainClimbers.jpg", "Mountain Climbers", "20 reps", "45", "10", null },
-                    { 7, null, true, 1, "/ExerciseImages/Sit-ups.jpg", "Sit-ups", "20 reps", "60", "10", null },
-                    { 8, null, false, 1, "/ExerciseImages/Jumping Jacks.jpg", "Jumping Jacks", "30 reps", "60", "10", null },
-                    { 9, null, true, 1, "/ExerciseImages/HighKnees.jpg", "High Knees", "30 reps", "45", "10", null },
-                    { 10, null, false, 1, "/ExerciseImages/PlankJacks.jpg", "Plank Jacks", "20 reps", "30", "10", null },
-                    { 11, null, true, 2, "/ExerciseImages/RussianTwists.jpg", "Russian Twists", "20 reps", "60", "10", null },
-                    { 12, null, false, 2, "/ExerciseImages/WallSit.jpg", "Wall Sit", "N/A", "60", "10", null },
-                    { 13, null, true, 2, "/ExerciseImages/TricepDips.jpg", "Tricep Dips", "15 reps", "45", "10", null },
-                    { 14, null, false, 2, "/ExerciseImages/BicycleCrunches.jpg", "Bicycle Crunches", "20 reps", "60", "10", null },
-                    { 15, null, true, 2, "/ExerciseImages/CalfRaises.jpg", "Calf Raises", "20 reps", "45", "10", null },
-                    { 16, null, false, 2, "/ExerciseImages/ShoulderPress.jpg", "Shoulder Press", "12 reps", "45", "10", null },
-                    { 17, null, true, 2, "/ExerciseImages/DeadBug.jpg", "Dead Bug", "20 reps", "60", "10", null },
-                    { 18, null, false, 2, "/ExerciseImages/Superman.jpg", "Superman", "10", "60", "10", null },
-                    { 19, null, true, 2, "/ExerciseImages/ReverseCrunches.jpg", "Reverse Crunches", "15 reps", "45", "10", null },
-                    { 20, null, false, 2, "/ExerciseImages/JumpRope.jpg", "Jump Rope", "3", "60", "10", null }
+                    { 1, false, true, 0, "/ExerciseImages/PushUp.jpg", 0, "Push-up", "15 reps", "30", "Chest", 0, "10" },
+                    { 2, false, false, 0, "/ExerciseImages/BodyWeightSquat.jpg", 1, "Squats", "20 reps", "45", "Legs", 0, "15" },
+                    { 3, false, true, 0, "/ExerciseImages/Plank.png", 0, "Plank", "3", "60", "Core", 0, "10" },
+                    { 4, false, false, 0, "/ExerciseImages/Lunges.jpg", 0, "Lunges", "12 reps per leg", "45", "Legs", 0, "10" },
+                    { 5, false, true, 1, "/ExerciseImages/Burpees.jpg", 0, "Burpees", "12 reps", "45", "Full Body", 0, "15" },
+                    { 6, false, false, 1, "/ExerciseImages/MountainClimbers.jpg", 0, "Mountain Climbers", "20 reps", "45", "Core", 0, "10" },
+                    { 7, false, true, 1, "/ExerciseImages/Sit-ups.jpg", 1, "Sit-ups", "20 reps", "60", "Core", 0, "10" },
+                    { 8, false, false, 1, "/ExerciseImages/JumpingJacks.jpg", 0, "Jumping Jacks", "30 reps", "60", "Full Body", 0, "10" },
+                    { 9, false, true, 1, "/ExerciseImages/HighKnees.jpg", 0, "High Knees", "30 reps", "45", "Cardio", 0, "10" },
+                    { 10, false, false, 1, "/ExerciseImages/PlankJacks.jpg", 0, "Plank Jacks", "20 reps", "30", "Core", 0, "10" },
+                    { 11, false, true, 2, "/ExerciseImages/RussianTwists.jpg", 0, "Russian Twists", "20 reps", "60", "Core", 0, "10" },
+                    { 12, false, false, 2, "/ExerciseImages/WallSit.jpg", 1, "Wall Sit", "N/A", "60", "Legs", 0, "10" },
+                    { 13, true, true, 2, "/ExerciseImages/TricepDips.jpg", 1, "Tricep Dips", "15 reps", "45", "Arms", 0, "10" },
+                    { 14, false, false, 2, "/ExerciseImages/BicycleCrunches.jpg", 0, "Bicycle Crunches", "20 reps", "60", "Core", 0, "10" },
+                    { 15, false, true, 2, "/ExerciseImages/CalfRaises.jpg", 1, "Calf Raises", "20 reps", "45", "Legs", 0, "10" },
+                    { 16, true, false, 2, "/ExerciseImages/ShoulderPress.jpg", 1, "Shoulder Press", "12 reps", "45", "Shoulders", 0, "10" },
+                    { 17, false, true, 2, "/ExerciseImages/DeadBug.jpg", 0, "Dead Bug", "20 reps", "60", "Core", 0, "10" },
+                    { 18, false, false, 2, "/ExerciseImages/Superman.jpg", 1, "Superman", "10", "60", "Back", 0, "10" },
+                    { 19, false, true, 2, "/ExerciseImages/ReverseCrunches.jpg", 0, "Reverse Crunches", "15 reps", "45", "Core", 0, "10" },
+                    { 20, false, false, 2, "/ExerciseImages/JumpRope.jpg", 0, "Jump Rope", "3", "60", "Cardio", 0, "10" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Subscriptions",
                 columns: new[] { "Id", "BuyDate", "ExpireDate", "PlanPrice", "PlanType" },
-                values: new object[] { 1, new DateTime(2024, 4, 4, 12, 44, 35, 183, DateTimeKind.Local).AddTicks(9385), new DateTime(2024, 5, 4, 12, 44, 35, 183, DateTimeKind.Local).AddTicks(9395), 9.9900000000000002, "Basic" });
+                values: new object[] { 1, new DateTime(2024, 4, 7, 20, 41, 15, 783, DateTimeKind.Local).AddTicks(1302), new DateTime(2024, 5, 7, 20, 41, 15, 783, DateTimeKind.Local).AddTicks(1313), 9.9900000000000002, "Basic" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -309,6 +335,9 @@ namespace Instagram_Clone.Migrations
 
             migrationBuilder.DropTable(
                 name: "FeedBacks");
+
+            migrationBuilder.DropTable(
+                name: "SavedExercises");
 
             migrationBuilder.DropTable(
                 name: "Subscriptions");
