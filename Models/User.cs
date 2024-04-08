@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
+using System;
 
 namespace Instagram_Clone.Models
 {
@@ -10,7 +10,8 @@ namespace Instagram_Clone.Models
         public string? BoughtSubscriptionName { get; set; }
         public string? ProfileImageFileName { get; set; }
 
-
-
+        public int DailyLimit { get; set; } = 5;
+        public bool DailyLimitExceeded { get; set; } = false;
+        public DateTime? LastAddedAt { get; set; }
     }
 }

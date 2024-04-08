@@ -45,7 +45,7 @@ namespace Instagram_Clone.Controllers
             
 
             var subscription = new Subscription();
-          
+            user.DailyLimit = 10;
             subscription.PlanType = planType;
             subscription.PlanPrice = planPrice;
             user.HasSubscription = true;

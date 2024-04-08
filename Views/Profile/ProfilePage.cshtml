@@ -47,13 +47,17 @@
                     <p class="card-text"><strong>Weight:</strong> 75 kg</p>
                     <p class="card-text"><strong>Fitness Goal:</strong> Lose Weight</p>
                     <p class="card-text"><strong>Subscription:</strong> @LoggedInUser.HasSubscription</p>
+
+                    
                     @if (LoggedInUser.HasSubscription)
                     {
                         <p class="card-text"><strong>Bought at: </strong>@subscriptions.First().BuyDate </p>
 
                         <p class="card-text"><strong>Expires at: </strong>@subscriptions.First().ExpireDate </p>
                     }
-                    
+
+                    <p class="card-text"><strong>Your daily limit for tracking progress with points as a reward:</strong> @LoggedInUser.DailyLimit</p>
+                    <p class="card-text"><strong>Daily limit exceeded:</strong> @LoggedInUser.DailyLimitExceeded</p>
 
 
                 </div>

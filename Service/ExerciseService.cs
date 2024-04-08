@@ -211,29 +211,43 @@ namespace Instagram_Clone.Service
             return ProgressList;
         }
 
-        public async Task TrackUserProgress(int ExerciseId, ExerciseState exerciseState)
+        public async Task TrackUserProgress(int ExerciseId, Progress.ExerciseState exerciseState)
         {
             var exercise = await _appDbContext.Exercises.FirstOrDefaultAsync(e => e.Id == ExerciseId);
             var user = await _accountService.GetLoggedInUserAsync();
+
             if (exercise == null)
             {
                 throw new Exception("Exercise not found");
             }
 
-            // Check the progress count for the user
-            var progressCount = await _appDbContext.Progresss.CountAsync(p => p.UserId == user.Id);
-            if (progressCount >= 5)
+            // Check if user has exceeded daily limit within the past 24 hours
+            var now = DateTime.Now;
+            var lastAddedAt = user.LastAddedAt ?? DateTime.MinValue;
+            var timeSinceLastAdded = now - lastAddedAt;
+
+            if (timeSinceLastAdded.TotalHours < 24 && user.DailyLimitExceeded)
             {
-                var progress2 = new Progress()
+                var progress2 = new Progress
                 {
                     ExerciseName = exercise.ExerciseName,
                     UserId = user.Id,
                     exerciseState = exerciseState,
                 };
-                // Allow the user to proceed without incrementing points if progress count is 5 or more
+
+
                 await _appDbContext.Progresss.AddAsync(progress2);
                 await _appDbContext.SaveChangesAsync();
-                return;
+            }
+
+            var progressCount = await _appDbContext.Progresss.CountAsync(p => p.UserId == user.Id);
+            if (progressCount >= user.DailyLimit)
+            {
+
+                user.DailyLimitExceeded = true; 
+                user.LastAddedAt = now;
+                await _appDbContext.SaveChangesAsync();
+                return; 
             }
 
             var existingExercise = await _appDbContext.Progresss
@@ -246,27 +260,28 @@ namespace Instagram_Clone.Service
 
             double pointsEarned = 0;
 
-            if (exerciseState == ExerciseState.Finished)
+            if (exerciseState == Progress.ExerciseState.Finished)
             {
                 pointsEarned = 1;
             }
-            else if (exerciseState == ExerciseState.Halfway)
+            else if (exerciseState == Progress.ExerciseState.Halfway)
             {
                 pointsEarned = 0.5;
             }
-            else if (exerciseState == ExerciseState.JustStarted)
+            else if (exerciseState == Progress.ExerciseState.JustStarted)
             {
                 pointsEarned = 0.5 / 2;
             }
 
-
-            var progress = new Progress()
+            var progress = new Progress
             {
                 ExerciseName = exercise.ExerciseName,
                 UserId = user.Id,
                 exerciseState = exerciseState,
-                Points = pointsEarned
+                Points = pointsEarned,
             };
+
+            user.LastAddedAt = now;
 
             await _appDbContext.Progresss.AddAsync(progress);
             await _appDbContext.SaveChangesAsync();

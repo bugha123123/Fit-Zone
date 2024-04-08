@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240408120501_addingDAILYLIMIT")]
+    partial class addingDAILYLIMIT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -484,8 +487,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 8, 16, 14, 25, 253, DateTimeKind.Local).AddTicks(3061),
-                            ExpireDate = new DateTime(2024, 5, 8, 16, 14, 25, 253, DateTimeKind.Local).AddTicks(3070),
+                            BuyDate = new DateTime(2024, 4, 8, 16, 5, 0, 882, DateTimeKind.Local).AddTicks(1209),
+                            ExpireDate = new DateTime(2024, 5, 8, 16, 5, 0, 882, DateTimeKind.Local).AddTicks(1220),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -509,9 +512,6 @@ namespace Instagram_Clone.Migrations
                     b.Property<int>("DailyLimit")
                         .HasColumnType("int");
 
-                    b.Property<bool>("DailyLimitExceeded")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -525,9 +525,6 @@ namespace Instagram_Clone.Migrations
 
                     b.Property<bool>("HasSubscription")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastAddedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

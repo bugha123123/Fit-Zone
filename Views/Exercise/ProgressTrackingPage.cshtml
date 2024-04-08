@@ -13,6 +13,11 @@
             <div class="table-responsive">
                 <table class="table table-hover table-bordered text-center">
                     <thead class="table-dark">
+                        @if (Model.Count() >= user.DailyLimit)
+                        {
+                            <h3 class="text-center text-info ">Your progress is currently being tracked, but points are not being awarded at this time.</h3>
+                        }
+
                         <tr>
                             <th>Exercise Name</th>
                             <th>Exercise State</th>
@@ -47,7 +52,7 @@
 
     <div class="card">
         <div class="card-header bg-dark text-info">
-            <h1 class="card-title text-center mb-0">Point System for Exercise States</h1>
+            <h1 class="card-title text-center mb-0">Our system for progress tracking</h1>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -56,23 +61,36 @@
                         <tr>
                             <th>Exercise State</th>
                             <th>Points</th>
+                            <th>
+                                Daily limit for user <span class="text-danger">with subscription</span>
+                            </th>
+                            <th>
+                                Daily limit for user <span class="text-danger">without subscription</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Just Started</td>
                             <td>0.25</td>
+                            <td>@user.DailyLimit</td>
+                            <td>5</td>
                         </tr>
                         <tr>
                             <td>Halfway</td>
                             <td>0.5</td>
+                            <td>@user.DailyLimit</td>
+                            <td>5</td>
                         </tr>
                         <tr>
                             <td>Finished</td>
                             <td>1</td>
+                            <td>@user.DailyLimit</td>
+                            <td>5</td>
                         </tr>
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
