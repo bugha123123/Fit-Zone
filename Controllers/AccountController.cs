@@ -24,12 +24,19 @@ namespace Instagram_Clone.Controllers
 
         public IActionResult LogInPage()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home"); // Redirect to homepage
+            }
             return View();
         }
 
         public IActionResult RegisterPage()
         {
-            
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home"); // Redirect to homepage
+            }
             return View();
         }
         public async  Task<IActionResult> OTPPage()
