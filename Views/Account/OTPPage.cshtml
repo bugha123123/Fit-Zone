@@ -1,17 +1,26 @@
-﻿@model User
+﻿@using Instagram_Clone.Interface
+@model User
 
 <style>
     .otp-box {
-        width: 40px;
+        width: 200px; /* Increased width to 200px */
         height: 40px;
-        border: 1px solid black;
+        border: 1px solid #ccc; /* Light gray border */
+        border-radius: 4px; /* Rounded corners */
         margin: 5px;
         text-align: center;
         font-size: 24px;
+        box-sizing: border-box; /* Ensures padding doesn't affect width/height */
     }
 
     .btn-submit {
         margin-top: 20px;
+        background-color: #387EF5; /* Instagram primary blue */
+        color: white;
+        border: none; /* Remove default border */
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer; /* Indicate clickable button */
     }
 </style>
 
@@ -22,18 +31,14 @@
         </div>
         <div class="card-body">
             <form method="post" asp-action="VerifyOTP" asp-controller="Account" class="text-center">
-                <!-- Hidden field to store the verification code -->
+                @Html.AntiForgeryToken()
 
-                <!-- Single input field for OTP -->
-                <div class="otp-container d-flex justify-content-center g-2">
-                    <input type="text"  name="otp" maxlength="4" required>
+                <div class="otp-container">
+                    <input type="text" class="otp-box" maxlength="4" required autofocus>
                 </div>
 
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                <button type="submit" class="btn-submit mt-3">Submit</button>
             </form>
         </div>
     </div>
 </div>
-
-

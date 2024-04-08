@@ -33,17 +33,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
-})
-.AddCookie()
-.AddFacebook(options =>
-{
-    options.AppId = facebookAppId;
-    options.AppSecret = facebookAppSecret;
-});
+
 //services
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
@@ -52,10 +42,6 @@ builder.Services.AddScoped<IFeedBackService, FeedBackService>();
 //services
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.LoginPath = "/Account/LogInPage"; // Specify the login path
-});
 
 var app = builder.Build();
 
@@ -65,7 +51,24 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+app.MapGet("/", (HttpContext context) =>
+{
+    if (!context.User.Identity.IsAuthenticated)
+    {
+        // Redirect unauthenticated users to the login page
+        context.Response.Redirect("/Account/LogInPage");
+        return Task.CompletedTask;
+    }
+    else
+    {
+        context.Response.Redirect("/Home/Index");
+        return Task.CompletedTask;
+    }
 
+    // If the user is already authenticated, return 404 or another appropriate response
+    context.Response.StatusCode = 404;
+    return Task.CompletedTask;
+});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseStaticFiles();
@@ -73,18 +76,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.Use(async (context, next) =>
-{
-    // Check if the user is authenticated
-    if (!context.User.Identity.IsAuthenticated)
-    {
-        // Redirect unauthenticated users to the login page
-        context.Response.Redirect("/Account/LogInPage");
-        return;
-    }
-
-    await next();
-});
 
 
 

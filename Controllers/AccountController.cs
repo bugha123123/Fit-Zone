@@ -40,10 +40,24 @@ namespace Instagram_Clone.Controllers
         }
 
         [HttpPost("verifyotp")]
-        public async Task<IActionResult> VerifyOTP()
+        [ValidateAntiForgeryToken] // Include this if using anti-forgery tokens
+        public async Task<IActionResult> VerifyOTP(string otp)
         {
-            return RedirectToAction("Index", "Home");
+          
+
+            // Get the logged-in user
+            var user = await _accountService.GetLoggedInUserAsync();
+
+            // Check if the OTP provided by the user matches the verification code
+            if (otp == user.VerificationCode)
+            {
+                user.VerificationCode = null;
+                return RedirectToAction("Index", "Home");
+            }
+                return RedirectToAction("OTPPage", "Account");
+
         }
+
 
 
         [HttpPost("registeruser")]
@@ -189,10 +203,6 @@ namespace Instagram_Clone.Controllers
 
         }
 
-        public IActionResult FacebookLogin()
-        {
-            // Redirect the user to Facebook for authentication
-            return Challenge(new AuthenticationProperties { RedirectUri = "/signin-facebook" }, "Facebook");
-        }
+   
     }
 }
