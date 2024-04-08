@@ -10,5 +10,7 @@ namespace Instagram_Clone.Models
         public string? BoughtSubscriptionName { get; set; }
         public string? ProfileImageFileName { get; set; }
 
+
+
     }
 }

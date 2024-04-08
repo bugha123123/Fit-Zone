@@ -64,11 +64,18 @@ namespace Instagram_Clone.Controllers
         }
 
         [HttpPost("addprogress")]
-
         public async Task<IActionResult> AddProgress(int ExerciseId, ExerciseState exerciseState)
         {
-            await _exerciseService.TrackUserProgress(ExerciseId, exerciseState);
-            return RedirectToAction("ProgressTrackingPage", "Exercise");
+            try
+            {
+                await _exerciseService.TrackUserProgress(ExerciseId, exerciseState);
+                return RedirectToAction("ProgressTrackingPage", "Exercise");
+            }
+            catch (Exception ex)
+            {
+                ViewData["ErrorMessage"] = "An error occurred while tracking user progress: " + ex.Message;
+                return RedirectToAction("ProgressTrackingPage", "Exercise");
+            }
         }
 
 
