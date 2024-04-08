@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Net.Mail;
+using System.Net;
 
 namespace Instagram_Clone.Controllers
 {
@@ -34,6 +36,7 @@ namespace Instagram_Clone.Controllers
 
             return Json(exercises);
         }
+   
 
 
     }

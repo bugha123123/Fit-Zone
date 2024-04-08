@@ -35,9 +35,11 @@
     </PackageReference>
     <PackageReference Include="Stripe.net" Version="43.21.0" />
     <PackageReference Include="Twilio" Version="7.0.2" />
+    <PackageReference Include="Vonage" Version="7.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Ethereal.Details\" />
     <Folder Include="wwwroot\ProfileImages\" />
   </ItemGroup>
 

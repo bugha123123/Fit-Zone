@@ -484,8 +484,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 8, 16, 14, 25, 253, DateTimeKind.Local).AddTicks(3061),
-                            ExpireDate = new DateTime(2024, 5, 8, 16, 14, 25, 253, DateTimeKind.Local).AddTicks(3070),
+                            BuyDate = new DateTime(2024, 4, 8, 21, 11, 58, 254, DateTimeKind.Local).AddTicks(5130),
+                            ExpireDate = new DateTime(2024, 5, 8, 21, 11, 58, 254, DateTimeKind.Local).AddTicks(5144),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -564,6 +564,9 @@ namespace Instagram_Clone.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("VerificationCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

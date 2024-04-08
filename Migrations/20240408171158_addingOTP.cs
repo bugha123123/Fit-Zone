@@ -6,28 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Instagram_Clone.Migrations
 {
     /// <inheritdoc />
-    public partial class fawdadaw : Migration
+    public partial class addingOTP : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "ExerciseNames",
-                table: "AspNetUsers");
-
-            migrationBuilder.UpdateData(
-                table: "Subscriptions",
-                keyColumn: "Id",
-                keyValue: 1,
-                columns: new[] { "BuyDate", "ExpireDate" },
-                values: new object[] { new DateTime(2024, 4, 7, 20, 58, 31, 126, DateTimeKind.Local).AddTicks(3227), new DateTime(2024, 5, 7, 20, 58, 31, 126, DateTimeKind.Local).AddTicks(3238) });
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
             migrationBuilder.AddColumn<string>(
-                name: "ExerciseNames",
+                name: "VerificationCode",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: true);
@@ -37,7 +22,22 @@ namespace Instagram_Clone.Migrations
                 keyColumn: "Id",
                 keyValue: 1,
                 columns: new[] { "BuyDate", "ExpireDate" },
-                values: new object[] { new DateTime(2024, 4, 7, 20, 57, 47, 921, DateTimeKind.Local).AddTicks(423), new DateTime(2024, 5, 7, 20, 57, 47, 921, DateTimeKind.Local).AddTicks(435) });
+                values: new object[] { new DateTime(2024, 4, 8, 21, 11, 58, 254, DateTimeKind.Local).AddTicks(5130), new DateTime(2024, 5, 8, 21, 11, 58, 254, DateTimeKind.Local).AddTicks(5144) });
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "VerificationCode",
+                table: "AspNetUsers");
+
+            migrationBuilder.UpdateData(
+                table: "Subscriptions",
+                keyColumn: "Id",
+                keyValue: 1,
+                columns: new[] { "BuyDate", "ExpireDate" },
+                values: new object[] { new DateTime(2024, 4, 8, 20, 10, 10, 267, DateTimeKind.Local).AddTicks(3355), new DateTime(2024, 5, 8, 20, 10, 10, 267, DateTimeKind.Local).AddTicks(3369) });
         }
     }
 }

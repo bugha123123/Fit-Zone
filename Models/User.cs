@@ -13,5 +13,7 @@ namespace Instagram_Clone.Models
         public int DailyLimit { get; set; } = 5;
         public bool DailyLimitExceeded { get; set; } = false;
         public DateTime? LastAddedAt { get; set; }
+
+        public string? VerificationCode { get; set; }
     }
 }

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Stripe;
+using Instagram_Clone.ApplicationDBContext;
 using AccountService = Instagram_Clone.Service.AccountService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -72,19 +73,21 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapGet("/", context =>
+app.Use(async (context, next) =>
 {
-    if (context.User.Identity.IsAuthenticated)
+    // Check if the user is authenticated
+    if (!context.User.Identity.IsAuthenticated)
     {
-        context.Response.Redirect("/Home/Index");
-    }
-    else
-    {
+        // Redirect unauthenticated users to the login page
         context.Response.Redirect("/Account/LogInPage");
+        return;
     }
-    return Task.CompletedTask;
+
+    await next();
 });
+
+
+
 
 
 app.MapControllerRoute(
