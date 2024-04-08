@@ -1,44 +1,70 @@
-﻿@using Instagram_Clone.Interface
+﻿@using Instagram_Clone.DTO
+@using Microsoft.AspNetCore.Http
+
 @model User
+@{
+    Layout = null;
+}
 
-<style>
-    .otp-box {
-        width: 200px; /* Increased width to 200px */
-        height: 40px;
-        border: 1px solid #ccc; /* Light gray border */
-        border-radius: 4px; /* Rounded corners */
-        margin: 5px;
-        text-align: center;
-        font-size: 24px;
-        box-sizing: border-box; /* Ensures padding doesn't affect width/height */
-    }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fit Zone</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Account.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" asp-append-version="true">
 
-    .btn-submit {
-        margin-top: 20px;
-        background-color: #387EF5; /* Instagram primary blue */
-        color: white;
-        border: none; /* Remove default border */
-        border-radius: 4px;
-        padding: 10px 20px;
-        cursor: pointer; /* Indicate clickable button */
-    }
-</style>
+    <style>
+        body {
+            background: #09090b;
+        }
 
-<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card border shadow mx-auto" style="max-width: 400px;">
-        <div class="card-header text-center">
-            <h2>Enter OTP</h2>
-        </div>
-        <div class="card-body">
-            <form method="post" asp-action="VerifyOTP" asp-controller="Account" class="text-center">
-                @Html.AntiForgeryToken()
+        .otp-box {
+            width: 200px; /* Increased width to 200px */
+            height: 40px;
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 4px; /* Rounded corners */
+            margin: 5px;
+            text-align: center;
+            font-size: 24px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width/height */
+        }
 
-                <div class="otp-container">
-                    <input type="text" class="otp-box" maxlength="4" required autofocus>
+        .btn-submit {
+            margin-top: 20px;
+            background-color: #387EF5; /* Instagram primary blue */
+            color: white;
+            border: none; /* Remove default border */
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer; /* Indicate clickable button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card border shadow mx-auto" style="max-width: 400px;">
+            <div class="card-header text-center">
+                <h2>Enter OTP</h2>
+            </div>
+           
+        
+                <div class="alert alert-success" role="alert">
+                <h4>An gmail has been sent to vincent50@ethereal.email on ethereal.login. Get your code and proceed</h4>
                 </div>
+          
+            <div class="card-body">
+                <form method="post" asp-action="VerifyOTP" asp-controller="Account" class="text-center">
+                    @Html.AntiForgeryToken()
 
-                <button type="submit" class="btn-submit mt-3">Submit</button>
-            </form>
+                    <div class="otp-container">
+                        <input type="text" class="otp-box" name="otp" maxlength="4" required autofocus>
+                    </div>
+
+                    <button type="submit" class="btn-submit mt-3">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</body>
+</html>

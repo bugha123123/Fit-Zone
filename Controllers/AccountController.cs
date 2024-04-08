@@ -123,7 +123,7 @@ namespace Instagram_Clone.Controllers
                         message.Subject = subject;
                         message.Body = body;
                         message.IsBodyHtml = true;
-
+                        ViewData["GmailSentMessage"] = "An email has been sent to vincent50@ethereal.email on ethereal. Get your code there and proceed.";
                         // Send the email
                         await smtpClient.SendMailAsync(message);
                     }
