@@ -15,5 +15,9 @@ namespace Instagram_Clone.Models
         public DateTime? LastAddedAt { get; set; }
 
         public string? VerificationCode { get; set; }
+
+        public bool IsVerified { get; set; } = false;
+
+        public string? SubscriptionName { get; set; }
     }
 }

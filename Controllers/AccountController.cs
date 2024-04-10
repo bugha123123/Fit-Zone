@@ -35,7 +35,7 @@ namespace Instagram_Clone.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home"); // Redirect to homepage
+                return RedirectToAction("Index", "Home"); 
             }
             return View();
         }
@@ -43,24 +43,31 @@ namespace Instagram_Clone.Controllers
         {
             var user = await _accountService.GetLoggedInUserAsync();
 
+
+            if (user.IsVerified)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(user);
         }
 
         [HttpPost("verifyotp")]
-        [ValidateAntiForgeryToken] // Include this if using anti-forgery tokens
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> VerifyOTP(string otp)
         {
           
 
-            // Get the logged-in user
             var user = await _accountService.GetLoggedInUserAsync();
 
-            // Check if the OTP provided by the user matches the verification code
             if (otp == user.VerificationCode)
             {
                 user.VerificationCode = null;
+                user.IsVerified = true;
+           await     _appDbContext.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
+
+            ViewData["WrongOTP"] = "Wrong code. Try again";
                 return RedirectToAction("OTPPage", "Account");
 
         }
@@ -75,22 +82,16 @@ namespace Instagram_Clone.Controllers
                 // Register the user
                 await _accountService.RegisterUser(createUserDTO);
 
-                // Generate OTP code
                 string otp = await GenerateOTP();
 
-                // Get the logged-in user
                 var user = await _accountService.GetLoggedInUserAsync();
 
-                // Set the OTP code for the user
                 user.VerificationCode = otp;
-
-                // Save changes to the database
+                user.IsVerified = false;
                 await _appDbContext.SaveChangesAsync();
 
-                // Set localStorage item after registering user
                 HttpContext.Response.Cookies.Append("loggedIn", "true");
 
-                // Send registration confirmation email to Ethereal Email
                 string recipientEmail = "vincent50@ethereal.email";
                 string subject = "Registration Confirmation";
                 string body = $"Dear {createUserDTO.Username},<br/><br/>Thank you for registering with us. Your account has been successfully created. This is your verification code: {otp}, use it on our website to verify your account";
@@ -110,12 +111,9 @@ namespace Instagram_Clone.Controllers
         {
             try
             {
-                // Generate OTP code
                
 
-                // Append OTP code to the email body
 
-                // Create and configure the SMTP client for Ethereal Email
                 using (var smtpClient = new SmtpClient("smtp.ethereal.email", 587))
                 {
                     smtpClient.UseDefaultCredentials = false;
@@ -143,17 +141,13 @@ namespace Instagram_Clone.Controllers
         }
         private async Task<string> GenerateOTP()
         {
-            // Use a cryptographically secure random number generator (CSPRNG)
             using (var rng = RandomNumberGenerator.Create())
             {
-                // Generate a byte array of appropriate size for the desired OTP length (4 digits)
                 byte[] randomNumberBytes = new byte[4];
                 rng.GetBytes(randomNumberBytes);
 
-                // Convert the byte array to a base-10 integer within the desired OTP range (1000-9999)
                 int randomNumber = Math.Abs(BitConverter.ToInt32(randomNumberBytes, 0)) % 10000;
 
-                // Ensure the random number falls within the desired range (1000-9999)
                 if (randomNumber < 1000)
                 {
                     randomNumber += 10000;
@@ -163,30 +157,37 @@ namespace Instagram_Clone.Controllers
                 return randomNumber.ToString().Substring(randomNumber.ToString().Length - 4);
             }
         }
-   
+
 
         [HttpPost("signin")]
         public async Task<IActionResult> SignInUser(LogInUserDTO logInUserDTO)
         {
-            await _accountService.LogInUser(logInUserDTO);
-            string otp = await GenerateOTP();
+            try
+            {
+                await _accountService.LogInUser(logInUserDTO);
+                string otp = await GenerateOTP();
 
-            HttpContext.Response.Cookies.Append("loggedIn", "true");
-            // Send registration confirmation email to Ethereal Email
-            string recipientEmail = "vincent50@ethereal.email";
-            string subject = "Registration Confirmation";
-            string body = $"Dear {logInUserDTO.UserName},<br/><br/>This is your verification code {otp}, use it on  our website to verify your account";
-            var user = await _accountService.GetLoggedInUserAsync();
+                HttpContext.Response.Cookies.Append("loggedIn", "true");
+                string recipientEmail = "vincent50@ethereal.email";
+                string subject = "Registration Confirmation";
+                string body = $"Dear {logInUserDTO.UserName},<br/><br/>This is your verification code {otp}, use it on  our website to verify your account";
+                var user = await _accountService.GetLoggedInUserAsync();
 
-            // Set the OTP code for the user
-            user.VerificationCode = otp;
+                user.VerificationCode = otp;
 
-            // Save changes to the database
-            await _appDbContext.SaveChangesAsync();
-            await SendEmail(recipientEmail, subject, body);
-      
-            return RedirectToAction("OTPPage", "Account");
+                // Save changes to the database
+                await _appDbContext.SaveChangesAsync();
+                await SendEmail(recipientEmail, subject, body);
+
+                return RedirectToAction("OTPPage", "Account");
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("LogInPage", "Account");
+            }
         }
+
 
         [HttpPost("LogOutUser")]
         public async Task<IActionResult> LogOutUser()

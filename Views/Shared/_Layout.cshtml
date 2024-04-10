@@ -1,6 +1,11 @@
 ﻿@using Instagram_Clone.Interface
 @inject IExerciseService _exerciseservice;
+@inject IAccountService _accountservicel
 
+@{
+    var user = await _accountservicel.GetLoggedInUserAsync();
+
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,6 +113,18 @@
             cursor: pointer;
         }
 
+        .navbar-nav {
+            position: relative;
+        }
+
+        .verify-account {
+            position: absolute;
+            top: 32px;
+            left:65px;
+         background:none;
+         border:none;
+        }
+
 
     </style>
 </head>
@@ -126,24 +143,41 @@
                     <li class="nav-item">
                         <a class="nav-link mr-3" asp-action="ExercisePage" asp-controller="Exercise">Exercises</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link mr-3" asp-action="SubscriptionPage" asp-controller="Subscription">Buy Subscription</a>
-                    </li>
+              @if (user.IsVerified)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link mr-3" asp-action="SubscriptionPage" asp-controller="Subscription">Buy Subscription</a>
+                        </li>
+                    }
+                    else
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link mr-3 text-danger" asp-action="SubscriptionPage" asp-controller="Subscription">Buy Subscription</a>
+                        </li>
+                    }
                     <li class="nav-item">
                         <a id="toggleAbsoluteContainer" class="nav-link mr-3" href="#">Saved Workouts</a>
-
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link mr-3" asp-action="ProgressTrackingPage" asp-controller="Exercise">Progress</a>
-
+                        <a class="nav-link mr-3" asp-action="ProgressTrackingPage" asp-controller="Exercise">Progress</a>
                     </li>
-                
+                    @if (!user.IsVerified)
+                    {
+                        <form method="post" asp-action="LogOutUser" asp-controller="Account">
+                            <button type="submit" class="verify-account text-decoration-none text-danger">Verify Your Account by logging out first</button>
+                        </form>
+                    }
+
+
                 </ul>
+
+
                 <ul class="navbar-nav ml-auto">
                    
                 
                     <li class="nav-item">
-                        <a class="nav-link mr-3" asp-action="ProfilePage" asp-controller="Profile"><i class="fas fa-user" style="margin-right:5px;"></i>Profile</a>
+                        <a class="nav-link mr-3" asp-action="ProfilePage" asp-controller="Profile"><i class="fas fa-user" style="margin-right:5px;"></i></a>
                     </li>
                     <li class="nav-item">
                         <form id="logoutForm" asp-action="LogOutUser" asp-controller="Account" method="post">

@@ -4,6 +4,7 @@ using Instagram_Clone.ApplicationDBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Instagram_Clone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240410155134_addingIsVerifiedProp")]
+    partial class addingIsVerifiedProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -484,8 +487,8 @@ namespace Instagram_Clone.Migrations
                         new
                         {
                             Id = 1,
-                            BuyDate = new DateTime(2024, 4, 10, 20, 36, 53, 238, DateTimeKind.Local).AddTicks(2230),
-                            ExpireDate = new DateTime(2024, 5, 10, 20, 36, 53, 238, DateTimeKind.Local).AddTicks(2243),
+                            BuyDate = new DateTime(2024, 4, 10, 19, 51, 34, 452, DateTimeKind.Local).AddTicks(7932),
+                            ExpireDate = new DateTime(2024, 5, 10, 19, 51, 34, 452, DateTimeKind.Local).AddTicks(7943),
                             PlanPrice = 9.9900000000000002,
                             PlanType = "Basic"
                         });
@@ -559,9 +562,6 @@ namespace Instagram_Clone.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SubscriptionName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")

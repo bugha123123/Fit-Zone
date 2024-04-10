@@ -52,18 +52,28 @@
                 <div class="alert alert-success" role="alert">
                 <h4>An gmail has been sent to vincent50@ethereal.email on ethereal.login. Get your code and proceed</h4>
                 </div>
-          
+
             <div class="card-body">
                 <form method="post" asp-action="VerifyOTP" asp-controller="Account" class="text-center">
                     @Html.AntiForgeryToken()
 
                     <div class="otp-container">
                         <input type="text" class="otp-box" name="otp" maxlength="4" required autofocus>
+                        @if (ViewData["WrongOTP"] != null)
+                        {
+                            <span class="text-danger">@ViewData["WrongOTP"]</span>
+                        }
                     </div>
-
                     <button type="submit" class="btn-submit mt-3">Submit</button>
+                    <br />
+                    <br />
                 </form>
+
+                <button class="btn-success btn mt-3"><a asp-action="Index" asp-controller="Home" class="text-decoration-none text-white text-center">Continue Without Confirmation</a></button>
+
+                <p class="text-danger mt-3">Note: By selecting "<strong>Continue Without Confirmation</strong>," you will have limited access to certain services.</p>
             </div>
+
         </div>
     </div>
 </body>

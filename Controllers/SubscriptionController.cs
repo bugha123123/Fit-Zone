@@ -13,15 +13,22 @@ namespace Instagram_Clone.Controllers
         private readonly UserManager<User> userManager;
         private readonly AppDbContext appDbContext;
         private readonly IExerciseService exerciseService;
-        public SubscriptionController(UserManager<User> userManager, AppDbContext appDbContext, IExerciseService exerciseService)
+        private readonly IAccountService accountService;
+        public SubscriptionController(UserManager<User> userManager, AppDbContext appDbContext, IExerciseService exerciseService, IAccountService accountService)
         {
             this.userManager = userManager;
             this.appDbContext = appDbContext;
             this.exerciseService = exerciseService;
+            this.accountService = accountService;
         }
 
-        public IActionResult SubscriptionPage()
+        public async Task<IActionResult> SubscriptionPage()
         {
+            var user = await accountService.GetLoggedInUserAsync();
+            if (!user.IsVerified)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -49,6 +56,7 @@ namespace Instagram_Clone.Controllers
             subscription.PlanType = planType;
             subscription.PlanPrice = planPrice;
             user.HasSubscription = true;
+            user.SubscriptionName = planType;
             user.BoughtSubscriptionName = subscription.PlanType;
 
         await    appDbContext.SaveChangesAsync();   

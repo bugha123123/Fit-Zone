@@ -1,7 +1,9 @@
-﻿@model FeedBack
-
+﻿@using Instagram_Clone.Interface
+@model FeedBack
+@inject IAccountService _accountservice;
 @{
     ViewBag.Title = "Fit Zone";
+    var user = await _accountservice.GetLoggedInUserAsync();
 }
 <div class="card feedback-card mt-5" style="background-color: #1c1c1e; color: #ffffff;">
     <div class="card-body">
@@ -21,6 +23,10 @@
                 <input type="email" asp-for="Email" class="form-control mt-2" id="email-input"  placeholder="Your Email (Optional)" style="background-color: #28282a; color: #ffffff;">
             </div>
             <button type="submit" class="btn btn-primary btn-block mt-3" style="background-color: #32a852; border-color: #32a852;">Submit Feedback</button>
+            @if (!user.IsVerified)
+            {
+                <p class="text-danger">Verify your account to unlock this feature</p>
+            }
         </form>
     </div>
 </div>
