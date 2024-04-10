@@ -26,7 +26,7 @@ namespace Instagram_Clone.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home"); // Redirect to homepage
+                return RedirectToAction("Index", "Home"); 
             }
             return View();
         }

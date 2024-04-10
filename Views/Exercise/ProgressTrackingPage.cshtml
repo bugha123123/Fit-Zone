@@ -2,6 +2,8 @@
 @model List<Progress>
 @inject IAccountService _accountservice;
 @{
+    ViewBag.Title = "Fit Zone";
+
     var user = await _accountservice.GetLoggedInUserAsync();
 }
 <main class="container mt-5">
