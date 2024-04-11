@@ -287,9 +287,11 @@ namespace Instagram_Clone.Service
             await _appDbContext.SaveChangesAsync();
         }
 
+        public async Task<List<Exercise>> GetExerciseByLoseWeight()
+        {
+            var exercises = await _appDbContext.Exercises.Where(e => e.ExerciseMainFocus == ExerciseMainFocus.LoseWeight).OrderBy(x => Guid.NewGuid()).Take(4).ToListAsync();
 
-
-
-
+            return exercises;
+        }
     }
 }

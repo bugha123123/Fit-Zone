@@ -29,14 +29,15 @@
     }
 
     .modal-content {
+     border:none;
         position: relative; 
         height: 100%; 
     }
 
     .close {
         position: absolute; 
-        top: 10px; 
-        right: 10px; 
+        top: -15px; 
+        right: -10px; 
         cursor: pointer;
     }
 
@@ -89,7 +90,9 @@
             <div class="welcome-message p-4 text-white">
                 <h1 class="display-3 ">Welcome to <span class="text-danger">FitZone!</span></h1>
                 <p class="lead mt-4">Get ready to embark on an exciting fitness journey with FitZone. Whether you're looking to build muscle, lose weight, or improve your overall health, we've got you covered. Our comprehensive range of workouts, nutrition plans, and expert guidance will help you reach your fitness goals effectively. Let's make every sweat count!</p>
-                <button class="btn btn-primary mt-3" id="changeFitnessLevelBtn">Adjust Fitness Level</button>
+                <button class="btn btn-outline-primary mt-3 text-white" id="changeFitnessLevelBtn">Adjust Fitness Level</button>
+                <button class="btn btn-outline-info mt-3" >Contact Us</button>
+
                 <br></br>
                 <br />
                    
@@ -250,7 +253,10 @@ else
               <div class="carousel-item @isActive">
                 <div class="d-flex justify-content-center align-items-center h-100">
                   <div class="text-center text-dark">
-                    <img src="@exercise.ExerciseImage" alt="@exercise.ExerciseName" class="img-fluid mb-3 rounded-circle text-white" style="max-width: 170px;">
+                                        <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id">
+                                            <img src="@exercise.ExerciseImage" alt="@exercise.ExerciseName" class="img-fluid mb-3 rounded-circle text-white" style="max-width: 170px;">
+
+                      </a>
                     <h3 class="mb-3 text-white">@exercise.ExerciseName</h3>
                     <p class="text-white">@exercise.ExerciseMainFocus</p>
                   </div>
@@ -278,13 +284,32 @@ else
   </div>
 
 
+    <div class="container mt-5">
+        <h2 class="text-center mb-4 mt-5 text-white">Exercises for losing weight</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 d-flex align-items-stretch">
+            @foreach (var exercise in await _exerciseservice.GetExerciseByLoseWeight())
+            {
+                <a class="text-decoration-none" asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id">
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="@exercise.ExerciseImage" class="card-img-top rounded-3" alt="@exercise.ExerciseName">
+                            <div class="card-body text-black">
+                                <h5 class="card-title">@exercise.ExerciseName</h5>
+                                <p class="card-text">@exercise.ExerciseMainFocus</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            }
+        </div>
+    </div>
 
 
 
 
 
 </div>
-
 <script>
 
 

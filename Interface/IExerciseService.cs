@@ -46,5 +46,7 @@ namespace Instagram_Clone.Interface
         //tracking service
 
 
+        Task<List<Exercise>> GetExerciseByLoseWeight();
+
     }
 }
