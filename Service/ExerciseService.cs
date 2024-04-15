@@ -77,8 +77,7 @@ namespace Instagram_Clone.Service
             int totalCount = await query.CountAsync();
 
             // Apply pagination
-            int itemsToSkip = (pageNumber - 1) * pageSize;
-            query = query.Skip(itemsToSkip).Take(pageSize);
+      
 
             List<Exercise> result = await query.ToListAsync();
             return result;

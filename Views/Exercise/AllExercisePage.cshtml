@@ -1,0 +1,38 @@
+﻿@using Instagram_Clone.Interface
+@inject IExerciseService _exerciseService;
+
+<style>
+    .exercise-container {
+        background-color: #f5f5f5;
+        border-radius: 6px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+
+
+</style>
+
+<h1>Discover Exercises:</h1>
+
+<div class="exercise-container">
+    <div class="row">
+        @foreach (var exercise in await _exerciseService.GetExercisesAsync())
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="@exercise.ExerciseImage" height="300px" class="card-img-top" alt="@exercise.ExerciseName Image" />
+                    <div class="card-body">
+                        <h5 class="card-title">@exercise.ExerciseName</h5>
+                        <p class="card-text">Equipment Required : <strong>@exercise.EquipmentRequired</strong></p>
+                        <a asp-action="ExerciseDetailsPage" asp-controller="Exercise" asp-route-ExerciseId="@exercise.Id" class="btn btn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
